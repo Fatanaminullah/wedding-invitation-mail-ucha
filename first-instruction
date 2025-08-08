@@ -1,0 +1,43 @@
+I want to build wedding invitation website. I need you to carft an instruction to be used to develop this app. so its like to-do list and step by step to develop this app. i will give you the requirement, and you sent me an MD file as the result.
+
+Tech Stack:
+
+Frontend:
+
+Next.js
+Tailwindcss
+Shadcn
+React Awesome Reveal
+Lucide React
+Lenis
+
+Backend:
+
+For this I need your suggestion, what backend CMS + Database that can easily deploy to serverless like Vercel or Netlify.
+
+----------------------------------------------------------------------------------------------------------------------
+
+Build this website with references from attached image in folder references. i have given the match with the section
+
+(e.g intro section = 1_intro, banner section = 2_banner)
+
+For the content of the website check folder content, read the content.md. check content/images folder for the images used in the website, i also given the name match the needs (e.g banner.jpg, groom.jpg, gallery-1.jpn)
+
+So the backend will be needed in 2 feature
+
+1. RSVP
+
+user can input name, number of guest, and confirmation will come
+
+2. Blessing
+
+user can input their name and blessing / comment, and then there is a list of the blessing.
+
+!Note:
+
+1. Intro will covering the whole website (fullscreen) and cannot be scrolled. when user click open invitation, intro disappear and show the whole website
+2. there will be a song played, automatically played after click open invitation, and then there is a toggle sticky on the bottom right to play and pause the song
+3. Use react awesome reveal for every content (e.g title, text) triggered once
+4. website is mobile only, for the desktop view, create a mobile frame, example attached in references/mobile-frame-sample.png
+5. website will be deployed in vercel, i want it both frontend and backend, make sure the capabilities
+6. for the backend, create a simple CMS to display RSVP and Blessing Data.
