@@ -1,27 +1,23 @@
 'use client'
 
-import { useState, Suspense } from 'react'
-import MobileFrame from '@/components/mobile-frame'
 import LanguageToggle from '@/components/language-toggle'
+import MobileFrame from '@/components/mobile-frame'
 import MusicPlayer from '@/components/music-player'
-import Intro from '@/components/sections/intro'
 import Banner from '@/components/sections/banner'
-import BrideGroom from '@/components/sections/bride-groom'
-import Verse from '@/components/sections/verse'
-import SaveTheDate from '@/components/sections/save-the-date'
-import RSVP from '@/components/sections/rsvp'
-import Gallery from '@/components/sections/gallery'
-import WeddingGift from '@/components/sections/wedding-gift'
 import Blessing from '@/components/sections/blessing'
+import BrideGroom from '@/components/sections/bride-groom'
 import Footer from '@/components/sections/footer'
-import { useLenis } from '@/hooks/use-lenis'
+import Gallery from '@/components/sections/gallery'
+import Intro from '@/components/sections/intro'
+import RSVP from '@/components/sections/rsvp'
+import SaveTheDate from '@/components/sections/save-the-date'
+import Verse from '@/components/sections/verse'
+import WeddingGift from '@/components/sections/wedding-gift'
+import { Suspense, useState } from 'react'
 
 function HomeContent() {
   const [showIntro, setShowIntro] = useState(true)
   const [musicAutoPlay, setMusicAutoPlay] = useState(false)
-
-  // Initialize smooth scrolling
-  useLenis()
 
   const handleOpenInvitation = () => {
     setShowIntro(false)
