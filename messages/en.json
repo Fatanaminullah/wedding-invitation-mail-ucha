@@ -1,0 +1,99 @@
+{
+  "intro": {
+    "title": "The wedding of Ucha & Mail",
+    "greeting": "Dear",
+    "guestName": "Mr./Mrs./Ms.",
+    "openInvitation": "Open Invitation"
+  },
+  "banner": {
+    "title": "The wedding of Ucha & Mail",
+    "description": "Assalamu'alaikum Wr. Wb. With the blessings, mercy, and grace of Allah, we intend to invite you to the wedding ceremony we are organizing."
+  },
+  "bride": {
+    "name": "Salsabila Azzahra, S.Psi",
+    "title": "The Bride",
+    "detail": "First daughter of Colonel (PM) Hendri A.P Sinaga, S.H.,M.H & Sity Fatimah, S.Sos",
+    "instagram": "@salsabilaaucha"
+  },
+  "groom": {
+    "name": "Ismail Abdan Syakuro Firmansyah, S.T",
+    "title": "The Groom",
+    "detail": "Only son of Iwan Firmansyah, S.Kom & Ira Apriedian, S. Pd.",
+    "instagram": "@ismailabdann"
+  },
+  "verse": {
+    "text": "\"And among His signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them, and He has put love and mercy between your hearts: verily in that are signs for those who reflect.\"",
+    "source": "Surah Ar-Rum Verse 21"
+  },
+  "saveTheDate": {
+    "title": "Save the Date",
+    "akad": {
+      "title": "Wedding Ceremony",
+      "date": "Saturday, September 6, 2025",
+      "time": "07:00 AM",
+      "location": "Aula Sarbini (Wiladatika Recreation Park)",
+      "address": "Jl Pusdika Raya No.6B, Harjamukti, Cimanggis, Depok City, West Java 16454",
+      "mapButton": "View Location"
+    },
+    "resepsi": {
+      "title": "Reception",
+      "date": "Saturday, September 6, 2025",
+      "time": "11:00 AM - 01:00 PM",
+      "location": "Aula Sarbini (Wiladatika Recreation Park)", 
+      "address": "Jl Pusdika Raya No.6B, Harjamukti, Cimanggis, Depok City, West Java 16454",
+      "mapButton": "View Location"
+    }
+  },
+  "rsvp": {
+    "title": "RSVP",
+    "description": "Please confirm your attendance to the bride and groom through the following form.",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Enter your full name",
+    "guestCountLabel": "Number of Guests",
+    "guestCount1": "1 Person",
+    "guestCount2": "2 People",
+    "attendanceLabel": "Attendance Confirmation", 
+    "attendanceYes": "Will Attend",
+    "attendanceNo": "Cannot Attend",
+    "submitButton": "Send Confirmation",
+    "successMessage": "Thank you for your confirmation!"
+  },
+  "gallery": {
+    "title": "Gallery"
+  },
+  "weddingGift": {
+    "title": "Wedding Gift",
+    "description": "Without diminishing our respect, for guests who would like to give a token of affection, you can send it through:",
+    "copyButton": "Copy",
+    "copiedMessage": "Account number successfully copied!"
+  },
+  "blessing": {
+    "title": "Wishes & Prayers",
+    "description": "Give your best wishes and prayers for the bride and groom",
+    "nameLabel": "Name",
+    "namePlaceholder": "Enter your name",
+    "messageLabel": "Wishes & Prayers",
+    "messagePlaceholder": "Write your wishes and prayers here...",
+    "submitButton": "Send Wishes",
+    "successMessage": "Your wishes have been sent successfully!",
+    "loadMore": "Load More"
+  },
+  "footer": {
+    "message": "It would be our happiness if you would kindly attend our special day. Thank you for all the prayers and attention given.",
+    "signature": "With happiness",
+    "names": "Ucha & Mail"
+  },
+  "music": {
+    "play": "Play Music",
+    "pause": "Pause Music"
+  },
+  "language": {
+    "indonesian": "Bahasa Indonesia", 
+    "english": "English"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "tryAgain": "Try Again"
+  }
+}

@@ -1,7 +1,7 @@
 # Wedding Invitation Website Development Instructions
 
 ## Project Overview
-Build a mobile-first wedding invitation website for Ucha & Mail with modern animations, music integration, and backend functionality for RSVP and blessings.
+Build a mobile-first wedding invitation website for Ucha & Mail with modern animations, music integration, backend functionality for RSVP and blessings, and **dual language support (Indonesian default, English toggle)**.
 
 ## Tech Stack
 
@@ -12,6 +12,7 @@ Build a mobile-first wedding invitation website for Ucha & Mail with modern anim
 - **React Awesome Reveal** - Animation library
 - **Lucide React** - Icon library
 - **Lenis** - Smooth scrolling library
+- **Next-intl** - Internationalization for dual language support (Indonesian/English)
 
 ### Backend & Database (Recommended)
 - **Supabase** - PostgreSQL database with real-time features
@@ -41,6 +42,9 @@ cd wedding-invitation
 # UI and Animation Libraries
 npm install @radix-ui/react-slot class-variance-authority clsx tailwind-merge
 npm install react-awesome-reveal lucide-react @studio-freight/lenis
+
+# Internationalization
+npm install next-intl
 
 # Shadcn/UI Setup
 npx shadcn-ui@latest init
@@ -109,7 +113,51 @@ CREATE POLICY "Allow public read approved blessings" ON blessings
   FOR SELECT USING (is_approved = true);
 ```
 
-### Phase 3: Core Layout & Mobile Frame
+### Phase 3: Internationalization Setup
+
+#### 3.1 Next-intl Configuration
+Create `next.config.js`:
+```js
+const withNextIntl = require('next-intl/plugin')();
+
+module.exports = withNextIntl({
+  // Other Next.js config
+});
+```
+
+#### 3.2 Create Locale Files
+Create `messages/` directory structure:
+```
+messages/
+├── id.json (Indonesian - default)
+└── en.json (English)
+```
+
+#### 3.3 Language Toggle Component
+`components/language-toggle.tsx`:
+```tsx
+// Sticky language toggle (top-right)
+// ID/EN switch with smooth transition
+// Persist language preference in localStorage
+```
+
+#### 3.4 Translation Keys Structure
+```json
+{
+  "intro": {
+    "title": "The wedding of Ucha & Mail",
+    "greeting": "Kepada Yth.",
+    "openInvitation": "Buka Undangan"
+  },
+  "banner": {
+    "title": "The wedding of Ucha & Mail",
+    "description": "Dengan memohon Ridho, Rahmat, dan berkah Allah..."
+  },
+  // ... all sections
+}
+```
+
+### Phase 4: Core Layout & Mobile Frame
 
 #### 3.1 Create Mobile Frame Component
 `components/mobile-frame.tsx`:
@@ -339,18 +387,24 @@ wedding-invitation/
 │   │   └── footer.tsx
 │   ├── ui/ (shadcn components)
 │   ├── mobile-frame.tsx
-│   └── music-player.tsx
+│   ├── music-player.tsx
+│   └── language-toggle.tsx
 ├── hooks/
 │   ├── use-lenis.ts
 │   └── use-supabase.ts
 ├── lib/
 │   ├── supabase.ts
 │   └── utils.ts
+├── messages/
+│   ├── id.json (Indonesian)
+│   └── en.json (English)
 ├── public/
 │   ├── images/
 │   └── audio/
-└── types/
-    └── index.ts
+├── types/
+│   └── index.ts
+├── next.config.js
+└── i18n.ts
 ```
 
 ## Testing Checklist
@@ -358,6 +412,9 @@ wedding-invitation/
 ### Functionality
 - [ ] Intro overlay shows/hides correctly
 - [ ] Music auto-plays and toggle works
+- [ ] Language toggle switches between ID/EN correctly
+- [ ] All content translates properly
+- [ ] Language preference persists
 - [ ] All animations trigger properly
 - [ ] RSVP form submits successfully
 - [ ] Blessing form submits and displays
@@ -406,8 +463,8 @@ wedding-invitation/
 
 ---
 
-**Development Time Estimate**: 40-60 hours
+**Development Time Estimate**: 45-70 hours
 **Complexity Level**: Intermediate
-**Priority Features**: RSVP, Music Player, Mobile Responsiveness, Animations
+**Priority Features**: Dual Language Support, RSVP, Music Player, Mobile Responsiveness, Animations
 
 This instruction guide provides a complete roadmap for developing the wedding invitation website with all requested features and modern best practices.

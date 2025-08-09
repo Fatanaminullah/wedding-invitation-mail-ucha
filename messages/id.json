@@ -1,0 +1,99 @@
+{
+  "intro": {
+    "title": "The wedding of Ucha & Mail",
+    "greeting": "Kepada Yth.",
+    "guestName": "Bapak/Ibu/Saudara/i",
+    "openInvitation": "Buka Undangan"
+  },
+  "banner": {
+    "title": "The wedding of Ucha & Mail",
+    "description": "Assalamu'alaikum Wr. Wb. Dengan memohon Ridho, Rahmat, dan berkah Allah kami bermaksud untuk mengundang Saudara/i dalam acara pernikahan yang kami selenggarakan."
+  },
+  "bride": {
+    "name": "Salsabila Azzahra, S.Psi",
+    "title": "Mempelai Wanita",
+    "detail": "Putri pertama Kolonel Laut (PM) Hendri A.P Sinaga, S.H.,M.H & Sity Fatimah, S.Sos",
+    "instagram": "@salsabilaaucha"
+  },
+  "groom": {
+    "name": "Ismail Abdan Syakuro Firmansyah, S.T",
+    "title": "Mempelai Pria", 
+    "detail": "Putra tunggal Iwan Firmansyah, S.Kom & Ira Apriedian, S. Pd.",
+    "instagram": "@ismailabdann"
+  },
+  "verse": {
+    "text": "\"Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir\".",
+    "source": "Surat Ar-Rum Ayat 21"
+  },
+  "saveTheDate": {
+    "title": "Save the Date",
+    "akad": {
+      "title": "Akad Nikah",
+      "date": "Sabtu, 6 September 2025",
+      "time": "pukul 07.00 WIB",
+      "location": "Aula Sarbini (Taman Rekreasi Wiladatika)",
+      "address": "Jl Pusdika Raya No.6B, Harjamukti, Kec. Cimanggis, Kota Depok, Jawa Barat 16454",
+      "mapButton": "Lihat Lokasi"
+    },
+    "resepsi": {
+      "title": "Resepsi",
+      "date": "Sabtu, 6 September 2025", 
+      "time": "pukul 11.00 - 13.00 WIB",
+      "location": "Aula Sarbini (Taman Rekreasi Wiladatika)",
+      "address": "Jl Pusdika Raya No.6B, Harjamukti, Kec. Cimanggis, Kota Depok, Jawa Barat 16454",
+      "mapButton": "Lihat Lokasi"
+    }
+  },
+  "rsvp": {
+    "title": "RSVP",
+    "description": "Kirimkan konfirmasi kehadiran kepada calon mempelai melalui form berikut.",
+    "nameLabel": "Nama Lengkap",
+    "namePlaceholder": "Masukkan nama lengkap",
+    "guestCountLabel": "Jumlah Tamu",
+    "guestCount1": "1 Orang",
+    "guestCount2": "2 Orang", 
+    "attendanceLabel": "Konfirmasi Kehadiran",
+    "attendanceYes": "Hadir",
+    "attendanceNo": "Tidak Hadir",
+    "submitButton": "Kirim Konfirmasi",
+    "successMessage": "Terima kasih atas konfirmasi Anda!"
+  },
+  "gallery": {
+    "title": "Gallery"
+  },
+  "weddingGift": {
+    "title": "Wedding Gift",
+    "description": "Tanpa mengurangi rasa hormat kami, bagi tamu yang ingin memberikan tanda kasih, dapat mengirimkannya melalui:",
+    "copyButton": "Salin",
+    "copiedMessage": "Nomor rekening berhasil disalin!"
+  },
+  "blessing": {
+    "title": "Ucapan & Doa",
+    "description": "Berikan ucapan dan doa terbaik untuk kedua mempelai",
+    "nameLabel": "Nama",
+    "namePlaceholder": "Masukkan nama Anda",
+    "messageLabel": "Ucapan & Doa",
+    "messagePlaceholder": "Tulis ucapan dan doa Anda di sini...",
+    "submitButton": "Kirim Ucapan",
+    "successMessage": "Ucapan Anda berhasil dikirim!",
+    "loadMore": "Muat Lebih Banyak"
+  },
+  "footer": {
+    "message": "Menjadi sebuah kebahagian bagi kami apabila Bapak/Ibu/saudara/I berkenan hadir dalam hari Bahagia kami. Terima kasih atas segala do'a dan perhatian yang diberikan.",
+    "signature": "Kami yang berbahagia",
+    "names": "Ucha & Mail"
+  },
+  "music": {
+    "play": "Putar Musik",
+    "pause": "Jeda Musik"
+  },
+  "language": {
+    "indonesian": "Bahasa Indonesia",
+    "english": "English"
+  },
+  "common": {
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "tryAgain": "Coba Lagi"
+  }
+}
