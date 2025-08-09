@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { Fade } from 'react-awesome-reveal'
+import { Heart, ArrowRight } from 'lucide-react'
+import Anim from '@/components/global/anim'
 import { Button } from '@/components/ui/button'
 
 interface IntroProps {
@@ -13,6 +14,7 @@ export default function Intro({ onOpenInvitation }: IntroProps) {
   const [guestName, setGuestName] = useState('')
   const searchParams = useSearchParams()
 
+  // Extract guest name from URL params
   useEffect(() => {
     const guest = searchParams.get('guest')
     if (guest) {
@@ -20,9 +22,8 @@ export default function Intro({ onOpenInvitation }: IntroProps) {
     }
   }, [searchParams])
 
-  // Get current locale from localStorage (temporary solution)
+  // Get language from localStorage
   const [locale, setLocale] = useState('id')
-  
   useEffect(() => {
     const savedLocale = localStorage.getItem('locale') || 'id'
     setLocale(savedLocale)
@@ -30,62 +31,72 @@ export default function Intro({ onOpenInvitation }: IntroProps) {
 
   const translations = {
     id: {
-      title: "The wedding of Ucha & Mail",
+      title: "The wedding of \n Ucha & Mail",
       greeting: "Kepada Yth.",
-      guestName: "Bapak/Ibu/Saudara/i",
-      openInvitation: "Buka Undangan"
+      guestPlaceholder: "Tamu Undangan",
+      openButton: "Buka Undangan"
     },
     en: {
-      title: "The wedding of Ucha & Mail",
+      title: "The wedding of \n Ucha & Mail",
       greeting: "Dear",
-      guestName: "Mr./Mrs./Ms.",
-      openInvitation: "Open Invitation"
+      guestPlaceholder: "Honored Guest",
+      openButton: "Open Invitation"
     }
   }
 
   const t = translations[locale as keyof typeof translations]
 
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-rose-50 via-pink-50 to-red-50 z-50 flex items-center justify-center">
-      <div className="absolute inset-0 bg-black/10"></div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/intro.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
       
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
+      {/* Background Pattern Overlay */}
+      <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('/pattern.svg')] bg-repeat"></div>
       </div>
 
       <div className="relative text-center px-8 max-w-md">
-        <Fade triggerOnce duration={1000}>
+        <Anim className="block">
           <div className="mb-8">
-            <h1 className="text-3xl font-serif text-gray-800 mb-4 leading-tight">
+            <h1 className="text-3xl font-serif text-white mb-4 leading-tight drop-shadow-lg">
               {t.title}
             </h1>
           </div>
-        </Fade>
+        </Anim>
 
-        <Fade triggerOnce duration={1000} delay={300}>
-          <div className="mb-8 text-gray-600">
-            <p className="text-lg mb-2">{t.greeting}</p>
-            <p className="text-xl font-medium text-gray-800">
-              {guestName || t.guestName}
+        <Anim delay={300} className="block">
+          <div className="mb-8 text-white">
+            <p className="text-lg mb-2 drop-shadow-md">{t.greeting}</p>
+            <p className="text-xl font-medium text-white drop-shadow-md">
+              {guestName || t.guestPlaceholder}
             </p>
           </div>
-        </Fade>
+        </Anim>
 
-        <Fade triggerOnce duration={1000} delay={600}>
+        <Anim delay={600} className="block">
+          <div className="mb-12">
+            <div className="flex justify-center mb-6">
+              <Heart className="h-8 w-8 text-white/80 drop-shadow-md" />
+            </div>
+            <div className="w-24 h-0.5 bg-white/60 mx-auto"></div>
+          </div>
+
           <Button
             onClick={onOpenInvitation}
-            className="bg-rose-500 hover:bg-rose-600 text-white px-8 py-3 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            className="bg-gradient-to-r from-stone-600 to-gray-700 hover:from-stone-700 hover:to-gray-800 text-white px-8 py-6 text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group"
           >
-            {t.openInvitation}
+            <span className="mr-3">{t.openButton}</span>
+            <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
           </Button>
-        </Fade>
+        </Anim>
       </div>
-
-      {/* Decorative elements */}
-      <div className="absolute top-10 left-10 w-20 h-20 bg-rose-200 rounded-full opacity-20 animate-pulse"></div>
-      <div className="absolute bottom-20 right-8 w-16 h-16 bg-pink-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
-      <div className="absolute top-1/3 right-16 w-12 h-12 bg-red-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
     </div>
   )
 }

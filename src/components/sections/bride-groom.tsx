@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { Instagram } from 'lucide-react'
+import { Instagram, Heart } from 'lucide-react'
 import Anim from '@/components/global/anim'
 
 interface Translations {
@@ -107,7 +107,7 @@ export default function BrideGroom() {
         {/* Heart Divider */}
         <Anim delay={400}>
           <div className="text-center mb-8">
-            <div className="text-4xl text-stone-400">💕</div>
+            <Heart className="h-8 w-8 text-stone-400 mx-auto" />
           </div>
         </Anim>
 

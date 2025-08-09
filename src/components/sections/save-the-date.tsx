@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Calendar, Clock, MapPin, ExternalLink } from 'lucide-react'
+import { Calendar, Clock, MapPin, ExternalLink, Heart } from 'lucide-react'
 import Anim from '@/components/global/anim'
 import { Button } from '@/components/ui/button'
 
@@ -154,7 +154,7 @@ export default function SaveTheDate() {
           <div className="overflow-hidden">
             <Anim delay={400} className="block">
               <div className="text-center">
-                <div className="text-3xl mb-2">💍</div>
+                <Heart className="h-6 w-6 text-stone-600 mx-auto mb-2" />
                 <div className="w-16 h-0.5 bg-gray-300 mx-auto"></div>
               </div>
             </Anim>
@@ -176,7 +176,7 @@ export default function SaveTheDate() {
               <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
                 <p className="text-sm text-gray-600 leading-relaxed">
                   We hope you can join us in celebrating this special moment. 
-                  Your presence would mean the world to us! 💕
+                  Your presence would mean the world to us!
                 </p>
               </div>
             </div>

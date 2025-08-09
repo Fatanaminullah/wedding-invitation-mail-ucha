@@ -25,6 +25,7 @@ function HomeContent() {
 
   const handleOpenInvitation = () => {
     setShowIntro(false)
+    // Trigger music immediately when button is clicked
     setMusicAutoPlay(true)
   }
 

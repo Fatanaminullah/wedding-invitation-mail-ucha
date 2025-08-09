@@ -20,12 +20,9 @@ export default function MusicPlayer({ autoPlay = false }: MusicPlayerProps) {
     audioElement.volume = 0.7
     setAudio(audioElement)
 
-    // Auto-play if enabled
+    // Auto-play if enabled - start immediately when intro button is clicked
     if (autoPlay) {
-      // Add a small delay for better UX
-      setTimeout(() => {
-        playMusic()
-      }, 1000)
+      playMusic()
     }
 
     return () => {

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Heart } from 'lucide-react'
 import Anim from '@/components/global/anim'
 
 interface Translations {
@@ -53,7 +54,9 @@ export default function Footer() {
         <Anim className="block">
           {/* Decorative Top */}
           <div className="mb-12">
-            <div className="text-4xl mb-6">💕</div>
+            <div className="flex justify-center mb-6">
+              <Heart className="h-8 w-8 text-stone-400" />
+            </div>
             <div className="w-32 h-0.5 bg-stone-400 mx-auto"></div>
           </div>
 
@@ -83,10 +86,10 @@ export default function Footer() {
           {/* Decorative Hearts */}
           <div className="mb-12">
             <Anim delay={600} className="block">
-              <div className="flex justify-center gap-4 text-2xl opacity-60">
-                <span className="animate-pulse">💖</span>
-                <span className="animate-pulse" style={{ animationDelay: '0.5s' }}>💕</span>
-                <span className="animate-pulse" style={{ animationDelay: '1s' }}>💖</span>
+              <div className="flex justify-center gap-4 opacity-60">
+                <Heart className="h-6 w-6 text-stone-400 animate-pulse" />
+                <Heart className="h-6 w-6 text-stone-400 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                <Heart className="h-6 w-6 text-stone-400 animate-pulse" style={{ animationDelay: '1s' }} />
               </div>
             </Anim>
           </div>
