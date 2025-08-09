@@ -160,7 +160,7 @@ export default function RSVP() {
       <div className="max-w-md mx-auto">
         <Anim className="block">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-stone-800 mb-4">
+            <h2 className="text-3xl font-serif font-bold text-stone-800 mb-4">
               {translations.rsvp.title}
             </h2>
             <p className="text-stone-600 text-sm">
