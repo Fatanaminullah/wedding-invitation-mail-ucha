@@ -25,7 +25,7 @@
 - ✅ Indonesian and English translation files created
 
 #### **Phase 3: Core Components** ✅ DONE
-- ✅ Mobile Frame component (desktop shows mobile frame, mobile full-screen)
+- ✅ QR Code Landing Page component (desktop shows QR code, mobile shows full invitation)
 - ✅ Language Toggle component (ID/EN switch, top-right sticky)
 - ✅ Music Player component (auto-play, bottom-right sticky)
 - ✅ Lenis smooth scroll hook
@@ -33,7 +33,7 @@
 - ✅ Banner Section (countdown to September 6, 2025)
 
 #### **Phase 4: Basic Functionality** ✅ DONE
-- ✅ Responsive design working (mobile frame on desktop ≥768px)
+- ✅ Responsive design working (QR code landing page on desktop ≥768px)
 - ✅ Language switching with localStorage persistence
 - ✅ URL parameter guest name extraction
 - ✅ Countdown timer functionality
@@ -49,7 +49,7 @@
   - ✅ Pattern.svg missing file created
   - ✅ Audio placeholder structure created
   - ✅ All TypeScript errors resolved
-  - ✅ Mobile frame responsiveness working
+  - ✅ QR code landing page responsiveness working
   - ✅ Language toggle functional
 
 ### 🚧 **NEXT PHASES TO COMPLETE**
@@ -561,7 +561,7 @@ This instruction guide provides a complete roadmap for developing the wedding in
 3. **Language Support**: Simple localStorage approach instead of complex next-intl routing for easier development
 4. **Database**: Supabase chosen for ease of deployment and real-time features
 5. **Animations**: React Awesome Reveal for trigger-once animations
-6. **Responsive Strategy**: Mobile-first with desktop mobile frame simulation
+5. **Responsive Strategy**: Mobile-first with desktop QR code landing page
 
 ### **Current File Structure**
 ```
@@ -601,7 +601,7 @@ wedding-invitation-mail-ucha/
 
 ### **Testing Results**
 - ✅ Website loads successfully on localhost:3001
-- ✅ Mobile frame renders correctly on desktop
+- ✅ QR code landing page renders correctly on desktop
 - ✅ Language toggle switches between ID/EN
 - ✅ Intro overlay shows and hides correctly
 - ✅ Countdown timer functions properly

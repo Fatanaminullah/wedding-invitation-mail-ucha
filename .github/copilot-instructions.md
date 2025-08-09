@@ -6,16 +6,16 @@ applyTo: '**'
 
 ## Project Architecture
 
-This is a **Next.js 15** wedding invitation website for "Ucha & Mail" with TypeScript, Tailwind CSS v4, and mobile-first responsive design. The core architecture revolves around a **mobile frame simulation** and **localStorage-based internationalization**.
+This is a **Next.js 15** wedding invitation website for "Ucha & Mail" with TypeScript, Tailwind CSS v4, and mobile-first responsive design. The core architecture revolves around a **QR code desktop landing page** and **localStorage-based internationalization**.
 
 ### Key Architectural Patterns
 
-**Mobile Frame Strategy**: The `mobile-frame.tsx` component creates a phone frame on desktop (≥768px) while showing full-screen on mobile. This ensures consistent mobile UX across devices:
+**QR Code Desktop Strategy**: The `mobile-frame.tsx` component creates a QR code landing page on desktop (≥768px) while showing the full wedding invitation on mobile. This ensures optimal mobile UX:
 ```tsx
-{/* Desktop: phone frame simulation */}
-<div className="hidden md:block w-[375px] h-[812px] bg-black rounded-[40px]">
-{/* Mobile: full screen */} 
-<div className="md:hidden w-full h-screen">
+{/* Desktop: QR code landing page */}
+<div className="hidden md:flex min-h-screen bg-gradient-to-br from-stone-900 via-gray-900 to-stone-800">
+{/* Mobile: full wedding invitation */} 
+<div className="md:hidden w-full min-h-screen">
 ```
 
 **State Management Flow**: Main page (`src/app/page.tsx`) orchestrates the intro overlay and music auto-play through local state:
