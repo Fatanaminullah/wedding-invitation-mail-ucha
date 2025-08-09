@@ -94,14 +94,14 @@ export default function Gallery() {
 
   return (
     <>
-      <section className="min-h-screen bg-gradient-to-b from-blue-50 to-purple-50 py-20 px-6">
+      <section className="min-h-screen bg-gradient-to-b from-gray-50 to-stone-50 py-20 px-6">
         <div className="max-w-md mx-auto">
           <Fade triggerOnce duration={1000}>
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 {translations.gallery.title}
               </h2>
-              <div className="w-20 h-0.5 bg-purple-400 mx-auto"></div>
+              <div className="w-20 h-0.5 bg-stone-400 mx-auto"></div>
             </div>
           </Fade>
 

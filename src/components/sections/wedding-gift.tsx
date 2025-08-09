@@ -93,7 +93,7 @@ export default function WeddingGift() {
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-purple-50 to-amber-50 py-20 px-6">
+    <section className="min-h-screen bg-gradient-to-b from-stone-50 to-gray-50 py-20 px-6">
       <div className="max-w-md mx-auto">
         <Fade triggerOnce duration={1000}>
           <div className="text-center mb-16">
@@ -101,7 +101,7 @@ export default function WeddingGift() {
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               {translations.weddingGift.title}
             </h2>
-            <div className="w-20 h-0.5 bg-amber-400 mx-auto mb-6"></div>
+            <div className="w-20 h-0.5 bg-stone-400 mx-auto mb-6"></div>
             <p className="text-gray-600 leading-relaxed text-sm">
               {translations.weddingGift.description}
             </p>
@@ -116,7 +116,7 @@ export default function WeddingGift() {
                   <div className="flex items-start gap-4">
                     {/* Bank Icon */}
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center">
+                      <div className="w-12 h-12 bg-gradient-to-br from-stone-400 to-stone-600 rounded-xl flex items-center justify-center">
                         {account.icon === 'card' ? (
                           <CreditCard className="text-white" size={24} />
                         ) : (
@@ -158,7 +158,7 @@ export default function WeddingGift() {
                       className={`w-full ${
                         copiedAccount === account.accountNumber
                           ? 'bg-green-600 hover:bg-green-700'
-                          : 'bg-amber-600 hover:bg-amber-700'
+                          : 'bg-stone-600 hover:bg-stone-700'
                       } text-white transition-colors duration-200`}
                     >
                       {copiedAccount === account.accountNumber ? (

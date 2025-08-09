@@ -185,7 +185,7 @@ export default function Blessing() {
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-purple-50 to-pink-50 py-20 px-6">
+    <section className="min-h-screen bg-gradient-to-b from-stone-50 to-gray-50 py-20 px-6">
       <div className="max-w-md mx-auto">
         <Fade triggerOnce duration={1000}>
           <div className="text-center mb-16">
@@ -193,7 +193,7 @@ export default function Blessing() {
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               {translations.blessing.title}
             </h2>
-            <div className="w-20 h-0.5 bg-pink-400 mx-auto mb-6"></div>
+            <div className="w-20 h-0.5 bg-stone-400 mx-auto mb-6"></div>
             <p className="text-gray-600 leading-relaxed text-sm">
               {translations.blessing.description}
             </p>
@@ -264,7 +264,7 @@ export default function Blessing() {
                 <Button
                   type="submit"
                   disabled={isSubmitting || !formData.name.trim() || !formData.message.trim()}
-                  className="w-full bg-pink-600 hover:bg-pink-700 text-white"
+                  className="w-full bg-stone-600 hover:bg-stone-700 text-white"
                 >
                   {isSubmitting ? (
                     <>
@@ -289,12 +289,12 @@ export default function Blessing() {
             <div className="space-y-6">
               <div className="text-center">
                 <div className="flex items-center gap-3 justify-center mb-4">
-                  <MessageCircle className="text-pink-600" size={20} />
+                  <MessageCircle className="text-stone-600" size={20} />
                   <h3 className="text-xl font-semibold text-gray-800">
                     Blessings from Loved Ones
                   </h3>
                 </div>
-                <div className="w-16 h-0.5 bg-pink-400 mx-auto"></div>
+                <div className="w-16 h-0.5 bg-stone-400 mx-auto"></div>
               </div>
 
               {isLoading ? (
@@ -314,7 +314,7 @@ export default function Blessing() {
                       <Slide direction="up" triggerOnce duration={1000} delay={100 * index}>
                         <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
                           <div className="flex items-start gap-4">
-                            <div className="w-10 h-10 bg-gradient-to-br from-pink-400 to-rose-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div className="w-10 h-10 bg-gradient-to-br from-stone-400 to-stone-600 rounded-full flex items-center justify-center flex-shrink-0">
                               <Heart className="text-white" size={20} />
                             </div>
                             <div className="flex-1 min-w-0">
@@ -342,7 +342,7 @@ export default function Blessing() {
                       <Button
                         onClick={loadMoreBlessings}
                         variant="outline"
-                        className="border-pink-200 text-pink-600 hover:bg-pink-50"
+                        className="border-stone-200 text-stone-600 hover:bg-stone-50"
                       >
                         {translations.blessing.loadMore}
                       </Button>

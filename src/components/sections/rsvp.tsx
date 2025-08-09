@@ -125,7 +125,7 @@ export default function RSVP() {
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-rose-50 to-purple-50 py-20 px-6">
+    <section className="min-h-screen bg-gradient-to-b from-gray-50 to-stone-50 py-20 px-6">
       <div className="max-w-md mx-auto">
         <Fade triggerOnce duration={1000}>
           <div className="text-center mb-16">
@@ -133,7 +133,7 @@ export default function RSVP() {
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               {translations.rsvp.title}
             </h2>
-            <div className="w-20 h-0.5 bg-purple-400 mx-auto mb-6"></div>
+            <div className="w-20 h-0.5 bg-stone-400 mx-auto mb-6"></div>
             <p className="text-gray-600 leading-relaxed text-sm">
               {translations.rsvp.description}
             </p>
@@ -234,7 +234,7 @@ export default function RSVP() {
                 <Button
                   type="submit"
                   disabled={isSubmitting || !formData.name.trim()}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                  className="w-full bg-stone-600 hover:bg-stone-700 text-white"
                 >
                   {isSubmitting ? (
                     <>

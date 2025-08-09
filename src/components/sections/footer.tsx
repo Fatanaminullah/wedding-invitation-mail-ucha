@@ -48,13 +48,13 @@ export default function Footer() {
   }
 
   return (
-    <footer className="min-h-screen bg-gradient-to-b from-amber-50 to-rose-50 flex items-center justify-center py-20 px-6">
+    <footer className="min-h-screen bg-gradient-to-b from-gray-50 to-stone-50 flex items-center justify-center py-20 px-6">
       <div className="max-w-2xl mx-auto text-center">
         <Fade triggerOnce duration={1000}>
           {/* Decorative Top */}
           <div className="mb-12">
             <div className="text-4xl mb-6">💕</div>
-            <div className="w-32 h-0.5 bg-rose-400 mx-auto"></div>
+            <div className="w-32 h-0.5 bg-stone-400 mx-auto"></div>
           </div>
 
           {/* Main Message */}
@@ -73,7 +73,7 @@ export default function Footer() {
                 <p className="text-base text-gray-600 italic">
                   {translations.footer.signature}
                 </p>
-                <div className="text-3xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
+                <div className="text-3xl font-bold bg-gradient-to-r from-stone-600 to-gray-700 bg-clip-text text-transparent">
                   {translations.footer.names}
                 </div>
               </div>
@@ -107,7 +107,7 @@ export default function Footer() {
           <div>
             <Slide direction="up" triggerOnce duration={1000} delay={1000}>
               <div className="space-y-4">
-                <div className="w-24 h-0.5 bg-rose-400 mx-auto"></div>
+                <div className="w-24 h-0.5 bg-stone-400 mx-auto"></div>
                 <p className="text-xs text-gray-500 tracking-wider">
                   {new Date().getFullYear()} • Ucha & Mail Wedding
                 </p>

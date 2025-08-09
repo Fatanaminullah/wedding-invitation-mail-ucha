@@ -57,21 +57,21 @@ export default function BrideGroom() {
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-rose-50 to-white py-20 px-6">
+    <section className="min-h-screen bg-gradient-to-b from-stone-50 to-white py-20 px-6">
       <div className="max-w-md mx-auto">
         <Fade triggerOnce duration={1000}>
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               The Happy Couple
             </h2>
-            <div className="w-20 h-0.5 bg-rose-400 mx-auto"></div>
+            <div className="w-20 h-0.5 bg-stone-400 mx-auto"></div>
           </div>
         </Fade>
 
         {/* Bride Card */}
         <div className="overflow-hidden">
           <Slide direction="up" triggerOnce duration={1000} delay={200}>
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 border border-rose-100">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 border border-stone-100">
               <div className="relative h-80">
                 <Image
                   src="/bride.jpg"
@@ -86,7 +86,7 @@ export default function BrideGroom() {
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">
                   {translations.bride.name}
                 </h3>
-                <p className="text-rose-600 font-medium mb-3">
+                <p className="text-stone-600 font-medium mb-3">
                   {translations.bride.title}
                 </p>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">
@@ -96,7 +96,7 @@ export default function BrideGroom() {
                   href={`https://instagram.com/${translations.bride.instagram.replace('@', '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-stone-600 to-stone-700 text-white px-4 py-2 rounded-full text-sm font-medium hover:from-stone-700 hover:to-stone-800 transition-all duration-300"
                 >
                   <Instagram size={16} />
                   {translations.bride.instagram}
@@ -110,7 +110,7 @@ export default function BrideGroom() {
         <div className="overflow-hidden">
           <Slide direction="up" triggerOnce duration={1000} delay={400}>
             <div className="text-center mb-8">
-              <div className="text-4xl text-rose-400">💕</div>
+              <div className="text-4xl text-stone-400">💕</div>
             </div>
           </Slide>
         </div>
@@ -118,7 +118,7 @@ export default function BrideGroom() {
         {/* Groom Card */}
         <div className="overflow-hidden">
           <Slide direction="up" triggerOnce duration={1000} delay={600}>
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-rose-100">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-stone-100">
               <div className="relative h-80">
                 <Image
                   src="/groom.jpg"
@@ -133,7 +133,7 @@ export default function BrideGroom() {
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">
                   {translations.groom.name}
                 </h3>
-                <p className="text-blue-600 font-medium mb-3">
+                <p className="text-stone-600 font-medium mb-3">
                   {translations.groom.title}
                 </p>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">
@@ -143,7 +143,7 @@ export default function BrideGroom() {
                   href={`https://instagram.com/${translations.groom.instagram.replace('@', '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:from-blue-600 hover:to-cyan-600 transition-all duration-300"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-stone-600 to-stone-700 text-white px-4 py-2 rounded-full text-sm font-medium hover:from-stone-700 hover:to-stone-800 transition-all duration-300"
                 >
                   <Instagram size={16} />
                   {translations.groom.instagram}

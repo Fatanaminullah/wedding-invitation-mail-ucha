@@ -118,7 +118,7 @@ export default function SaveTheDate() {
           <div className="mt-6 text-center">
             <Button
               onClick={() => window.open(mapsUrl, '_blank')}
-              className={`${accentColor === 'text-emerald-600' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-600 hover:bg-blue-700'} text-white w-full`}
+              className={`${accentColor === 'text-stone-600' ? 'bg-stone-600 hover:bg-stone-700' : 'bg-gray-600 hover:bg-gray-700'} text-white w-full`}
             >
               <ExternalLink size={16} className="mr-2" />
               {event.mapButton}
@@ -130,14 +130,14 @@ export default function SaveTheDate() {
   )
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-emerald-50 to-blue-50 py-20 px-6">
+    <section className="min-h-screen bg-gradient-to-b from-stone-50 to-gray-50 py-20 px-6">
       <div className="max-w-md mx-auto">
         <Fade triggerOnce duration={1000}>
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               {translations.saveTheDate.title}
             </h2>
-            <div className="w-20 h-0.5 bg-blue-400 mx-auto"></div>
+            <div className="w-20 h-0.5 bg-stone-400 mx-auto"></div>
           </div>
         </Fade>
 
@@ -146,8 +146,8 @@ export default function SaveTheDate() {
           <EventCard 
             event={translations.saveTheDate.akad} 
             index={0}
-            bgColor="bg-gradient-to-br from-emerald-50 to-emerald-100"
-            accentColor="text-emerald-600"
+            bgColor="bg-gradient-to-br from-stone-50 to-stone-100"
+            accentColor="text-stone-600"
           />
 
           {/* Divider */}
@@ -164,8 +164,8 @@ export default function SaveTheDate() {
           <EventCard 
             event={translations.saveTheDate.resepsi} 
             index={1}
-            bgColor="bg-gradient-to-br from-blue-50 to-blue-100"
-            accentColor="text-blue-600"
+            bgColor="bg-gradient-to-br from-gray-50 to-gray-100"
+            accentColor="text-gray-600"
           />
         </div>
 
