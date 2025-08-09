@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Calendar, Clock, MapPin, ExternalLink } from 'lucide-react'
-import { Fade, Slide } from 'react-awesome-reveal'
+import Anim from '@/components/global/anim'
 import { Button } from '@/components/ui/button'
 
 interface Translations {
@@ -78,7 +78,7 @@ export default function SaveTheDate() {
     accentColor: string
   }) => (
     <div className="overflow-hidden">
-      <Slide direction="up" triggerOnce duration={1000} delay={200 * (index + 1)}>
+      <Anim delay={200 * (index + 1)} className="block">
         <div className={`${bgColor} rounded-2xl shadow-lg p-6 border border-gray-100`}>
           <div className="text-center mb-6">
             <h3 className={`text-2xl font-bold ${accentColor} mb-2`}>
@@ -125,21 +125,21 @@ export default function SaveTheDate() {
             </Button>
           </div>
         </div>
-      </Slide>
+      </Anim>
     </div>
   )
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-stone-50 to-gray-50 py-20 px-6">
       <div className="max-w-md mx-auto">
-        <Fade triggerOnce duration={1000}>
+        <Anim className="block">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               {translations.saveTheDate.title}
             </h2>
             <div className="w-20 h-0.5 bg-stone-400 mx-auto"></div>
           </div>
-        </Fade>
+        </Anim>
 
         <div className="space-y-8">
           {/* Akad Event */}
@@ -152,12 +152,12 @@ export default function SaveTheDate() {
 
           {/* Divider */}
           <div className="overflow-hidden">
-            <Slide direction="up" triggerOnce duration={1000} delay={400}>
+            <Anim delay={400} className="block">
               <div className="text-center">
                 <div className="text-3xl mb-2">💍</div>
                 <div className="w-16 h-0.5 bg-gray-300 mx-auto"></div>
               </div>
-            </Slide>
+            </Anim>
           </div>
 
           {/* Resepsi Event */}
@@ -171,7 +171,7 @@ export default function SaveTheDate() {
 
         {/* Additional Info */}
         <div className="overflow-hidden">
-          <Slide direction="up" triggerOnce duration={1000} delay={800}>
+          <Anim delay={800} className="block">
             <div className="mt-12 text-center">
               <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
                 <p className="text-sm text-gray-600 leading-relaxed">
@@ -180,7 +180,7 @@ export default function SaveTheDate() {
                 </p>
               </div>
             </div>
-          </Slide>
+          </Anim>
         </div>
       </div>
     </section>

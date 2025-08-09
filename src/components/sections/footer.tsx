@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Fade, Slide } from 'react-awesome-reveal'
+import Anim from '@/components/global/anim'
 
 interface Translations {
   footer: {
@@ -50,7 +50,7 @@ export default function Footer() {
   return (
     <footer className="min-h-screen bg-gradient-to-b from-gray-50 to-stone-50 flex items-center justify-center py-20 px-6">
       <div className="max-w-2xl mx-auto text-center">
-        <Fade triggerOnce duration={1000}>
+        <Anim className="block">
           {/* Decorative Top */}
           <div className="mb-12">
             <div className="text-4xl mb-6">💕</div>
@@ -59,16 +59,16 @@ export default function Footer() {
 
           {/* Main Message */}
           <div className="mb-12">
-            <Slide direction="up" triggerOnce duration={1000} delay={200}>
+            <Anim delay={200} className="block">
               <p className="text-lg md:text-xl leading-relaxed text-gray-700 mb-8 font-light">
                 {translations.footer.message}
               </p>
-            </Slide>
+            </Anim>
           </div>
 
           {/* Signature */}
           <div className="mb-12">
-            <Slide direction="up" triggerOnce duration={1000} delay={400}>
+            <Anim delay={400} className="block">
               <div className="space-y-4">
                 <p className="text-base text-gray-600 italic">
                   {translations.footer.signature}
@@ -77,44 +77,44 @@ export default function Footer() {
                   {translations.footer.names}
                 </div>
               </div>
-            </Slide>
+            </Anim>
           </div>
 
           {/* Decorative Hearts */}
           <div className="mb-12">
-            <Slide direction="up" triggerOnce duration={1000} delay={600}>
+            <Anim delay={600} className="block">
               <div className="flex justify-center gap-4 text-2xl opacity-60">
                 <span className="animate-pulse">💖</span>
                 <span className="animate-pulse" style={{ animationDelay: '0.5s' }}>💕</span>
                 <span className="animate-pulse" style={{ animationDelay: '1s' }}>💖</span>
               </div>
-            </Slide>
+            </Anim>
           </div>
 
           {/* Final Thank You */}
           <div className="mb-8">
-            <Slide direction="up" triggerOnce duration={1000} delay={800}>
+            <Anim delay={800} className="block">
               <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
                 <div className="text-2xl mb-4">🙏</div>
                 <p className="text-sm text-gray-600">
                   Thank you for being part of our special day!
                 </p>
               </div>
-            </Slide>
+            </Anim>
           </div>
 
           {/* Bottom Decoration */}
           <div>
-            <Slide direction="up" triggerOnce duration={1000} delay={1000}>
+            <Anim delay={1000} className="block">
               <div className="space-y-4">
                 <div className="w-24 h-0.5 bg-stone-400 mx-auto"></div>
                 <p className="text-xs text-gray-500 tracking-wider">
                   {new Date().getFullYear()} • Ucha & Mail Wedding
                 </p>
               </div>
-            </Slide>
+            </Anim>
           </div>
-        </Fade>
+        </Anim>
       </div>
     </footer>
   )

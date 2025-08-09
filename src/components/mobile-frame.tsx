@@ -1,7 +1,6 @@
 'use client'
 
 import { ReactNode } from 'react'
-import Image from 'next/image'
 
 interface MobileFrameProps {
   children: ReactNode
@@ -10,7 +9,7 @@ interface MobileFrameProps {
 export default function MobileFrame({ children }: MobileFrameProps) {
   return (
     <>
-      {/* Desktop: QR Code Landing Page */}
+      {/* Desktop: QR Code Landing Page - NO ACCESS TO WEDDING CONTENT */}
       <div className="hidden md:flex min-h-screen bg-gradient-to-br from-stone-900 via-gray-900 to-stone-800">
         <div className="flex-1 flex items-center justify-center">
           {/* Left side - Wedding Title */}
@@ -24,84 +23,75 @@ export default function MobileFrame({ children }: MobileFrameProps) {
           </div>
         </div>
 
-        {/* Center - Phone with QR Code */}
+        {/* Center - QR Code */}
         <div className="flex-1 flex items-center justify-center">
-          <div className="relative">
-            {/* Phone Frame */}
-            <div className="w-[280px] h-[560px] bg-black rounded-[40px] p-3 shadow-2xl">
-              <div className="w-full h-full bg-white rounded-[32px] flex items-center justify-center relative overflow-hidden">
-                {/* Phone notch */}
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-5 bg-black rounded-b-xl z-10"></div>
-                
-                {/* QR Code Content */}
-                <div className="text-center px-8">
-                  <div className="mb-6">
-                    <h2 className="text-2xl font-serif text-gray-800 mb-2">
-                      Ucha & Mail
-                    </h2>
-                    <p className="text-sm text-gray-600">
-                      Wedding Invitation
-                    </p>
-                  </div>
-                  
-                  {/* QR Code Placeholder */}
-                  <div className="w-48 h-48 bg-white border-2 border-gray-200 rounded-lg flex items-center justify-center mx-auto mb-6">
-                    <svg 
-                      width="192" 
-                      height="192" 
-                      viewBox="0 0 192 192" 
-                      className="text-gray-800"
-                    >
-                      {/* QR Code Pattern - Dummy for now */}
-                      <rect x="0" y="0" width="24" height="24" fill="currentColor"/>
-                      <rect x="0" y="24" width="24" height="24" fill="currentColor"/>
-                      <rect x="0" y="48" width="24" height="24" fill="currentColor"/>
-                      <rect x="0" y="72" width="24" height="24" fill="currentColor"/>
-                      <rect x="0" y="96" width="24" height="24" fill="currentColor"/>
-                      <rect x="24" y="0" width="24" height="24" fill="currentColor"/>
-                      <rect x="48" y="0" width="24" height="24" fill="currentColor"/>
-                      <rect x="72" y="0" width="24" height="24" fill="currentColor"/>
-                      <rect x="96" y="0" width="24" height="24" fill="currentColor"/>
-                      <rect x="120" y="0" width="24" height="24" fill="currentColor"/>
-                      <rect x="144" y="0" width="24" height="24" fill="currentColor"/>
-                      <rect x="168" y="0" width="24" height="24" fill="currentColor"/>
-                      <rect x="168" y="24" width="24" height="24" fill="currentColor"/>
-                      <rect x="168" y="48" width="24" height="24" fill="currentColor"/>
-                      <rect x="168" y="72" width="24" height="24" fill="currentColor"/>
-                      <rect x="168" y="96" width="24" height="24" fill="currentColor"/>
-                      <rect x="144" y="96" width="24" height="24" fill="currentColor"/>
-                      <rect x="120" y="96" width="24" height="24" fill="currentColor"/>
-                      <rect x="96" y="96" width="24" height="24" fill="currentColor"/>
-                      <rect x="72" y="96" width="24" height="24" fill="currentColor"/>
-                      <rect x="48" y="96" width="24" height="24" fill="currentColor"/>
-                      <rect x="24" y="96" width="24" height="24" fill="currentColor"/>
-                      <rect x="0" y="168" width="24" height="24" fill="currentColor"/>
-                      <rect x="24" y="168" width="24" height="24" fill="currentColor"/>
-                      <rect x="48" y="168" width="24" height="24" fill="currentColor"/>
-                      <rect x="72" y="168" width="24" height="24" fill="currentColor"/>
-                      <rect x="96" y="168" width="24" height="24" fill="currentColor"/>
-                      <rect x="120" y="168" width="24" height="24" fill="currentColor"/>
-                      <rect x="144" y="168" width="24" height="24" fill="currentColor"/>
-                      <rect x="168" y="168" width="24" height="24" fill="currentColor"/>
-                      <rect x="168" y="144" width="24" height="24" fill="currentColor"/>
-                      <rect x="168" y="120" width="24" height="24" fill="currentColor"/>
-                      <rect x="144" y="120" width="24" height="24" fill="currentColor"/>
-                      <rect x="120" y="120" width="24" height="24" fill="currentColor"/>
-                      <rect x="96" y="120" width="24" height="24" fill="currentColor"/>
-                      <rect x="72" y="120" width="24" height="24" fill="currentColor"/>
-                      <rect x="48" y="120" width="24" height="24" fill="currentColor"/>
-                      <rect x="24" y="120" width="24" height="24" fill="currentColor"/>
-                      <rect x="0" y="120" width="24" height="24" fill="currentColor"/>
-                      <rect x="0" y="144" width="24" height="24" fill="currentColor"/>
-                      {/* Add more QR pattern elements as needed */}
-                    </svg>
-                  </div>
-                  
-                  <p className="text-xs text-gray-500 leading-relaxed">
-                    Scan QR code to view invitation on your mobile device
-                  </p>
-                </div>
-              </div>
+          <div className="bg-white rounded-3xl p-12 shadow-2xl">
+            {/* QR Code Placeholder */}
+            <div className="w-64 h-64 bg-white border-4 border-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-8">
+              <svg 
+                width="240" 
+                height="240" 
+                viewBox="0 0 240 240" 
+                className="text-gray-800"
+              >
+                {/* QR Code Pattern - Dummy for now */}
+                <rect x="0" y="0" width="30" height="30" fill="currentColor"/>
+                <rect x="0" y="30" width="30" height="30" fill="currentColor"/>
+                <rect x="0" y="60" width="30" height="30" fill="currentColor"/>
+                <rect x="0" y="90" width="30" height="30" fill="currentColor"/>
+                <rect x="0" y="120" width="30" height="30" fill="currentColor"/>
+                <rect x="30" y="0" width="30" height="30" fill="currentColor"/>
+                <rect x="60" y="0" width="30" height="30" fill="currentColor"/>
+                <rect x="90" y="0" width="30" height="30" fill="currentColor"/>
+                <rect x="120" y="0" width="30" height="30" fill="currentColor"/>
+                <rect x="150" y="0" width="30" height="30" fill="currentColor"/>
+                <rect x="180" y="0" width="30" height="30" fill="currentColor"/>
+                <rect x="210" y="0" width="30" height="30" fill="currentColor"/>
+                <rect x="210" y="30" width="30" height="30" fill="currentColor"/>
+                <rect x="210" y="60" width="30" height="30" fill="currentColor"/>
+                <rect x="210" y="90" width="30" height="30" fill="currentColor"/>
+                <rect x="210" y="120" width="30" height="30" fill="currentColor"/>
+                <rect x="180" y="120" width="30" height="30" fill="currentColor"/>
+                <rect x="150" y="120" width="30" height="30" fill="currentColor"/>
+                <rect x="120" y="120" width="30" height="30" fill="currentColor"/>
+                <rect x="90" y="120" width="30" height="30" fill="currentColor"/>
+                <rect x="60" y="120" width="30" height="30" fill="currentColor"/>
+                <rect x="30" y="120" width="30" height="30" fill="currentColor"/>
+                <rect x="0" y="210" width="30" height="30" fill="currentColor"/>
+                <rect x="30" y="210" width="30" height="30" fill="currentColor"/>
+                <rect x="60" y="210" width="30" height="30" fill="currentColor"/>
+                <rect x="90" y="210" width="30" height="30" fill="currentColor"/>
+                <rect x="120" y="210" width="30" height="30" fill="currentColor"/>
+                <rect x="150" y="210" width="30" height="30" fill="currentColor"/>
+                <rect x="180" y="210" width="30" height="30" fill="currentColor"/>
+                <rect x="210" y="210" width="30" height="30" fill="currentColor"/>
+                <rect x="210" y="180" width="30" height="30" fill="currentColor"/>
+                <rect x="210" y="150" width="30" height="30" fill="currentColor"/>
+                <rect x="180" y="150" width="30" height="30" fill="currentColor"/>
+                <rect x="150" y="150" width="30" height="30" fill="currentColor"/>
+                <rect x="120" y="150" width="30" height="30" fill="currentColor"/>
+                <rect x="90" y="150" width="30" height="30" fill="currentColor"/>
+                <rect x="60" y="150" width="30" height="30" fill="currentColor"/>
+                <rect x="30" y="150" width="30" height="30" fill="currentColor"/>
+                <rect x="0" y="150" width="30" height="30" fill="currentColor"/>
+                <rect x="0" y="180" width="30" height="30" fill="currentColor"/>
+                {/* Corner squares */}
+                <rect x="30" y="30" width="60" height="60" fill="currentColor"/>
+                <rect x="150" y="30" width="60" height="60" fill="currentColor"/>
+                <rect x="30" y="150" width="60" height="60" fill="currentColor"/>
+              </svg>
+            </div>
+            
+            <div className="text-center">
+              <h3 className="text-2xl font-serif text-gray-800 mb-2">
+                Ucha & Mail
+              </h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Wedding Invitation
+              </p>
+              <p className="text-xs text-gray-500 leading-relaxed">
+                Scan to view on mobile
+              </p>
             </div>
           </div>
         </div>
@@ -119,7 +109,7 @@ export default function MobileFrame({ children }: MobileFrameProps) {
         </div>
       </div>
       
-      {/* Mobile: Full screen wedding invitation */}
+      {/* Mobile: Full wedding invitation content */}
       <div className="md:hidden w-full min-h-screen">
         {children}
       </div>

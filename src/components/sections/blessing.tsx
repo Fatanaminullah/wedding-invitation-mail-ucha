@@ -1,12 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Heart, Send, MessageCircle, AlertCircle, Check } from 'lucide-react'
-import { Fade, Slide } from 'react-awesome-reveal'
+import { Heart, Send, User, Clock, CheckCircle, X, ChevronDown, ChevronUp, Check, AlertCircle, MessageCircle } from 'lucide-react'
+import Anim from '@/components/global/anim'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { supabase } from '@/lib/supabase'
+import { supabase, type Blessing as BlessingType } from '@/lib/supabase'
 
 interface Translations {
   blessing: {
@@ -41,7 +41,7 @@ interface BlessingForm {
 
 export default function Blessing() {
   const [translations, setTranslations] = useState<Translations | null>(null)
-  const [blessings, setBlessings] = useState<Blessing[]>([])
+  const [blessings, setBlessings] = useState<BlessingType[]>([])
   const [formData, setFormData] = useState<BlessingForm>({
     name: '',
     message: ''
@@ -88,7 +88,7 @@ export default function Blessing() {
         'postgres_changes',
         { event: 'INSERT', schema: 'public', table: 'blessings' },
         (payload) => {
-          const newBlessing = payload.new as Blessing
+          const newBlessing = payload.new as BlessingType
           setBlessings(current => [newBlessing, ...current])
         }
       )
@@ -187,7 +187,7 @@ export default function Blessing() {
   return (
     <section className="min-h-screen bg-gradient-to-b from-stone-50 to-gray-50 py-20 px-6">
       <div className="max-w-md mx-auto">
-        <Fade triggerOnce duration={1000}>
+        <Anim className="block">
           <div className="text-center mb-16">
             <div className="text-4xl mb-4">🤲</div>
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
@@ -198,11 +198,11 @@ export default function Blessing() {
               {translations.blessing.description}
             </p>
           </div>
-        </Fade>
+        </Anim>
 
         {/* Blessing Form */}
         <div className="overflow-hidden">
-          <Slide direction="up" triggerOnce duration={1000} delay={200}>
+          <Anim delay={200} className="block">
             <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 mb-8">
               {/* Success Message */}
               {submitStatus === 'success' && (
@@ -280,12 +280,12 @@ export default function Blessing() {
                 </Button>
               </form>
             </div>
-          </Slide>
+          </Anim>
         </div>
 
         {/* Blessings List */}
         <div className="overflow-hidden">
-          <Slide direction="up" triggerOnce duration={1000} delay={400}>
+          <Anim delay={400} className="block">
             <div className="space-y-6">
               <div className="text-center">
                 <div className="flex items-center gap-3 justify-center mb-4">
@@ -311,7 +311,7 @@ export default function Blessing() {
                 <>
                   {blessings.slice(0, visibleCount).map((blessing, index) => (
                     <div key={blessing.id} className="overflow-hidden">
-                      <Slide direction="up" triggerOnce duration={1000} delay={100 * index}>
+                      <Anim delay={100 * index} className="block">
                         <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
                           <div className="flex items-start gap-4">
                             <div className="w-10 h-10 bg-gradient-to-br from-stone-400 to-stone-600 rounded-full flex items-center justify-center flex-shrink-0">
@@ -332,7 +332,7 @@ export default function Blessing() {
                             </div>
                           </div>
                         </div>
-                      </Slide>
+                      </Anim>
                     </div>
                   ))}
 
@@ -351,7 +351,7 @@ export default function Blessing() {
                 </>
               )}
             </div>
-          </Slide>
+          </Anim>
         </div>
       </div>
     </section>

@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Fade, Slide } from 'react-awesome-reveal'
 import Image from 'next/image'
+import Anim from '@/components/global/anim'
 
 export default function Banner() {
   const [timeLeft, setTimeLeft] = useState({
@@ -77,20 +77,20 @@ export default function Banner() {
 
       {/* Content */}
       <div className="relative z-10 text-center text-white px-6">
-        <Fade triggerOnce duration={1000}>
+        <Anim>
           <h1 className="text-4xl md:text-6xl font-serif mb-6 leading-tight">
             {t.title}
           </h1>
-        </Fade>
+        </Anim>
 
-        <Slide direction="up" triggerOnce duration={1000} delay={300}>
+        <Anim delay={300}>
           <p className="text-lg md:text-xl mb-12 max-w-3xl mx-auto leading-relaxed text-white/90">
             {t.description}
           </p>
-        </Slide>
+        </Anim>
 
         {/* Countdown */}
-        <Fade triggerOnce duration={1000} delay={600}>
+        <Anim delay={600}>
           <div className="flex justify-center gap-4 md:gap-8">
             {[
               { value: timeLeft.days, label: t.days },
@@ -111,7 +111,7 @@ export default function Banner() {
               </div>
             ))}
           </div>
-        </Fade>
+        </Anim>
       </div>
 
       {/* Decorative elements */}

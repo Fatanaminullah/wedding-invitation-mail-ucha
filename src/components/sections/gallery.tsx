@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-import { Fade, Slide } from 'react-awesome-reveal'
+import { Camera, X, ChevronLeft, ChevronRight } from 'lucide-react'
+import Anim from '@/components/global/anim'
 
 interface Translations {
   gallery: {
@@ -96,25 +96,20 @@ export default function Gallery() {
     <>
       <section className="min-h-screen bg-gradient-to-b from-gray-50 to-stone-50 py-20 px-6">
         <div className="max-w-md mx-auto">
-          <Fade triggerOnce duration={1000}>
+          <Anim className="block">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 {translations.gallery.title}
               </h2>
               <div className="w-20 h-0.5 bg-stone-400 mx-auto"></div>
             </div>
-          </Fade>
+          </Anim>
 
           {/* Gallery Grid */}
           <div className="grid grid-cols-2 gap-4">
             {galleryImages.map((image, index) => (
               <div key={index} className="overflow-hidden">
-                <Slide 
-                  direction="up" 
-                  triggerOnce 
-                  duration={1000} 
-                  delay={200 * (index + 1)}
-                >
+                <Anim delay={200 * (index + 1)} className="block">
                   <div 
                     className={`relative rounded-2xl overflow-hidden shadow-lg cursor-pointer group hover:shadow-xl transition-all duration-300 ${
                       index === 0 ? 'col-span-2 h-64' : 'h-48'
@@ -147,21 +142,21 @@ export default function Gallery() {
                       </div>
                     </div>
                   </div>
-                </Slide>
+                </Anim>
               </div>
             ))}
           </div>
 
           {/* Bottom decoration */}
           <div className="overflow-hidden">
-            <Slide direction="up" triggerOnce duration={1000} delay={1400}>
+            <Anim delay={1400} className="block">
               <div className="mt-12 text-center">
                 <p className="text-gray-600 text-sm mb-4">
                   Tap on any photo to view in full size
                 </p>
                 <div className="text-2xl">📸</div>
               </div>
-            </Slide>
+            </Anim>
           </div>
         </div>
       </section>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Fade } from 'react-awesome-reveal'
+import Anim from '@/components/global/anim'
 
 interface Translations {
   verse: {
@@ -49,7 +49,7 @@ export default function Verse() {
   return (
     <section className="min-h-screen bg-gradient-to-b from-white to-stone-50 flex items-center justify-center py-20 px-6">
       <div className="max-w-2xl mx-auto text-center">
-        <Fade triggerOnce duration={1000}>
+        <Anim>
           {/* Decorative Islamic Pattern */}
           <div className="mb-8">
             <div className="w-16 h-16 mx-auto mb-6">
@@ -81,7 +81,7 @@ export default function Verse() {
             <div className="w-32 h-0.5 bg-stone-400 mx-auto mb-6"></div>
             <div className="text-2xl text-stone-600">🕌</div>
           </div>
-        </Fade>
+        </Anim>
       </div>
     </section>
   )

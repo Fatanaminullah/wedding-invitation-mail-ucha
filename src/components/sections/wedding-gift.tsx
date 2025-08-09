@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Copy, Check, CreditCard, Building2 } from 'lucide-react'
-import { Fade, Slide } from 'react-awesome-reveal'
+import { Gift, Copy, Check, CreditCard, Banknote, Building2 } from 'lucide-react'
+import Anim from '@/components/global/anim'
 import { Button } from '@/components/ui/button'
 
 interface Translations {
@@ -95,7 +95,7 @@ export default function WeddingGift() {
   return (
     <section className="min-h-screen bg-gradient-to-b from-stone-50 to-gray-50 py-20 px-6">
       <div className="max-w-md mx-auto">
-        <Fade triggerOnce duration={1000}>
+        <Anim className="block">
           <div className="text-center mb-16">
             <div className="text-4xl mb-4">🎁</div>
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
@@ -106,12 +106,12 @@ export default function WeddingGift() {
               {translations.weddingGift.description}
             </p>
           </div>
-        </Fade>
+        </Anim>
 
         <div className="space-y-6">
           {bankAccounts.map((account, index) => (
             <div key={account.accountNumber} className="overflow-hidden">
-              <Slide direction="up" triggerOnce duration={1000} delay={200 * (index + 1)}>
+              <Anim delay={200 * (index + 1)} className="block">
                 <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
                   <div className="flex items-start gap-4">
                     {/* Bank Icon */}
@@ -175,30 +175,28 @@ export default function WeddingGift() {
                     </Button>
                   </div>
                 </div>
-              </Slide>
+              </Anim>
             </div>
           ))}
         </div>
 
         {/* Bottom Message */}
+        {/* Bottom Message */}
         <div className="overflow-hidden">
-          <Slide direction="up" triggerOnce duration={1000} delay={600}>
+          <Anim delay={600} className="block">
             <div className="mt-12 text-center">
               <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
                 <div className="text-2xl mb-4">💝</div>
                 <p className="text-sm text-gray-600 leading-relaxed">
                   Your presence at our wedding is the greatest gift of all. 
-                  However, if you wish to honor us with a gift, 
-                  we would be grateful for any contribution.
+                  But if you wish to give something, we would be grateful! 🤲
                 </p>
               </div>
             </div>
-          </Slide>
-        </div>
-
-        {/* Decorative Elements */}
+          </Anim>
+        </div>        {/* Decorative Elements */}
         <div className="overflow-hidden">
-          <Slide direction="up" triggerOnce duration={1000} delay={800}>
+          <Anim delay={800} className="block">
             <div className="mt-8 text-center">
               <div className="flex justify-center gap-4 text-2xl opacity-60">
                 <span>💳</span>
@@ -206,7 +204,7 @@ export default function WeddingGift() {
                 <span>🏦</span>
               </div>
             </div>
-          </Slide>
+          </Anim>
         </div>
       </div>
     </section>

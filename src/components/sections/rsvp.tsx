@@ -1,12 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Check, AlertCircle, Send } from 'lucide-react'
-import { Fade, Slide } from 'react-awesome-reveal'
+import { Users, Heart, Send, CheckCircle, X, Check, AlertCircle } from 'lucide-react'
+import Anim from '@/components/global/anim'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { supabase } from '@/lib/supabase'
+import { supabase, type RSVP } from '@/lib/supabase'
 
 interface Translations {
   rsvp: {
@@ -127,21 +127,23 @@ export default function RSVP() {
   return (
     <section className="min-h-screen bg-gradient-to-b from-gray-50 to-stone-50 py-20 px-6">
       <div className="max-w-md mx-auto">
-        <Fade triggerOnce duration={1000}>
-          <div className="text-center mb-16">
-            <div className="text-4xl mb-4">📝</div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                <Anim className="block">
+          <div className="text-center mb-12">
+            <div className="mb-6">
+              <Heart className="h-12 w-12 text-stone-600 mx-auto mb-4" />
+            </div>
+            <h2 className="text-3xl font-bold text-stone-800 mb-4">
               {translations.rsvp.title}
             </h2>
-            <div className="w-20 h-0.5 bg-stone-400 mx-auto mb-6"></div>
-            <p className="text-gray-600 leading-relaxed text-sm">
+            <p className="text-stone-600 text-sm">
               {translations.rsvp.description}
             </p>
+            <div className="w-20 h-0.5 bg-stone-400 mx-auto mt-4"></div>
           </div>
-        </Fade>
+        </Anim>
 
         <div className="overflow-hidden">
-          <Slide direction="up" triggerOnce duration={1000} delay={200}>
+          <Anim delay={200} className="block">
             <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
               {/* Success Message */}
               {submitStatus === 'success' && (
@@ -250,19 +252,19 @@ export default function RSVP() {
                 </Button>
               </form>
             </div>
-          </Slide>
+          </Anim>
         </div>
 
         {/* Bottom decoration */}
         <div className="overflow-hidden">
-          <Slide direction="up" triggerOnce duration={1000} delay={400}>
+          <Anim delay={400} className="block">
             <div className="mt-8 text-center">
               <div className="text-2xl">💌</div>
               <p className="text-xs text-gray-500 mt-2">
                 Your response helps us prepare for our special day
               </p>
             </div>
-          </Slide>
+          </Anim>
         </div>
       </div>
     </section>
