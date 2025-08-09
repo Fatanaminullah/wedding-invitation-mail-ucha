@@ -76,7 +76,9 @@
     "messagePlaceholder": "Write your wishes and prayers here...",
     "submitButton": "Send Wishes",
     "successMessage": "Your wishes have been sent successfully!",
-    "loadMore": "Load More"
+    "showMore": "View All Wishes",
+    "allBlessings": "All Wishes & Prayers",
+    "close": "Close"
   },
   "footer": {
     "message": "It would be our happiness if you would kindly attend our special day. Thank you for all the prayers and attention given.",

@@ -1,11 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Heart, Send, User, Clock, CheckCircle, X, ChevronDown, ChevronUp, Check, AlertCircle, MessageCircle } from 'lucide-react'
+import { Heart, Send, User, Clock, CheckCircle, X, Check, AlertCircle, MessageCircle, ChevronDown } from 'lucide-react'
 import Anim from '@/components/global/anim'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { supabase, type Blessing as BlessingType } from '@/lib/supabase'
 
 interface Translations {
@@ -18,7 +19,9 @@ interface Translations {
     messagePlaceholder: string
     submitButton: string
     successMessage: string
-    loadMore: string
+    showMore: string
+    allBlessings: string
+    close: string
   }
   common: {
     loading: string
@@ -50,7 +53,7 @@ export default function Blessing() {
   const [isLoading, setIsLoading] = useState(true)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
-  const [visibleCount, setVisibleCount] = useState(5)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   useEffect(() => {
     const loadTranslations = async () => {
@@ -128,22 +131,32 @@ export default function Blessing() {
       return
     }
 
+    if (formData.message.trim().length > 500) {
+      setErrorMessage('Message is too long (max 500 characters)')
+      setSubmitStatus('error')
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitStatus('idle')
     setErrorMessage('')
 
     try {
-      const { error } = await supabase
-        .from('blessings')
-        .insert([
-          {
-            name: formData.name.trim(),
-            message: formData.message.trim()
-          }
-        ])
+      const response = await fetch('/api/blessings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          message: formData.message.trim()
+        })
+      })
 
-      if (error) {
-        throw error
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit blessing')
       }
 
       setSubmitStatus('success')
@@ -152,10 +165,19 @@ export default function Blessing() {
         name: '',
         message: ''
       })
+
+      // Auto-refresh the blessings list
+      await loadBlessings()
+
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle')
+      }, 5000)
+
     } catch (error) {
       console.error('Error submitting blessing:', error)
       setSubmitStatus('error')
-      setErrorMessage('Failed to submit blessing. Please try again.')
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to submit blessing. Please try again.')
     } finally {
       setIsSubmitting(false)
     }
@@ -172,10 +194,6 @@ export default function Blessing() {
     })
   }
 
-  const loadMoreBlessings = () => {
-    setVisibleCount(prev => prev + 5)
-  }
-
   if (!translations) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -189,7 +207,6 @@ export default function Blessing() {
       <div className="max-w-md mx-auto">
         <Anim className="block">
           <div className="text-center mb-16">
-            <div className="text-4xl mb-4">🤲</div>
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               {translations.blessing.title}
             </h2>
@@ -258,6 +275,17 @@ export default function Blessing() {
                     className="w-full min-h-[120px] resize-none"
                     disabled={isSubmitting}
                   />
+                  <div className="flex justify-end mt-1">
+                    <span className={`text-xs ${
+                      formData.message.length > 500 
+                        ? 'text-red-500' 
+                        : formData.message.length > 400 
+                        ? 'text-orange-500' 
+                        : 'text-gray-400'
+                    }`}>
+                      {formData.message.length}/500
+                    </span>
+                  </div>
                 </div>
 
                 {/* Submit Button */}
@@ -304,12 +332,12 @@ export default function Blessing() {
                 </div>
               ) : blessings.length === 0 ? (
                 <div className="text-center py-8">
-                  <div className="text-4xl mb-4">💌</div>
+                  <Heart className="h-8 w-8 text-stone-400 mx-auto mb-4" />
                   <p className="text-gray-500">Be the first to leave a blessing!</p>
                 </div>
               ) : (
-                <>
-                  {blessings.slice(0, visibleCount).map((blessing, index) => (
+                <div className="space-y-4">
+                  {blessings.slice(0, 5).map((blessing, index) => (
                     <div key={blessing.id} className="overflow-hidden">
                       <Anim delay={100 * index} className="block">
                         <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
@@ -336,19 +364,66 @@ export default function Blessing() {
                     </div>
                   ))}
 
-                  {/* Load More Button */}
-                  {blessings.length > visibleCount && (
-                    <div className="text-center mt-8">
-                      <Button
-                        onClick={loadMoreBlessings}
-                        variant="outline"
-                        className="border-stone-200 text-stone-600 hover:bg-stone-50"
-                      >
-                        {translations.blessing.loadMore}
-                      </Button>
+                  {/* Show More Button */}
+                  {blessings.length > 5 && (
+                    <div className="text-center mt-6">
+                      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                        <DialogTrigger asChild>
+                          <Button
+                            variant="outline"
+                            className="border-stone-200 text-stone-600 hover:bg-stone-50"
+                          >
+                            <ChevronDown size={16} className="mr-2" />
+                            {translations.blessing.showMore} ({blessings.length - 5} more)
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-2xl max-h-[90vh] w-full sm:max-w-2xl">
+                          <DialogHeader>
+                            <DialogTitle className="flex items-center gap-2 text-left">
+                              <MessageCircle className="text-stone-600" size={24} />
+                              {translations.blessing.allBlessings}
+                            </DialogTitle>
+                          </DialogHeader>
+                          
+                          {/* Content */}
+                          <div className="flex-1 overflow-y-auto max-h-[60vh]">
+                            <div className="space-y-4 pr-2">
+                              {blessings.map((blessing, index) => (
+                                <div key={blessing.id} className="bg-gray-50 rounded-xl p-4">
+                                  <div className="flex items-start gap-3">
+                                    <div className="w-8 h-8 bg-gradient-to-br from-stone-400 to-stone-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                      <Heart className="text-white" size={16} />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                      <div className="flex items-center gap-2 mb-1">
+                                        <h4 className="font-semibold text-gray-800 text-sm truncate">
+                                          {blessing.name}
+                                        </h4>
+                                        <span className="text-xs text-gray-500">
+                                          {formatDate(blessing.created_at)}
+                                        </span>
+                                      </div>
+                                      <p className="text-gray-700 text-sm leading-relaxed">
+                                        {blessing.message}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+
+                              {blessings.length === 0 && (
+                                <div className="text-center py-8">
+                                  <Heart className="h-8 w-8 text-stone-400 mx-auto mb-4" />
+                                  <p className="text-gray-500">No blessings yet. Be the first to leave one!</p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                     </div>
                   )}
-                </>
+                </div>
               )}
             </div>
           </Anim>

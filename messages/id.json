@@ -76,7 +76,9 @@
     "messagePlaceholder": "Tulis ucapan dan doa Anda di sini...",
     "submitButton": "Kirim Ucapan",
     "successMessage": "Ucapan Anda berhasil dikirim!",
-    "loadMore": "Muat Lebih Banyak"
+    "showMore": "Lihat Semua Ucapan",
+    "allBlessings": "Semua Ucapan & Doa",
+    "close": "Tutup"
   },
   "footer": {
     "message": "Menjadi sebuah kebahagian bagi kami apabila Bapak/Ibu/saudara/I berkenan hadir dalam hari Bahagia kami. Terima kasih atas segala do'a dan perhatian yang diberikan.",

@@ -76,7 +76,7 @@ export default function RSVP() {
     e.preventDefault()
     
     if (!formData.name.trim()) {
-      setErrorMessage('Please enter your name')
+      setErrorMessage(translations?.common?.error || 'Please enter your name')
       setSubmitStatus('error')
       return
     }
@@ -86,18 +86,22 @@ export default function RSVP() {
     setErrorMessage('')
 
     try {
-      const { error } = await supabase
-        .from('rsvp')
-        .insert([
-          {
-            name: formData.name.trim(),
-            guest_count: formData.guest_count,
-            attendance: formData.attendance
-          }
-        ])
+      const response = await fetch('/api/rsvp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          guest_count: formData.guest_count,
+          attendance: formData.attendance
+        })
+      })
 
-      if (error) {
-        throw error
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit RSVP')
       }
 
       setSubmitStatus('success')
@@ -107,10 +111,16 @@ export default function RSVP() {
         guest_count: 1,
         attendance: 'hadir'
       })
+
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle')
+      }, 5000)
+
     } catch (error) {
       console.error('Error submitting RSVP:', error)
       setSubmitStatus('error')
-      setErrorMessage('Failed to submit RSVP. Please try again.')
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to submit RSVP. Please try again.')
     } finally {
       setIsSubmitting(false)
     }
@@ -187,7 +197,7 @@ export default function RSVP() {
                 </div>
 
                 {/* Guest Count Field */}
-                <div>
+                <div className="relative z-20">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     {translations.rsvp.guestCountLabel}
                   </label>
@@ -202,7 +212,7 @@ export default function RSVP() {
                     <SelectTrigger className="w-full">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="z-50 bg-white">
                       <SelectItem value="1">{translations.rsvp.guestCount1}</SelectItem>
                       <SelectItem value="2">{translations.rsvp.guestCount2}</SelectItem>
                     </SelectContent>
@@ -210,7 +220,7 @@ export default function RSVP() {
                 </div>
 
                 {/* Attendance Field */}
-                <div>
+                <div className="relative z-10">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     {translations.rsvp.attendanceLabel}
                   </label>
@@ -225,7 +235,7 @@ export default function RSVP() {
                     <SelectTrigger className="w-full">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="z-50 bg-white">
                       <SelectItem value="hadir">{translations.rsvp.attendanceYes}</SelectItem>
                       <SelectItem value="tidak">{translations.rsvp.attendanceNo}</SelectItem>
                     </SelectContent>
@@ -236,7 +246,7 @@ export default function RSVP() {
                 <Button
                   type="submit"
                   disabled={isSubmitting || !formData.name.trim()}
-                  className="w-full bg-stone-600 hover:bg-stone-700 text-white"
+                  className="w-full mt-6 bg-stone-600 hover:bg-stone-700 text-white"
                 >
                   {isSubmitting ? (
                     <>
@@ -259,7 +269,6 @@ export default function RSVP() {
         <div className="overflow-hidden">
           <Anim delay={400} className="block">
             <div className="mt-8 text-center">
-              <div className="text-2xl">💌</div>
               <p className="text-xs text-gray-500 mt-2">
                 Your response helps us prepare for our special day
               </p>
