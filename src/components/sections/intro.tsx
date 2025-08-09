@@ -1,72 +1,79 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { useSearchParams } from 'next/navigation'
-import { Heart, ArrowRight } from 'lucide-react'
-import Anim from '@/components/global/anim'
-import { Button } from '@/components/ui/button'
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { Heart, ArrowRight } from "lucide-react";
+import Anim from "@/components/global/anim";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 interface IntroProps {
-  onOpenInvitation: () => void
+  onOpenInvitation: () => void;
 }
 
 export default function Intro({ onOpenInvitation }: IntroProps) {
-  const [guestName, setGuestName] = useState('')
-  const searchParams = useSearchParams()
+  const [guestName, setGuestName] = useState("");
+  const searchParams = useSearchParams();
 
   // Extract guest name from URL params
   useEffect(() => {
-    const guest = searchParams.get('guest')
+    const guest = searchParams.get("guest");
     if (guest) {
-      setGuestName(decodeURIComponent(guest))
+      setGuestName(decodeURIComponent(guest));
     }
-  }, [searchParams])
+  }, [searchParams]);
 
   // Get language from localStorage
-  const [locale, setLocale] = useState('id')
+  const [locale, setLocale] = useState("id");
   useEffect(() => {
-    const savedLocale = localStorage.getItem('locale') || 'id'
-    setLocale(savedLocale)
-  }, [])
+    const savedLocale = localStorage.getItem("locale") || "id";
+    setLocale(savedLocale);
+  }, []);
 
   const translations = {
     id: {
-      title: "The wedding of \n Ucha & Mail",
+      title: "The wedding of Ucha & Mail",
       greeting: "Kepada Yth.",
       guestPlaceholder: "Tamu Undangan",
-      openButton: "Buka Undangan"
+      openButton: "Buka Undangan",
     },
     en: {
-      title: "The wedding of \n Ucha & Mail",
+      title: "The wedding of Ucha & Mail",
       greeting: "Dear",
       guestPlaceholder: "Honored Guest",
-      openButton: "Open Invitation"
-    }
-  }
+      openButton: "Open Invitation",
+    },
+  };
 
-  const t = translations[locale as keyof typeof translations]
+  const t = translations[locale as keyof typeof translations];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Background Image */}
-      <div className="absolute inset-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/intro.jpg')" }}
+      <div className="absolute inset-0 bg-black">
+        <Image
+          src="/intro.jpg"
+          alt="Wedding Intro"
+          width={0}
+          height={0}
+          className="w-full h-1/2 object-cover absolute top-0"
+          sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        {/* Gradient overlay for smooth transition */}
+        <div className="absolute top-0 h-1/2 w-full bg-gradient-to-b from-black/0  to-black/90" />
       </div>
-      
+
       {/* Background Pattern Overlay */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('/pattern.svg')] bg-repeat"></div>
       </div>
 
-      <div className="relative text-center px-8 max-w-md">
+      <div className="relative text-center px-8 max-w-md mt-auto pb-20">
         <Anim className="block">
           <div className="mb-8">
-            <h1 className="text-3xl font-serif text-white mb-4 leading-tight drop-shadow-lg">
-              {t.title}
+            <h1 className="text-4xl font-serif text-white mb-4 leading-tight drop-shadow-lg">
+              The Wedding of <br />
+              <span className="text-stone-200 font-semibold">Ucha & Mail</span>
             </h1>
           </div>
         </Anim>
@@ -82,21 +89,17 @@ export default function Intro({ onOpenInvitation }: IntroProps) {
 
         <Anim delay={600} className="block">
           <div className="mb-12">
-            <div className="flex justify-center mb-6">
-              <Heart className="h-8 w-8 text-white/80 drop-shadow-md" />
-            </div>
             <div className="w-24 h-0.5 bg-white/60 mx-auto"></div>
           </div>
 
           <Button
             onClick={onOpenInvitation}
-            className="bg-gradient-to-r from-stone-600 to-gray-700 hover:from-stone-700 hover:to-gray-800 text-white px-8 py-6 text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group"
+            className="bg-gradient-to-r from-stone-600 to-gray-700 hover:from-stone-700 hover:to-gray-800 text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group"
           >
             <span className="mr-3">{t.openButton}</span>
-            <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
           </Button>
         </Anim>
       </div>
     </div>
-  )
+  );
 }

@@ -134,7 +134,7 @@ export default function SaveTheDate() {
       <div className="max-w-md mx-auto">
         <Anim className="block">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+            <h2 className="text-3xl font-serif font-bold text-gray-800 mb-4">
               {translations.saveTheDate.title}
             </h2>
             <div className="w-20 h-0.5 bg-stone-400 mx-auto"></div>
@@ -150,15 +150,6 @@ export default function SaveTheDate() {
             accentColor="text-stone-600"
           />
 
-          {/* Divider */}
-          <div className="overflow-hidden">
-            <Anim delay={400} className="block">
-              <div className="text-center">
-                <Heart className="h-6 w-6 text-stone-600 mx-auto mb-2" />
-                <div className="w-16 h-0.5 bg-gray-300 mx-auto"></div>
-              </div>
-            </Anim>
-          </div>
 
           {/* Resepsi Event */}
           <EventCard 

@@ -98,7 +98,7 @@ export default function Gallery() {
         <div className="max-w-md mx-auto">
           <Anim className="block">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              <h2 className="text-3xl font-serif font-bold text-gray-800 mb-4">
                 {translations.gallery.title}
               </h2>
               <div className="w-20 h-0.5 bg-stone-400 mx-auto"></div>
@@ -154,7 +154,6 @@ export default function Gallery() {
                 <p className="text-gray-600 text-sm mb-4">
                   Tap on any photo to view in full size
                 </p>
-                <div className="text-2xl">📸</div>
               </div>
             </Anim>
           </div>

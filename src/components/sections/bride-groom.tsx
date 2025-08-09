@@ -61,8 +61,8 @@ export default function BrideGroom() {
       <div className="max-w-md mx-auto">
         <Anim>
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              The Happy Couple
+            <h2 className="text-3xl font-serif font-bold text-gray-800 mb-4">
+              Bride & Groom
             </h2>
             <div className="w-20 h-0.5 bg-stone-400 mx-auto"></div>
           </div>
@@ -103,14 +103,7 @@ export default function BrideGroom() {
             </div>
           </div>
         </Anim>
-
-        {/* Heart Divider */}
-        <Anim delay={400}>
-          <div className="text-center mb-8">
-            <Heart className="h-8 w-8 text-stone-400 mx-auto" />
-          </div>
-        </Anim>
-
+        
         {/* Groom Card */}
         <Anim delay={600}>
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-stone-100">

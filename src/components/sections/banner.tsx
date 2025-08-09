@@ -76,7 +76,7 @@ export default function Banner() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-6">
+      <div className="relative z-10 text-center text-white px-6 mt-auto pb-20">
         <Anim>
           <h1 className="text-4xl md:text-6xl font-serif mb-6 leading-tight">
             {t.title}

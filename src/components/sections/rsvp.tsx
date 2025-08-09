@@ -1,147 +1,165 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { Users, Heart, Send, CheckCircle, X, Check, AlertCircle } from 'lucide-react'
-import Anim from '@/components/global/anim'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { supabase, type RSVP } from '@/lib/supabase'
+import { useState, useEffect } from "react";
+import {
+  Users,
+  Heart,
+  Send,
+  CheckCircle,
+  X,
+  Check,
+  AlertCircle,
+} from "lucide-react";
+import Anim from "@/components/global/anim";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { supabase, type RSVP } from "@/lib/supabase";
 
 interface Translations {
   rsvp: {
-    title: string
-    description: string
-    nameLabel: string
-    namePlaceholder: string
-    guestCountLabel: string
-    guestCount1: string
-    guestCount2: string
-    attendanceLabel: string
-    attendanceYes: string
-    attendanceNo: string
-    submitButton: string
-    successMessage: string
-  }
+    title: string;
+    description: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    guestCountLabel: string;
+    guestCount1: string;
+    guestCount2: string;
+    attendanceLabel: string;
+    attendanceYes: string;
+    attendanceNo: string;
+    submitButton: string;
+    successMessage: string;
+  };
   common: {
-    loading: string
-    error: string
-    tryAgain: string
-  }
+    loading: string;
+    error: string;
+    tryAgain: string;
+  };
 }
 
 interface RSVPForm {
-  name: string
-  guest_count: 1 | 2
-  attendance: 'hadir' | 'tidak'
+  name: string;
+  guest_count: 1 | 2;
+  attendance: "hadir" | "tidak";
 }
 
 export default function RSVP() {
-  const [translations, setTranslations] = useState<Translations | null>(null)
+  const [translations, setTranslations] = useState<Translations | null>(null);
   const [formData, setFormData] = useState<RSVPForm>({
-    name: '',
+    name: "",
     guest_count: 1,
-    attendance: 'hadir'
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
+    attendance: "hadir",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const loadTranslations = async () => {
-      const locale = localStorage.getItem('locale') || 'id'
+      const locale = localStorage.getItem("locale") || "id";
       try {
-        const translationModule = await import(`../../../messages/${locale}.json`)
-        setTranslations(translationModule.default)
+        const translationModule = await import(
+          `../../../messages/${locale}.json`
+        );
+        setTranslations(translationModule.default);
       } catch (error) {
-        console.error('Failed to load translations:', error)
+        console.error("Failed to load translations:", error);
         // Fallback to Indonesian
-        const fallbackModule = await import('../../../messages/id.json')
-        setTranslations(fallbackModule.default)
+        const fallbackModule = await import("../../../messages/id.json");
+        setTranslations(fallbackModule.default);
       }
-    }
+    };
 
-    loadTranslations()
+    loadTranslations();
 
     // Listen for language changes
     const handleStorageChange = () => {
-      loadTranslations()
-    }
+      loadTranslations();
+    };
 
-    window.addEventListener('storage', handleStorageChange)
-    return () => window.removeEventListener('storage', handleStorageChange)
-  }, [])
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     if (!formData.name.trim()) {
-      setErrorMessage(translations?.common?.error || 'Please enter your name')
-      setSubmitStatus('error')
-      return
+      setErrorMessage(translations?.common?.error || "Please enter your name");
+      setSubmitStatus("error");
+      return;
     }
 
-    setIsSubmitting(true)
-    setSubmitStatus('idle')
-    setErrorMessage('')
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    setErrorMessage("");
 
     try {
-      const response = await fetch('/api/rsvp', {
-        method: 'POST',
+      const response = await fetch("/api/rsvp", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: formData.name.trim(),
           guest_count: formData.guest_count,
-          attendance: formData.attendance
-        })
-      })
+          attendance: formData.attendance,
+        }),
+      });
 
-      const result = await response.json()
+      const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || 'Failed to submit RSVP')
+        throw new Error(result.error || "Failed to submit RSVP");
       }
 
-      setSubmitStatus('success')
+      setSubmitStatus("success");
       // Reset form after successful submission
       setFormData({
-        name: '',
+        name: "",
         guest_count: 1,
-        attendance: 'hadir'
-      })
+        attendance: "hadir",
+      });
 
       // Auto-hide success message after 5 seconds
       setTimeout(() => {
-        setSubmitStatus('idle')
-      }, 5000)
-
+        setSubmitStatus("idle");
+      }, 5000);
     } catch (error) {
-      console.error('Error submitting RSVP:', error)
-      setSubmitStatus('error')
-      setErrorMessage(error instanceof Error ? error.message : 'Failed to submit RSVP. Please try again.')
+      console.error("Error submitting RSVP:", error);
+      setSubmitStatus("error");
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Failed to submit RSVP. Please try again."
+      );
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   if (!translations) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-gray-500">Loading...</div>
       </div>
-    )
+    );
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-gray-50 to-stone-50 py-20 px-6">
+    <section className="bg-gradient-to-b from-gray-50 to-stone-50 py-20 px-6">
       <div className="max-w-md mx-auto">
-                <Anim className="block">
+        <Anim className="block">
           <div className="text-center mb-12">
-            <div className="mb-6">
-              <Heart className="h-12 w-12 text-stone-600 mx-auto mb-4" />
-            </div>
             <h2 className="text-3xl font-bold text-stone-800 mb-4">
               {translations.rsvp.title}
             </h2>
@@ -156,7 +174,7 @@ export default function RSVP() {
           <Anim delay={200} className="block">
             <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
               {/* Success Message */}
-              {submitStatus === 'success' && (
+              {submitStatus === "success" && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
                   <div className="flex items-center gap-3">
                     <Check className="text-green-600 flex-shrink-0" size={20} />
@@ -168,10 +186,13 @@ export default function RSVP() {
               )}
 
               {/* Error Message */}
-              {submitStatus === 'error' && (
+              {submitStatus === "error" && (
                 <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
                   <div className="flex items-center gap-3">
-                    <AlertCircle className="text-red-600 flex-shrink-0" size={20} />
+                    <AlertCircle
+                      className="text-red-600 flex-shrink-0"
+                      size={20}
+                    />
                     <p className="text-red-800 text-sm">
                       {errorMessage || translations.common.error}
                     </p>
@@ -188,7 +209,9 @@ export default function RSVP() {
                   <Input
                     type="text"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     placeholder={translations.rsvp.namePlaceholder}
                     required
                     className="w-full"
@@ -203,18 +226,24 @@ export default function RSVP() {
                   </label>
                   <Select
                     value={formData.guest_count.toString()}
-                    onValueChange={(value) => setFormData({ 
-                      ...formData, 
-                      guest_count: parseInt(value) as 1 | 2 
-                    })}
+                    onValueChange={(value) =>
+                      setFormData({
+                        ...formData,
+                        guest_count: parseInt(value) as 1 | 2,
+                      })
+                    }
                     disabled={isSubmitting}
                   >
                     <SelectTrigger className="w-full">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="z-50 bg-white">
-                      <SelectItem value="1">{translations.rsvp.guestCount1}</SelectItem>
-                      <SelectItem value="2">{translations.rsvp.guestCount2}</SelectItem>
+                      <SelectItem value="1">
+                        {translations.rsvp.guestCount1}
+                      </SelectItem>
+                      <SelectItem value="2">
+                        {translations.rsvp.guestCount2}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -226,18 +255,24 @@ export default function RSVP() {
                   </label>
                   <Select
                     value={formData.attendance}
-                    onValueChange={(value) => setFormData({ 
-                      ...formData, 
-                      attendance: value as 'hadir' | 'tidak' 
-                    })}
+                    onValueChange={(value) =>
+                      setFormData({
+                        ...formData,
+                        attendance: value as "hadir" | "tidak",
+                      })
+                    }
                     disabled={isSubmitting}
                   >
                     <SelectTrigger className="w-full">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="z-50 bg-white">
-                      <SelectItem value="hadir">{translations.rsvp.attendanceYes}</SelectItem>
-                      <SelectItem value="tidak">{translations.rsvp.attendanceNo}</SelectItem>
+                      <SelectItem value="hadir">
+                        {translations.rsvp.attendanceYes}
+                      </SelectItem>
+                      <SelectItem value="tidak">
+                        {translations.rsvp.attendanceNo}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -277,5 +312,5 @@ export default function RSVP() {
         </div>
       </div>
     </section>
-  )
+  );
 }

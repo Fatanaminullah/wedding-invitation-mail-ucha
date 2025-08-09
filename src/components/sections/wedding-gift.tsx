@@ -99,8 +99,7 @@ export default function WeddingGift() {
       <div className="max-w-md mx-auto">
         <Anim className="block">
           <div className="text-center mb-16">
-            <div className="text-4xl mb-4">🎁</div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+            <h2 className="text-3xl font-serif font-bold text-gray-800 mb-4">
               {translations.weddingGift.title}
             </h2>
             <div className="w-20 h-0.5 bg-stone-400 mx-auto mb-6"></div>
@@ -184,14 +183,11 @@ export default function WeddingGift() {
         {/* Bottom Message */}
         <div className="overflow-hidden">
           <Anim delay={600} className="block">
-            <div className="mt-12 text-center">
-              <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
-                <div className="text-2xl mb-4">💝</div>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Your presence at our wedding is the greatest gift of all. But
-                  if you wish to give something, we would be grateful!
-                </p>
-              </div>
+            <div className="mt-4 text-center">
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Your presence at our wedding is the greatest gift of all. But if
+                you wish to give something, we would be grateful!
+              </p>
             </div>
           </Anim>
         </div>{" "}
