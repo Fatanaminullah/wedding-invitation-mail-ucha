@@ -12,35 +12,18 @@ export default function MusicPlayer({ autoPlay = false }: MusicPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null)
 
-  useEffect(() => {
-    // Initialize audio - for now using a placeholder
-    // Later we'll add the actual wedding song
-    const audioElement = new Audio('/audio/wedding-song.mp3')
-    audioElement.loop = true
-    audioElement.volume = 0.7
-    setAudio(audioElement)
-
-    // Auto-play if enabled - start immediately when intro button is clicked
-    if (autoPlay) {
-      playMusic()
-    }
-
-    return () => {
-      if (audioElement) {
-        audioElement.pause()
-        audioElement.src = ''
-      }
-    }
-  }, [autoPlay])
-
   const playMusic = async () => {
     if (audio) {
       try {
+        console.log('Manual play music called')
         await audio.play()
         setIsPlaying(true)
+        console.log('Manual audio playback started successfully')
       } catch (error) {
-        console.log('Audio play failed:', error)
+        console.log('Manual audio play failed:', error)
       }
+    } else {
+      console.log('Audio not initialized for manual play')
     }
   }
 
@@ -50,6 +33,41 @@ export default function MusicPlayer({ autoPlay = false }: MusicPlayerProps) {
       setIsPlaying(false)
     }
   }
+
+  useEffect(() => {
+    // Initialize audio - for now using a placeholder
+    // Later we'll add the actual wedding song
+    const audioElement = new Audio('/audio/wedding-song.mp3')
+    audioElement.loop = true
+    audioElement.volume = 0.7
+    setAudio(audioElement)
+
+    return () => {
+      if (audioElement) {
+        audioElement.pause()
+        audioElement.src = ''
+      }
+    }
+  }, [])
+
+  // Separate effect to handle autoPlay changes
+  useEffect(() => {
+    console.log('AutoPlay effect triggered:', { autoPlay, audio: !!audio })
+    if (autoPlay && audio) {
+      console.log('Attempting to play music automatically')
+      const play = async () => {
+        try {
+          console.log('Starting audio playback')
+          await audio.play()
+          setIsPlaying(true)
+          console.log('Audio playback started successfully')
+        } catch (error) {
+          console.log('Audio play failed:', error)
+        }
+      }
+      play()
+    }
+  }, [autoPlay, audio])
 
   const toggleMusic = () => {
     if (isPlaying) {

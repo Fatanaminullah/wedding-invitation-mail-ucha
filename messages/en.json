@@ -59,7 +59,8 @@
     "successMessage": "Thank you for your confirmation!"
   },
   "gallery": {
-    "title": "Gallery"
+    "title": "Gallery",
+    "description": "Beautiful moments from our love journey. Swipe to see more photos."
   },
   "weddingGift": {
     "title": "Wedding Gift",
