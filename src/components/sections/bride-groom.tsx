@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { Instagram, Heart } from 'lucide-react'
+import { Instagram } from 'lucide-react'
 import Anim from '@/components/global/anim'
 
 interface Translations {
