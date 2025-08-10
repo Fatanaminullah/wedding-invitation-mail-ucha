@@ -44,14 +44,14 @@ export default function Footer() {
 
   if (!translations) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-svh bg-white flex items-center justify-center">
         <div className="text-gray-500">Loading...</div>
       </div>
     );
   }
 
   return (
-    <footer className="sticky bottom-0 -z-10 min-h-screen bg-gradient-to-b from-gray-50 to-stone-50 flex items-end justify-center py-20 px-6">
+    <footer className="sticky bottom-0 -z-10 min-h-svh bg-gradient-to-b from-gray-50 to-stone-50 flex items-end justify-center py-20 px-6">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"

@@ -149,7 +149,7 @@ export default function AdminDashboard() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
+      <div className="min-h-svh bg-gray-50 flex items-center justify-center p-6">
         <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
           <h1 className="text-2xl font-bold text-center mb-6">Admin Login</h1>
           <form onSubmit={handleLogin}>
@@ -172,7 +172,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-svh bg-gray-50 p-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold">Wedding Admin Dashboard</h1>

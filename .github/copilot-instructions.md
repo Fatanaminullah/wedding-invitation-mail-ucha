@@ -13,9 +13,9 @@ This is a **Next.js 15** wedding invitation website for "Ucha & Mail" with TypeS
 **QR Code Desktop Strategy**: The `mobile-frame.tsx` component creates a QR code landing page on desktop (≥768px) while showing the full wedding invitation on mobile. This ensures optimal mobile UX:
 ```tsx
 {/* Desktop: QR code landing page */}
-<div className="hidden md:flex min-h-screen bg-gradient-to-br from-stone-900 via-gray-900 to-stone-800">
+<div className="hidden md:flex min-h-svh bg-gradient-to-br from-stone-900 via-gray-900 to-stone-800">
 {/* Mobile: full wedding invitation */} 
-<div className="md:hidden w-full min-h-screen">
+<div className="md:hidden w-full min-h-svh">
 ```
 
 **State Management Flow**: Main page (`src/app/page.tsx`) orchestrates the intro overlay and music auto-play through local state:

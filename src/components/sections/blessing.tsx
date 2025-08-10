@@ -233,14 +233,14 @@ export default function Blessing() {
 
   if (!translations) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-svh bg-white flex items-center justify-center">
         <div className="text-gray-500">Loading...</div>
       </div>
     );
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-stone-50 to-gray-50 py-20 px-6">
+    <section className="min-h-svh bg-gradient-to-b from-stone-50 to-gray-50 py-20 px-6">
       <div className="max-w-md mx-auto">
         <Anim className="block">
           <div className="text-center mb-16">

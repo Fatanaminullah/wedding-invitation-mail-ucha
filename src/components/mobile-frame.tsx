@@ -11,7 +11,7 @@ export default function MobileFrame({ children }: MobileFrameProps) {
   return (
     <>
       {/* Desktop: QR Code Landing Page - NO ACCESS TO WEDDING CONTENT */}
-      <div className="hidden md:flex min-h-screen bg-gradient-to-br from-stone-600 to-stone-700 flex-col">
+      <div className="hidden md:flex min-h-svh bg-gradient-to-br from-stone-600 to-stone-700 flex-col">
         {/* Top - Wedding Title */}
         <div className="flex-1 flex items-end justify-center pb-8">
           <div className="text-center text-white px-8">

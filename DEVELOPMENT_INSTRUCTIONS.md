@@ -272,7 +272,7 @@ messages/
 ```tsx
 export default function MobileFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+    <div className="min-h-svh bg-gray-100 flex items-center justify-center p-4">
       {/* Desktop: Show mobile frame */}
       <div className="hidden md:block">
         <div className="relative w-[375px] h-[812px] bg-black rounded-[40px] p-2">
