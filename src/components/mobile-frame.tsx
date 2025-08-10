@@ -62,7 +62,7 @@ export default function MobileFrame({ children }: MobileFrameProps) {
       </div>
 
       {/* Mobile: Full wedding invitation content */}
-      <div className="md:hidden w-full min-h-screen">{children}</div>
+      <div className="md:hidden">{children}</div>
     </>
   );
 }

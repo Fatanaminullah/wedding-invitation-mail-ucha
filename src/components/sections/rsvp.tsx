@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   Users,
   Heart,
@@ -53,6 +54,7 @@ interface RSVPForm {
 
 export default function RSVP() {
   const [translations, setTranslations] = useState<Translations | null>(null);
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState<RSVPForm>({
     name: "",
     guest_count: 1,
@@ -63,6 +65,17 @@ export default function RSVP() {
     "idle" | "success" | "error"
   >("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  // Extract guest name from URL params and set as default
+  useEffect(() => {
+    const guest = searchParams.get("guest");
+    if (guest) {
+      setFormData(prev => ({
+        ...prev,
+        name: decodeURIComponent(guest)
+      }));
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     const loadTranslations = async () => {

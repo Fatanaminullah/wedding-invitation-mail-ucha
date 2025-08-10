@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   Heart,
   Send,
@@ -61,6 +62,7 @@ interface BlessingForm {
 
 export default function Blessing() {
   const [translations, setTranslations] = useState<Translations | null>(null);
+  const searchParams = useSearchParams();
   const [blessings, setBlessings] = useState<BlessingType[]>([]);
   const [formData, setFormData] = useState<BlessingForm>({
     name: "",
@@ -73,6 +75,17 @@ export default function Blessing() {
   >("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  // Extract guest name from URL params and set as default
+  useEffect(() => {
+    const guest = searchParams.get("guest");
+    if (guest) {
+      setFormData((prev) => ({
+        ...prev,
+        name: decodeURIComponent(guest),
+      }));
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     const loadTranslations = async () => {
@@ -400,7 +413,7 @@ export default function Blessing() {
                 ))}
 
                 {/* Show More Button */}
-                {blessings.length > 5 && (
+                {blessings.length > 3 && (
                   <div className="text-center mt-6">
                     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                       <DialogTrigger asChild>
@@ -412,20 +425,18 @@ export default function Blessing() {
                           {blessings.length - 3} more)
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="max-w-2xl max-h-[90vh] w-full sm:max-w-2xl">
-                        <DialogHeader>
-                          <DialogTitle className="flex items-center gap-2 text-left">
-                            <MessageCircle
-                              className="text-stone-600"
-                              size={24}
-                            />
-                            {translations.blessing.allBlessings}
-                          </DialogTitle>
+                      <DialogContent className="h-screen">
+                        <DialogHeader className="">
+                          <div className="flex items-center justify-between">
+                            <DialogTitle className="flex items-center gap-2 text-left">
+                              {translations.blessing.allBlessings}
+                            </DialogTitle>
+                          </div>
                         </DialogHeader>
 
                         {/* Content */}
-                        <div className="flex-1 overflow-y-auto max-h-[60vh]">
-                          <div className="space-y-4 pr-2">
+                        <div className="flex-1 overflow-y-auto h-[calc(100vh-120px)]">
+                          <div className="space-y-4 max-w-2xl mx-auto">
                             {blessings.map((blessing, index) => (
                               <div
                                 key={blessing.id}
