@@ -1,134 +1,145 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { Calendar, Clock, MapPin, ExternalLink, Heart } from 'lucide-react'
-import Anim from '@/components/global/anim'
-import { Button } from '@/components/ui/button'
+import { useState, useEffect } from "react";
+import { Calendar, Clock, MapPin, ExternalLink, Heart } from "lucide-react";
+import Anim from "@/components/global/anim";
+import { Button } from "@/components/ui/button";
 
 interface Translations {
   saveTheDate: {
-    title: string
+    title: string;
     akad: {
-      title: string
-      date: string
-      time: string
-      location: string
-      address: string
-      mapButton: string
-    }
+      title: string;
+      date: string;
+      time: string;
+      location: string;
+      address: string;
+      mapButton: string;
+    };
     resepsi: {
-      title: string
-      date: string
-      time: string
-      location: string
-      address: string
-      mapButton: string
-    }
-    additionalInfo: string
-  }
+      title: string;
+      date: string;
+      time: string;
+      location: string;
+      address: string;
+      mapButton: string;
+    };
+    additionalInfo: string;
+  };
 }
 
 export default function SaveTheDate() {
-  const [translations, setTranslations] = useState<Translations | null>(null)
+  const [translations, setTranslations] = useState<Translations | null>(null);
 
   useEffect(() => {
     const loadTranslations = async () => {
-      const locale = localStorage.getItem('locale') || 'id'
+      const locale = localStorage.getItem("locale") || "id";
       try {
-        const translationModule = await import(`../../../messages/${locale}.json`)
-        setTranslations(translationModule.default)
+        const translationModule = await import(
+          `../../../messages/${locale}.json`
+        );
+        setTranslations(translationModule.default);
       } catch (error) {
-        console.error('Failed to load translations:', error)
+        console.error("Failed to load translations:", error);
         // Fallback to Indonesian
-        const fallbackModule = await import('../../../messages/id.json')
-        setTranslations(fallbackModule.default)
+        const fallbackModule = await import("../../../messages/id.json");
+        setTranslations(fallbackModule.default);
       }
-    }
+    };
 
-    loadTranslations()
+    loadTranslations();
 
     // Listen for language changes
     const handleStorageChange = () => {
-      loadTranslations()
-    }
+      loadTranslations();
+    };
 
-    window.addEventListener('storage', handleStorageChange)
-    return () => window.removeEventListener('storage', handleStorageChange)
-  }, [])
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   if (!translations) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-gray-500">Loading...</div>
       </div>
-    )
+    );
   }
 
   // Google Maps URL for the venue
-  const mapsUrl = "https://maps.app.goo.gl/csa2Zts1CJzHAFYH8"
+  const mapsUrl = "https://maps.app.goo.gl/csa2Zts1CJzHAFYH8";
 
-  const EventCard = ({ 
-    event, 
-    index, 
-    bgColor, 
-    accentColor 
-  }: { 
-    event: typeof translations.saveTheDate.akad
-    index: number
-    bgColor: string
-    accentColor: string
+  const EventCard = ({
+    event,
+    index,
+    bgColor,
+    accentColor,
+  }: {
+    event: typeof translations.saveTheDate.akad;
+    index: number;
+    bgColor: string;
+    accentColor: string;
   }) => (
-    <div className="overflow-hidden">
-      <Anim delay={200 * (index + 1)} className="block">
-        <div className={`${bgColor} rounded-2xl shadow-lg p-6 border border-gray-100`}>
-          <div className="text-center mb-6">
-            <h3 className={`text-2xl font-bold ${accentColor} mb-2`}>
-              {event.title}
-            </h3>
-            <div className="w-16 h-0.5 bg-current mx-auto opacity-60"></div>
-          </div>
+    <Anim delay={200 * (index + 1)} className="block">
+      <div
+        className={`${bgColor} rounded-2xl shadow-lg p-6 border border-gray-100`}
+      >
+        <div className="text-center mb-6">
+          <h3 className={`text-2xl font-bold ${accentColor} mb-2`}>
+            {event.title}
+          </h3>
+          <div className="w-16 h-0.5 bg-current mx-auto opacity-60"></div>
+        </div>
 
-          <div className="space-y-4">
-            {/* Date */}
-            <div className="flex items-start gap-3">
-              <Calendar className={`${accentColor} mt-1 flex-shrink-0`} size={20} />
-              <div>
-                <p className="font-medium text-gray-800">{event.date}</p>
-              </div>
-            </div>
-
-            {/* Time */}
-            <div className="flex items-start gap-3">
-              <Clock className={`${accentColor} mt-1 flex-shrink-0`} size={20} />
-              <div>
-                <p className="font-medium text-gray-800">{event.time}</p>
-              </div>
-            </div>
-
-            {/* Location */}
-            <div className="flex items-start gap-3">
-              <MapPin className={`${accentColor} mt-1 flex-shrink-0`} size={20} />
-              <div>
-                <p className="font-medium text-gray-800 mb-1">{event.location}</p>
-                <p className="text-sm text-gray-600 leading-relaxed">{event.address}</p>
-              </div>
+        <div className="space-y-4">
+          {/* Date */}
+          <div className="flex items-start gap-3">
+            <Calendar
+              className={`${accentColor} mt-1 flex-shrink-0`}
+              size={20}
+            />
+            <div>
+              <p className="font-medium text-gray-800">{event.date}</p>
             </div>
           </div>
 
-          {/* Maps Button */}
-          <div className="mt-6 text-center">
-            <Button
-              onClick={() => window.open(mapsUrl, '_blank')}
-              className={`${accentColor === 'text-stone-600' ? 'bg-stone-600 hover:bg-stone-700' : 'bg-gray-600 hover:bg-gray-700'} text-white w-full`}
-            >
-              <ExternalLink size={16} className="mr-2" />
-              {event.mapButton}
-            </Button>
+          {/* Time */}
+          <div className="flex items-start gap-3">
+            <Clock className={`${accentColor} mt-1 flex-shrink-0`} size={20} />
+            <div>
+              <p className="font-medium text-gray-800">{event.time}</p>
+            </div>
+          </div>
+
+          {/* Location */}
+          <div className="flex items-start gap-3">
+            <MapPin className={`${accentColor} mt-1 flex-shrink-0`} size={20} />
+            <div>
+              <p className="font-medium text-gray-800 mb-1">{event.location}</p>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                {event.address}
+              </p>
+            </div>
           </div>
         </div>
-      </Anim>
-    </div>
-  )
+
+        {/* Maps Button */}
+        <div className="mt-6 text-center">
+          <Button
+            onClick={() => window.open(mapsUrl, "_blank")}
+            className={`${
+              accentColor === "text-stone-600"
+                ? "bg-stone-600 hover:bg-stone-700"
+                : "bg-gray-600 hover:bg-gray-700"
+            } text-white w-full`}
+          >
+            <ExternalLink size={16} className="mr-2" />
+            {event.mapButton}
+          </Button>
+        </div>
+      </div>
+    </Anim>
+  );
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-stone-50 to-gray-50 py-20 px-6">
@@ -144,17 +155,16 @@ export default function SaveTheDate() {
 
         <div className="space-y-8">
           {/* Akad Event */}
-          <EventCard 
-            event={translations.saveTheDate.akad} 
+          <EventCard
+            event={translations.saveTheDate.akad}
             index={0}
             bgColor="bg-gradient-to-br from-stone-50 to-stone-100"
             accentColor="text-stone-600"
           />
 
-
           {/* Resepsi Event */}
-          <EventCard 
-            event={translations.saveTheDate.resepsi} 
+          <EventCard
+            event={translations.saveTheDate.resepsi}
             index={1}
             bgColor="bg-gradient-to-br from-gray-50 to-gray-100"
             accentColor="text-gray-600"
@@ -162,18 +172,14 @@ export default function SaveTheDate() {
         </div>
 
         {/* Additional Info */}
-        <div className="overflow-hidden">
-          <Anim delay={800} className="block">
-            <div className="mt-12 text-center">
-              <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {translations.saveTheDate.additionalInfo}
-                </p>
-              </div>
-            </div>
-          </Anim>
-        </div>
+        <Anim delay={800} className="block">
+          <div className="mt-12 text-center">
+            <p className="text-sm text-gray-600 leading-relaxed italic">
+              {translations.saveTheDate.additionalInfo}
+            </p>
+          </div>
+        </Anim>
       </div>
     </section>
-  )
+  );
 }

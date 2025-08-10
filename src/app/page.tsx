@@ -15,6 +15,7 @@ import Verse from "@/components/sections/verse";
 import WeddingGift from "@/components/sections/wedding-gift";
 import { Suspense, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { LenisProvider } from "@/components/global/lenis-provider";
 
 function HomeContent() {
   const [showIntro, setShowIntro] = useState(true);
@@ -27,59 +28,61 @@ function HomeContent() {
   };
 
   return (
-    <MobileFrame>
-      {/* Language Toggle */}
-      <LanguageToggle />
+    <LenisProvider>
+      <MobileFrame>
+        {/* Language Toggle */}
+        <LanguageToggle />
 
-      {/* Music Player - only show after intro */}
-      <AnimatePresence>
-        {!showIntro && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <MusicPlayer autoPlay={musicAutoPlay} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+        {/* Music Player - only show after intro */}
+        <AnimatePresence>
+          {!showIntro && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <MusicPlayer autoPlay={musicAutoPlay} />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* Intro Overlay with Fade Transition */}
-      <AnimatePresence>
-        {showIntro && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-          >
-            <Intro onOpenInvitation={handleOpenInvitation} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+        {/* Intro Overlay with Fade Transition */}
+        <AnimatePresence>
+          {showIntro && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            >
+              <Intro onOpenInvitation={handleOpenInvitation} />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* Main Content with Fade Transition */}
-      <AnimatePresence>
-        {!showIntro && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="min-h-screen"
-          >
-            <Banner />
-            <BrideGroom />
-            <Verse />
-            <SaveTheDate />
-            <RSVP />
-            <Gallery />
-            <WeddingGift />
-            <Blessing />
-            <Footer />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </MobileFrame>
+        {/* Main Content with Fade Transition */}
+        <AnimatePresence>
+          {!showIntro && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              className="min-h-screen"
+            >
+              <Banner />
+              <BrideGroom />
+              <Verse />
+              <SaveTheDate />
+              <RSVP />
+              <Gallery />
+              <WeddingGift />
+              <Blessing />
+              <Footer />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </MobileFrame>
+    </LenisProvider>
   );
 }
 

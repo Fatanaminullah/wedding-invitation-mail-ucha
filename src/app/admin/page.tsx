@@ -1,68 +1,86 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Users, Download, RefreshCw, Eye, EyeOff, TrendingUp, UserCheck, UserX } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card } from '@/components/ui/card'
-import { supabase, type RSVP, type Blessing } from '@/lib/supabase'
+import { useState } from "react";
+import {
+  Users,
+  Download,
+  RefreshCw,
+  Eye,
+  EyeOff,
+  TrendingUp,
+  UserCheck,
+  UserX,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
+import { supabase, type RSVP, type Blessing } from "@/lib/supabase";
 
 interface RSVPStats {
-  total_responses: number
-  total_guests: number
-  attending_responses: number
-  attending_guests: number
-  not_attending_responses: number
-  not_attending_guests: number
+  total_responses: number;
+  total_guests: number;
+  attending_responses: number;
+  attending_guests: number;
+  not_attending_responses: number;
+  not_attending_guests: number;
 }
 
 export default function AdminDashboard() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [password, setPassword] = useState('')
-  const [rsvps, setRsvps] = useState<RSVP[]>([])
-  const [blessings, setBlessings] = useState<Blessing[]>([])
-  const [stats, setStats] = useState<RSVPStats | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState("");
+  const [rsvps, setRsvps] = useState<RSVP[]>([]);
+  const [blessings, setBlessings] = useState<Blessing[]>([]);
+  const [stats, setStats] = useState<RSVPStats | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Simple password check - in production, use proper authentication
-    if (password === 'uchamail2025') {
-      setIsAuthenticated(true)
-      loadData()
+    if (password === "uchamail2025") {
+      setIsAuthenticated(true);
+      loadData();
     } else {
-      alert('Invalid password')
+      alert("Invalid password");
     }
-  }
+  };
 
   const loadData = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       // Load RSVPs
       const { data: rsvpData, error: rsvpError } = await supabase
-        .from('rsvp')
-        .select('*')
-        .order('created_at', { ascending: false })
+        .from("rsvp")
+        .select("*")
+        .order("created_at", { ascending: false });
 
-      if (rsvpError) throw rsvpError
-      setRsvps(rsvpData || [])
+      if (rsvpError) throw rsvpError;
+      setRsvps(rsvpData || []);
 
       // Load Blessings (including unapproved ones for admin)
       const { data: blessingData, error: blessingError } = await supabase
-        .from('blessings')
-        .select('*')
-        .order('created_at', { ascending: false })
+        .from("blessings")
+        .select("*")
+        .order("created_at", { ascending: false });
 
-      if (blessingError) throw blessingError
-      setBlessings(blessingData || [])
+      if (blessingError) throw blessingError;
+      setBlessings(blessingData || []);
 
       // Calculate stats
-      const totalResponses = rsvpData?.length || 0
-      const totalGuests = rsvpData?.reduce((sum, rsvp) => sum + rsvp.guest_count, 0) || 0
-      const attendingRsvps = rsvpData?.filter(rsvp => rsvp.attendance === 'hadir') || []
-      const attendingGuests = attendingRsvps.reduce((sum, rsvp) => sum + rsvp.guest_count, 0)
-      const notAttendingRsvps = rsvpData?.filter(rsvp => rsvp.attendance === 'tidak') || []
-      const notAttendingGuests = notAttendingRsvps.reduce((sum, rsvp) => sum + rsvp.guest_count, 0)
+      const totalResponses = rsvpData?.length || 0;
+      const totalGuests =
+        rsvpData?.reduce((sum, rsvp) => sum + rsvp.guest_count, 0) || 0;
+      const attendingRsvps =
+        rsvpData?.filter((rsvp) => rsvp.attendance === "hadir") || [];
+      const attendingGuests = attendingRsvps.reduce(
+        (sum, rsvp) => sum + rsvp.guest_count,
+        0
+      );
+      const notAttendingRsvps =
+        rsvpData?.filter((rsvp) => rsvp.attendance === "tidak") || [];
+      const notAttendingGuests = notAttendingRsvps.reduce(
+        (sum, rsvp) => sum + rsvp.guest_count,
+        0
+      );
 
       setStats({
         total_responses: totalResponses,
@@ -70,59 +88,64 @@ export default function AdminDashboard() {
         attending_responses: attendingRsvps.length,
         attending_guests: attendingGuests,
         not_attending_responses: notAttendingRsvps.length,
-        not_attending_guests: notAttendingGuests
-      })
-
+        not_attending_guests: notAttendingGuests,
+      });
     } catch (error) {
-      console.error('Error loading data:', error)
-      alert('Failed to load data')
+      console.error("Error loading data:", error);
+      alert("Failed to load data");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
-const exportCSV = (data: Record<string, unknown>[], filename: string) => {
-    if (data.length === 0) return
-    
-    const headers = Object.keys(data[0])
+  const exportCSV = (data: Record<string, unknown>[], filename: string) => {
+    if (data.length === 0) return;
+
+    const headers = Object.keys(data[0]);
     const csvContent = [
-      headers.join(','),
-      ...data.map(row => headers.map(header => `"${(row as Record<string, unknown>)[header] || ''}"`).join(','))
-    ].join('\n')
-    const blob = new Blob([csvContent], { type: 'text/csv' })
-    const url = window.URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `${filename}_${new Date().toISOString().split('T')[0]}.csv`
-    a.click()
-    window.URL.revokeObjectURL(url)
-  }
+      headers.join(","),
+      ...data.map((row) =>
+        headers
+          .map(
+            (header) => `"${(row as Record<string, unknown>)[header] || ""}"`
+          )
+          .join(",")
+      ),
+    ].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${filename}_${new Date().toISOString().split("T")[0]}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
 
   const toggleBlessingApproval = async (id: string, currentStatus: boolean) => {
     try {
-      const { error } = await supabase
-        .from('blessings')
+      const { error, data } = await supabase
+        .from("blessings")
         .update({ is_approved: !currentStatus })
-        .eq('id', id)
+        .eq("id", id);
+      console.log("data", data);
+      if (error) throw error;
 
-      if (error) throw error
-
-      setBlessings(current =>
-        current.map(blessing =>
+      setBlessings((current) =>
+        current.map((blessing) =>
           blessing.id === id
             ? { ...blessing, is_approved: !currentStatus }
             : blessing
         )
-      )
+      );
     } catch (error) {
-      console.error('Error updating blessing:', error)
-      alert('Failed to update blessing')
+      console.error("Error updating blessing:", error);
+      alert("Failed to update blessing");
     }
-  }
+  };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleString('id-ID')
-  }
+    return new Date(dateString).toLocaleString("id-ID");
+  };
 
   if (!isAuthenticated) {
     return (
@@ -145,7 +168,7 @@ const exportCSV = (data: Record<string, unknown>[], filename: string) => {
           </form>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -155,10 +178,16 @@ const exportCSV = (data: Record<string, unknown>[], filename: string) => {
           <h1 className="text-3xl font-bold">Wedding Admin Dashboard</h1>
           <div className="flex gap-2">
             <Button onClick={loadData} disabled={isLoading} size="sm">
-              <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+              <RefreshCw
+                className={`h-4 w-4 mr-2 ${isLoading ? "animate-spin" : ""}`}
+              />
               Refresh
             </Button>
-            <Button onClick={() => setIsAuthenticated(false)} variant="outline" size="sm">
+            <Button
+              onClick={() => setIsAuthenticated(false)}
+              variant="outline"
+              size="sm"
+            >
               Logout
             </Button>
           </div>
@@ -191,7 +220,9 @@ const exportCSV = (data: Record<string, unknown>[], filename: string) => {
                 <div>
                   <p className="text-sm text-gray-600">Attending</p>
                   <p className="text-2xl font-bold">{stats.attending_guests}</p>
-                  <p className="text-xs text-gray-500">({stats.attending_responses} responses)</p>
+                  <p className="text-xs text-gray-500">
+                    ({stats.attending_responses} responses)
+                  </p>
                 </div>
               </div>
             </Card>
@@ -200,8 +231,12 @@ const exportCSV = (data: Record<string, unknown>[], filename: string) => {
                 <UserX className="h-8 w-8 text-red-600" />
                 <div>
                   <p className="text-sm text-gray-600">Not Attending</p>
-                  <p className="text-2xl font-bold">{stats.not_attending_guests}</p>
-                  <p className="text-xs text-gray-500">({stats.not_attending_responses} responses)</p>
+                  <p className="text-2xl font-bold">
+                    {stats.not_attending_guests}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    ({stats.not_attending_responses} responses)
+                  </p>
                 </div>
               </div>
             </Card>
@@ -212,9 +247,11 @@ const exportCSV = (data: Record<string, unknown>[], filename: string) => {
           {/* RSVP Section */}
           <Card className="p-6">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">RSVP Responses ({rsvps.length})</h2>
+              <h2 className="text-xl font-semibold">
+                RSVP Responses ({rsvps.length})
+              </h2>
               <Button
-                onClick={() => exportCSV(rsvps, 'rsvp_responses')}
+                onClick={() => exportCSV(rsvps, "rsvp_responses")}
                 size="sm"
                 variant="outline"
               >
@@ -229,12 +266,23 @@ const exportCSV = (data: Record<string, unknown>[], filename: string) => {
                     <div>
                       <h3 className="font-semibold">{rsvp.name}</h3>
                       <p className="text-sm text-gray-600">
-                        {rsvp.guest_count} guest{rsvp.guest_count > 1 ? 's' : ''} • 
-                        <span className={`ml-1 ${rsvp.attendance === 'hadir' ? 'text-green-600' : 'text-red-600'}`}>
-                          {rsvp.attendance === 'hadir' ? 'Attending' : 'Not Attending'}
+                        {rsvp.guest_count} guest
+                        {rsvp.guest_count > 1 ? "s" : ""} •
+                        <span
+                          className={`ml-1 ${
+                            rsvp.attendance === "hadir"
+                              ? "text-green-600"
+                              : "text-red-600"
+                          }`}
+                        >
+                          {rsvp.attendance === "hadir"
+                            ? "Attending"
+                            : "Not Attending"}
                         </span>
                       </p>
-                      <p className="text-xs text-gray-500">{formatDate(rsvp.created_at)}</p>
+                      <p className="text-xs text-gray-500">
+                        {formatDate(rsvp.created_at)}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -245,9 +293,11 @@ const exportCSV = (data: Record<string, unknown>[], filename: string) => {
           {/* Blessings Section */}
           <Card className="p-6">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">Blessings ({blessings.length})</h2>
+              <h2 className="text-xl font-semibold">
+                Blessings ({blessings.length})
+              </h2>
               <Button
-                onClick={() => exportCSV(blessings, 'blessings')}
+                onClick={() => exportCSV(blessings, "blessings")}
                 size="sm"
                 variant="outline"
               >
@@ -261,18 +311,31 @@ const exportCSV = (data: Record<string, unknown>[], filename: string) => {
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
                       <h3 className="font-semibold">{blessing.name}</h3>
-                      <p className="text-sm text-gray-700 mt-1">{blessing.message}</p>
-                      <p className="text-xs text-gray-500 mt-2">{formatDate(blessing.created_at)}</p>
+                      <p className="text-sm text-gray-700 mt-1">
+                        {blessing.message}
+                      </p>
+                      <p className="text-xs text-gray-500 mt-2">
+                        {formatDate(blessing.created_at)}
+                      </p>
                     </div>
                     <Button
-                      onClick={() => toggleBlessingApproval(blessing.id, blessing.is_approved)}
+                      onClick={() =>
+                        toggleBlessingApproval(
+                          blessing.id,
+                          blessing.is_approved
+                        )
+                      }
                       size="sm"
                       variant={blessing.is_approved ? "default" : "outline"}
                     >
                       {blessing.is_approved ? (
-                        <><Eye className="h-4 w-4 mr-1" /> Visible</>
+                        <>
+                          <Eye className="h-4 w-4 mr-1" /> Visible
+                        </>
                       ) : (
-                        <><EyeOff className="h-4 w-4 mr-1" /> Hidden</>
+                        <>
+                          <EyeOff className="h-4 w-4 mr-1" /> Hidden
+                        </>
                       )}
                     </Button>
                   </div>
@@ -283,5 +346,5 @@ const exportCSV = (data: Record<string, unknown>[], filename: string) => {
         </div>
       </div>
     </div>
-  )
+  );
 }

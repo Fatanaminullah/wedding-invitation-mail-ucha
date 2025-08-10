@@ -242,242 +242,234 @@ export default function Blessing() {
         </Anim>
 
         {/* Blessing Form */}
-        <div className="overflow-hidden">
-          <Anim delay={200} className="block">
-            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 mb-8">
-              {/* Success Message */}
-              {submitStatus === "success" && (
-                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
-                  <div className="flex items-center gap-3">
-                    <Check className="text-green-600 flex-shrink-0" size={20} />
-                    <p className="text-green-800 text-sm">
-                      {translations.blessing.successMessage}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* Error Message */}
-              {submitStatus === "error" && (
-                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
-                  <div className="flex items-center gap-3">
-                    <AlertCircle
-                      className="text-red-600 flex-shrink-0"
-                      size={20}
-                    />
-                    <p className="text-red-800 text-sm">
-                      {errorMessage || translations.common.error}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name Field */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {translations.blessing.nameLabel}
-                  </label>
-                  <Input
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    placeholder={translations.blessing.namePlaceholder}
-                    required
-                    className="w-full"
-                    disabled={isSubmitting}
-                  />
-                </div>
-
-                {/* Message Field */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {translations.blessing.messageLabel}
-                  </label>
-                  <Textarea
-                    value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
-                    placeholder={translations.blessing.messagePlaceholder}
-                    required
-                    className="w-full min-h-[120px] resize-none"
-                    disabled={isSubmitting}
-                  />
-                  <div className="flex justify-end mt-1">
-                    <span
-                      className={`text-xs ${
-                        formData.message.length > 500
-                          ? "text-red-500"
-                          : formData.message.length > 400
-                          ? "text-orange-500"
-                          : "text-gray-400"
-                      }`}
-                    >
-                      {formData.message.length}/500
-                    </span>
-                  </div>
-                </div>
-
-                {/* Submit Button */}
-                <Button
-                  type="submit"
-                  disabled={
-                    isSubmitting ||
-                    !formData.name.trim() ||
-                    !formData.message.trim()
-                  }
-                  className="w-full bg-stone-600 hover:bg-stone-700 text-white"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      {translations.common.loading}
-                    </>
-                  ) : (
-                    <>
-                      <Send size={16} className="mr-2" />
-                      {translations.blessing.submitButton}
-                    </>
-                  )}
-                </Button>
-              </form>
-            </div>
-          </Anim>
-        </div>
-
-        {/* Blessings List */}
-        <div className="overflow-hidden">
-          <Anim delay={400} className="block">
-            <div className="space-y-6">
-              <div className="text-center">
-                <div className="flex items-center gap-3 justify-center mb-4">
-                  <h3 className="text-xl font-serif font-semibold text-gray-800">
-                    Blessings from Loved Ones
-                  </h3>
-                </div>
-                <div className="w-16 h-0.5 bg-stone-400 mx-auto"></div>
-              </div>
-
-              {isLoading ? (
-                <div className="text-center py-8">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-600 mx-auto mb-4"></div>
-                  <p className="text-gray-500">{translations.common.loading}</p>
-                </div>
-              ) : blessings.length === 0 ? (
-                <div className="text-center py-8">
-                  <Heart className="h-8 w-8 text-stone-400 mx-auto mb-4" />
-                  <p className="text-gray-500">
-                    Be the first to leave a blessing!
+        <Anim delay={200} className="block">
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 mb-8">
+            {/* Success Message */}
+            {submitStatus === "success" && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
+                <div className="flex items-center gap-3">
+                  <Check className="text-green-600 flex-shrink-0" size={20} />
+                  <p className="text-green-800 text-sm">
+                    {translations.blessing.successMessage}
                   </p>
                 </div>
-              ) : (
-                <div className="space-y-4">
-                  {blessings.slice(0, 5).map((blessing, index) => (
-                    <div key={blessing.id} className="overflow-hidden">
-                      <Anim delay={100 * index} className="block">
-                        <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
-                          <div className="flex items-start gap-4">
-                            <div className="w-10 h-10 bg-gradient-to-br from-stone-400 to-stone-600 rounded-full flex items-center justify-center flex-shrink-0">
-                              <Heart className="text-white" size={20} />
+              </div>
+            )}
+
+            {/* Error Message */}
+            {submitStatus === "error" && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+                <div className="flex items-center gap-3">
+                  <AlertCircle
+                    className="text-red-600 flex-shrink-0"
+                    size={20}
+                  />
+                  <p className="text-red-800 text-sm">
+                    {errorMessage || translations.common.error}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Name Field */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {translations.blessing.nameLabel}
+                </label>
+                <Input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                  placeholder={translations.blessing.namePlaceholder}
+                  required
+                  className="w-full"
+                  disabled={isSubmitting}
+                />
+              </div>
+
+              {/* Message Field */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {translations.blessing.messageLabel}
+                </label>
+                <Textarea
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
+                  placeholder={translations.blessing.messagePlaceholder}
+                  required
+                  className="w-full min-h-[120px] resize-none"
+                  disabled={isSubmitting}
+                />
+                <div className="flex justify-end mt-1">
+                  <span
+                    className={`text-xs ${
+                      formData.message.length > 500
+                        ? "text-red-500"
+                        : formData.message.length > 400
+                        ? "text-orange-500"
+                        : "text-gray-400"
+                    }`}
+                  >
+                    {formData.message.length}/500
+                  </span>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <Button
+                type="submit"
+                disabled={
+                  isSubmitting ||
+                  !formData.name.trim() ||
+                  !formData.message.trim()
+                }
+                className="w-full bg-stone-600 hover:bg-stone-700 text-white"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    {translations.common.loading}
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} className="mr-2" />
+                    {translations.blessing.submitButton}
+                  </>
+                )}
+              </Button>
+            </form>
+          </div>
+        </Anim>
+
+        {/* Blessings List */}
+        <Anim delay={400} className="block">
+          <div className="space-y-6">
+            <div className="text-center">
+              <div className="flex items-center gap-3 justify-center mb-4">
+                <h3 className="text-xl font-serif font-semibold text-gray-800">
+                  Blessings from Loved Ones
+                </h3>
+              </div>
+              <div className="w-16 h-0.5 bg-stone-400 mx-auto"></div>
+            </div>
+
+            {isLoading ? (
+              <div className="text-center py-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-600 mx-auto mb-4"></div>
+                <p className="text-gray-500">{translations.common.loading}</p>
+              </div>
+            ) : blessings.length === 0 ? (
+              <div className="text-center py-8">
+                <Heart className="h-8 w-8 text-stone-400 mx-auto mb-4" />
+                <p className="text-gray-500">
+                  Be the first to leave a blessing!
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {blessings.slice(0, 3).map((blessing, index) => (
+                  <div key={blessing.id} className="">
+                    <Anim delay={100 * index} className="block">
+                      <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
+                        <div className="flex items-start gap-4">
+                          <div className="w-10 h-10 bg-gradient-to-br from-stone-400 to-stone-600 rounded-full flex items-center justify-center flex-shrink-0">
+                            <Heart className="text-white" size={20} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-2">
+                              <h4 className="font-semibold text-gray-800 truncate">
+                                {blessing.name}
+                              </h4>
+                              <span className="text-xs text-gray-500">
+                                {formatDate(blessing.created_at)}
+                              </span>
                             </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2 mb-2">
-                                <h4 className="font-semibold text-gray-800 truncate">
-                                  {blessing.name}
-                                </h4>
-                                <span className="text-xs text-gray-500">
-                                  {formatDate(blessing.created_at)}
-                                </span>
-                              </div>
-                              <p className="text-gray-700 text-sm leading-relaxed">
-                                {blessing.message}
-                              </p>
-                            </div>
+                            <p className="text-gray-700 text-sm leading-relaxed">
+                              {blessing.message}
+                            </p>
                           </div>
                         </div>
-                      </Anim>
-                    </div>
-                  ))}
+                      </div>
+                    </Anim>
+                  </div>
+                ))}
 
-                  {/* Show More Button */}
-                  {blessings.length > 5 && (
-                    <div className="text-center mt-6">
-                      <Dialog
-                        open={isDialogOpen}
-                        onOpenChange={setIsDialogOpen}
-                      >
-                        <DialogTrigger asChild>
-                          <Button
-                            variant="outline"
-                            className="border-stone-200 text-stone-600 hover:bg-stone-50"
-                          >
-                            <ChevronDown size={16} className="mr-2" />
-                            {translations.blessing.showMore} (
-                            {blessings.length - 5} more)
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-2xl max-h-[90vh] w-full sm:max-w-2xl">
-                          <DialogHeader>
-                            <DialogTitle className="flex items-center gap-2 text-left">
-                              <MessageCircle
-                                className="text-stone-600"
-                                size={24}
-                              />
-                              {translations.blessing.allBlessings}
-                            </DialogTitle>
-                          </DialogHeader>
+                {/* Show More Button */}
+                {blessings.length > 5 && (
+                  <div className="text-center mt-6">
+                    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                      <DialogTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className="w-full border-stone-200 text-stone-600 hover:bg-stone-50"
+                        >
+                          {translations.blessing.showMore} (
+                          {blessings.length - 3} more)
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-2xl max-h-[90vh] w-full sm:max-w-2xl">
+                        <DialogHeader>
+                          <DialogTitle className="flex items-center gap-2 text-left">
+                            <MessageCircle
+                              className="text-stone-600"
+                              size={24}
+                            />
+                            {translations.blessing.allBlessings}
+                          </DialogTitle>
+                        </DialogHeader>
 
-                          {/* Content */}
-                          <div className="flex-1 overflow-y-auto max-h-[60vh]">
-                            <div className="space-y-4 pr-2">
-                              {blessings.map((blessing, index) => (
-                                <div
-                                  key={blessing.id}
-                                  className="bg-gray-50 rounded-xl p-4"
-                                >
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-8 h-8 bg-gradient-to-br from-stone-400 to-stone-600 rounded-full flex items-center justify-center flex-shrink-0">
-                                      <Heart className="text-white" size={16} />
+                        {/* Content */}
+                        <div className="flex-1 overflow-y-auto max-h-[60vh]">
+                          <div className="space-y-4 pr-2">
+                            {blessings.map((blessing, index) => (
+                              <div
+                                key={blessing.id}
+                                className="bg-gray-50 rounded-xl p-4"
+                              >
+                                <div className="flex items-start gap-3">
+                                  <div className="w-8 h-8 bg-gradient-to-br from-stone-400 to-stone-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <Heart className="text-white" size={16} />
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex items-center gap-2 mb-1">
+                                      <h4 className="font-semibold text-gray-800 text-sm truncate">
+                                        {blessing.name}
+                                      </h4>
+                                      <span className="text-xs text-gray-500">
+                                        {formatDate(blessing.created_at)}
+                                      </span>
                                     </div>
-                                    <div className="flex-1 min-w-0">
-                                      <div className="flex items-center gap-2 mb-1">
-                                        <h4 className="font-semibold text-gray-800 text-sm truncate">
-                                          {blessing.name}
-                                        </h4>
-                                        <span className="text-xs text-gray-500">
-                                          {formatDate(blessing.created_at)}
-                                        </span>
-                                      </div>
-                                      <p className="text-gray-700 text-sm leading-relaxed">
-                                        {blessing.message}
-                                      </p>
-                                    </div>
+                                    <p className="text-gray-700 text-sm leading-relaxed">
+                                      {blessing.message}
+                                    </p>
                                   </div>
                                 </div>
-                              ))}
+                              </div>
+                            ))}
 
-                              {blessings.length === 0 && (
-                                <div className="text-center py-8">
-                                  <Heart className="h-8 w-8 text-stone-400 mx-auto mb-4" />
-                                  <p className="text-gray-500">
-                                    No blessings yet. Be the first to leave one!
-                                  </p>
-                                </div>
-                              )}
-                            </div>
+                            {blessings.length === 0 && (
+                              <div className="text-center py-8">
+                                <Heart className="h-8 w-8 text-stone-400 mx-auto mb-4" />
+                                <p className="text-gray-500">
+                                  No blessings yet. Be the first to leave one!
+                                </p>
+                              </div>
+                            )}
                           </div>
-                        </DialogContent>
-                      </Dialog>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </Anim>
-        </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </Anim>
       </div>
     </section>
   );

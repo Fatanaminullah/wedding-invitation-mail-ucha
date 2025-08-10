@@ -57,7 +57,8 @@
     "attendanceYes": "Hadir",
     "attendanceNo": "Tidak Hadir",
     "submitButton": "Kirim Konfirmasi",
-    "successMessage": "Terima kasih atas konfirmasi Anda!"
+    "successMessage": "Terima kasih atas konfirmasi Anda!",
+    "footerText": "Respon Anda membantu kami mempersiapkan hari istimewa kami"
   },
   "gallery": {
     "title": "Gallery",

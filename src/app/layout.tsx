@@ -38,7 +38,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} antialiased font-sans`}
       >
-        <LenisProvider>{children}</LenisProvider>
+        {children}
       </body>
     </html>
   );

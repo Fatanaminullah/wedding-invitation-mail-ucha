@@ -57,7 +57,8 @@
     "attendanceYes": "Will Attend",
     "attendanceNo": "Cannot Attend",
     "submitButton": "Send Confirmation",
-    "successMessage": "Thank you for your confirmation!"
+    "successMessage": "Thank you for your confirmation!",
+    "footerText": "Your response helps us prepare for our special day"
   },
   "gallery": {
     "title": "Gallery",

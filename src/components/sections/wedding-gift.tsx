@@ -110,7 +110,7 @@ export default function WeddingGift() {
         </Anim>
         <div className="space-y-6">
           {bankAccounts.map((account, index) => (
-            <div key={account.accountNumber} className="overflow-hidden">
+            <div key={account.accountNumber} className="">
               <Anim delay={200 * (index + 1)} className="block">
                 <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
                   <div className="flex items-start gap-4">
@@ -180,17 +180,14 @@ export default function WeddingGift() {
           ))}
         </div>
         {/* Bottom Message */}
-        {/* Bottom Message */}
-        <div className="overflow-hidden">
-          <Anim delay={600} className="block">
-            <div className="mt-4 text-center">
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Your presence at our wedding is the greatest gift of all. But if
-                you wish to give something, we would be grateful!
-              </p>
-            </div>
-          </Anim>
-        </div>{" "}
+        <Anim delay={600} className="block">
+          <div className="mt-4 text-center">
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Your presence at our wedding is the greatest gift of all. But if
+              you wish to give something, we would be grateful!
+            </p>
+          </div>
+        </Anim>
         {/* Decorative Elements */}
       </div>
     </section>

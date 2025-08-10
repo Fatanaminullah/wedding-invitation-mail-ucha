@@ -36,6 +36,7 @@ interface Translations {
     attendanceNo: string;
     submitButton: string;
     successMessage: string;
+    footerText: string;
   };
   common: {
     loading: string;
@@ -170,142 +171,140 @@ export default function RSVP() {
           </div>
         </Anim>
 
-        <div className="overflow-hidden">
-          <Anim delay={200} className="block">
-            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-              {/* Success Message */}
-              {submitStatus === "success" && (
-                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
-                  <div className="flex items-center gap-3">
-                    <Check className="text-green-600 flex-shrink-0" size={20} />
-                    <p className="text-green-800 text-sm">
-                      {translations.rsvp.successMessage}
-                    </p>
-                  </div>
+        <Anim delay={200} className="block">
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+            {/* Success Message */}
+            {submitStatus === "success" && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
+                <div className="flex items-center gap-3">
+                  <Check className="text-green-600 flex-shrink-0" size={20} />
+                  <p className="text-green-800 text-sm">
+                    {translations.rsvp.successMessage}
+                  </p>
                 </div>
-              )}
+              </div>
+            )}
 
-              {/* Error Message */}
-              {submitStatus === "error" && (
-                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
-                  <div className="flex items-center gap-3">
-                    <AlertCircle
-                      className="text-red-600 flex-shrink-0"
-                      size={20}
-                    />
-                    <p className="text-red-800 text-sm">
-                      {errorMessage || translations.common.error}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name Field */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {translations.rsvp.nameLabel}
-                  </label>
-                  <Input
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    placeholder={translations.rsvp.namePlaceholder}
-                    required
-                    className="w-full"
-                    disabled={isSubmitting}
+            {/* Error Message */}
+            {submitStatus === "error" && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+                <div className="flex items-center gap-3">
+                  <AlertCircle
+                    className="text-red-600 flex-shrink-0"
+                    size={20}
                   />
+                  <p className="text-red-800 text-sm">
+                    {errorMessage || translations.common.error}
+                  </p>
                 </div>
+              </div>
+            )}
 
-                {/* Guest Count Field */}
-                <div className="relative z-20">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {translations.rsvp.guestCountLabel}
-                  </label>
-                  <Select
-                    value={formData.guest_count.toString()}
-                    onValueChange={(value) =>
-                      setFormData({
-                        ...formData,
-                        guest_count: parseInt(value) as 1 | 2,
-                      })
-                    }
-                    disabled={isSubmitting}
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="z-50 bg-white">
-                      <SelectItem value="1">
-                        {translations.rsvp.guestCount1}
-                      </SelectItem>
-                      <SelectItem value="2">
-                        {translations.rsvp.guestCount2}
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Name Field */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {translations.rsvp.nameLabel}
+                </label>
+                <Input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                  placeholder={translations.rsvp.namePlaceholder}
+                  required
+                  className="w-full"
+                  disabled={isSubmitting}
+                />
+              </div>
 
-                {/* Attendance Field */}
-                <div className="relative z-10">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {translations.rsvp.attendanceLabel}
-                  </label>
-                  <Select
-                    value={formData.attendance}
-                    onValueChange={(value) =>
-                      setFormData({
-                        ...formData,
-                        attendance: value as "hadir" | "tidak",
-                      })
-                    }
-                    disabled={isSubmitting}
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="z-50 bg-white">
-                      <SelectItem value="hadir">
-                        {translations.rsvp.attendanceYes}
-                      </SelectItem>
-                      <SelectItem value="tidak">
-                        {translations.rsvp.attendanceNo}
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* Submit Button */}
-                <Button
-                  type="submit"
-                  disabled={isSubmitting || !formData.name.trim()}
-                  className="w-full mt-6 bg-stone-600 hover:bg-stone-700 text-white"
+              {/* Guest Count Field */}
+              <div className="relative z-20">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {translations.rsvp.guestCountLabel}
+                </label>
+                <Select
+                  value={formData.guest_count.toString()}
+                  onValueChange={(value) =>
+                    setFormData({
+                      ...formData,
+                      guest_count: parseInt(value) as 1 | 2,
+                    })
+                  }
+                  disabled={isSubmitting}
                 >
-                  {isSubmitting ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      {translations.common.loading}
-                    </>
-                  ) : (
-                    <>
-                      <Send size={16} className="mr-2" />
-                      {translations.rsvp.submitButton}
-                    </>
-                  )}
-                </Button>
-              </form>
-            </div>
-          </Anim>
-        </div>
+                  <SelectTrigger className="w-full">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="z-50 bg-white">
+                    <SelectItem value="1">
+                      {translations.rsvp.guestCount1}
+                    </SelectItem>
+                    <SelectItem value="2">
+                      {translations.rsvp.guestCount2}
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Attendance Field */}
+              <div className="relative z-10">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {translations.rsvp.attendanceLabel}
+                </label>
+                <Select
+                  value={formData.attendance}
+                  onValueChange={(value) =>
+                    setFormData({
+                      ...formData,
+                      attendance: value as "hadir" | "tidak",
+                    })
+                  }
+                  disabled={isSubmitting}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="z-50 bg-white">
+                    <SelectItem value="hadir">
+                      {translations.rsvp.attendanceYes}
+                    </SelectItem>
+                    <SelectItem value="tidak">
+                      {translations.rsvp.attendanceNo}
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Submit Button */}
+              <Button
+                type="submit"
+                disabled={isSubmitting || !formData.name.trim()}
+                className="w-full mt-6 bg-stone-600 hover:bg-stone-700 text-white"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    {translations.common.loading}
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} className="mr-2" />
+                    {translations.rsvp.submitButton}
+                  </>
+                )}
+              </Button>
+            </form>
+          </div>
+        </Anim>
 
         {/* Bottom decoration */}
         <div className="overflow-hidden">
           <Anim delay={400} className="block">
             <div className="mt-8 text-center">
               <p className="text-xs text-gray-500 mt-2">
-                Your response helps us prepare for our special day
+                {translations.rsvp.footerText}
               </p>
             </div>
           </Anim>
