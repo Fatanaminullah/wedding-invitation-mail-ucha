@@ -11,6 +11,7 @@ interface MusicPlayerProps {
 export default function MusicPlayer({ autoPlay = false }: MusicPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null)
+  const [wasPlayingBeforeHidden, setWasPlayingBeforeHidden] = useState(false)
 
   const playMusic = async () => {
     if (audio) {
@@ -68,6 +69,45 @@ export default function MusicPlayer({ autoPlay = false }: MusicPlayerProps) {
       play()
     }
   }, [autoPlay, audio])
+
+  // Handle browser visibility changes (tab switching, minimizing, etc.)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // User switched tabs, minimized browser, or left the page
+        if (isPlaying && audio) {
+          console.log('Browser hidden - pausing music')
+          setWasPlayingBeforeHidden(true)
+          audio.pause()
+          setIsPlaying(false)
+        }
+      } else {
+        // User came back to the tab
+        if (wasPlayingBeforeHidden && audio) {
+          console.log('Browser visible again - resuming music')
+          const resumePlay = async () => {
+            try {
+              await audio.play()
+              setIsPlaying(true)
+              setWasPlayingBeforeHidden(false)
+            } catch (error) {
+              console.log('Failed to resume audio:', error)
+              setWasPlayingBeforeHidden(false)
+            }
+          }
+          resumePlay()
+        }
+      }
+    }
+
+    // Add event listener for visibility changes
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [isPlaying, audio, wasPlayingBeforeHidden])
 
   const toggleMusic = () => {
     if (isPlaying) {
