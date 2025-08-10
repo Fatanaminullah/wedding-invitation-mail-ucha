@@ -6,7 +6,7 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 // Types for our database
-export interface RSVP {
+export interface RSVP extends Record<string, unknown> {
   id: string
   name: string
   guest_count: 1 | 2
@@ -14,7 +14,7 @@ export interface RSVP {
   created_at: string
 }
 
-export interface Blessing {
+export interface Blessing extends Record<string, unknown> {
   id: string
   name: string
   message: string

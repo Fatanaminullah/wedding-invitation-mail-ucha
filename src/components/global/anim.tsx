@@ -13,7 +13,6 @@ const Anim = ({
   keyframes = fadeInUp,
   fraction = 0.5,
   damping = 0.1,
-  duration,
   triggerOnce = true,
   childClassName,
   childStyle,

@@ -55,15 +55,15 @@ export default function WeddingGift() {
   const bankAccounts: BankAccount[] = [
     {
       bankName: "Bank BCA",
-      accountNumber: "5465123456",
+      accountNumber: "6880648631",
       accountName: "Salsabila Azzahra",
       icon: "card",
     },
     {
-      bankName: "Bank Mandiri",
-      accountNumber: "1370014567890",
-      accountName: "Ismail Abdan Syakuro F.",
-      icon: "building",
+      bankName: "Bank BCA",
+      accountNumber: "6043912823",
+      accountName: "Ismail Abdan Syakuro Firmansyah",
+      icon: "card",
     },
   ];
 

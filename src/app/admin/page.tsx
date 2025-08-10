@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { Users, Heart, Download, RefreshCw, Eye, EyeOff, TrendingUp, Calendar, UserCheck, UserX } from 'lucide-react'
+import { useState } from 'react'
+import { Users, Download, RefreshCw, Eye, EyeOff, TrendingUp, UserCheck, UserX } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
@@ -81,15 +81,14 @@ export default function AdminDashboard() {
     }
   }
 
-  const exportCSV = (data: any[], filename: string) => {
+const exportCSV = (data: Record<string, unknown>[], filename: string) => {
     if (data.length === 0) return
-
+    
     const headers = Object.keys(data[0])
     const csvContent = [
       headers.join(','),
-      ...data.map(row => headers.map(header => `"${row[header] || ''}"`).join(','))
+      ...data.map(row => headers.map(header => `"${(row as Record<string, unknown>)[header] || ''}"`).join(','))
     ].join('\n')
-
     const blob = new Blob([csvContent], { type: 'text/csv' })
     const url = window.URL.createObjectURL(blob)
     const a = document.createElement('a')

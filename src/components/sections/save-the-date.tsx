@@ -24,6 +24,7 @@ interface Translations {
       address: string
       mapButton: string
     }
+    additionalInfo: string
   }
 }
 
@@ -64,7 +65,7 @@ export default function SaveTheDate() {
   }
 
   // Google Maps URL for the venue
-  const mapsUrl = "https://maps.google.com/maps?q=Aula+Sarbini+Taman+Rekreasi+Wiladatika,+Jl+Pusdika+Raya+No.6B,+Harjamukti,+Kec.+Cimanggis,+Kota+Depok,+Jawa+Barat+16454"
+  const mapsUrl = "https://maps.app.goo.gl/csa2Zts1CJzHAFYH8"
 
   const EventCard = ({ 
     event, 
@@ -166,8 +167,7 @@ export default function SaveTheDate() {
             <div className="mt-12 text-center">
               <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
                 <p className="text-sm text-gray-600 leading-relaxed">
-                  We hope you can join us in celebrating this special moment. 
-                  Your presence would mean the world to us!
+                  {translations.saveTheDate.additionalInfo}
                 </p>
               </div>
             </div>
