@@ -199,7 +199,7 @@ export default function BrideGroom() {
               </div>
 
               {/* The Groom Label */}
-              <div className="rotate-90 col-span-1">
+              <div className="rotate-90 -translate-y-24 col-span-1">
                 <span className="text-xl font-serif text-stone-400 tracking-[0.3em] whitespace-nowrap">
                   The Groom
                 </span>
