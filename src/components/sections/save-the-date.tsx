@@ -69,81 +69,18 @@ export default function SaveTheDate() {
   // Google Maps URL for the venue
   const mapsUrl = "https://maps.app.goo.gl/csa2Zts1CJzHAFYH8";
 
-  const EventCard = ({
-    event,
-    index,
-    bgColor,
-    accentColor,
-  }: {
-    event: typeof translations.saveTheDate.akad;
-    index: number;
-    bgColor: string;
-    accentColor: string;
-  }) => (
-    <Anim delay={200 * (index + 1)} className="block">
-      <div
-        className={`${bgColor} rounded-2xl shadow-lg p-6 border border-gray-100`}
-      >
-        <div className="text-center mb-6">
-          <h3 className={`text-2xl font-bold ${accentColor} mb-2`}>
-            {event.title}
-          </h3>
-          <div className="w-16 h-0.5 bg-current mx-auto opacity-60"></div>
-        </div>
-
-        <div className="space-y-4">
-          {/* Date */}
-          <div className="flex items-start gap-3">
-            <Calendar
-              className={`${accentColor} mt-1 flex-shrink-0`}
-              size={20}
-            />
-            <div>
-              <p className="font-medium text-gray-800">{event.date}</p>
-            </div>
-          </div>
-
-          {/* Time */}
-          <div className="flex items-start gap-3">
-            <Clock className={`${accentColor} mt-1 flex-shrink-0`} size={20} />
-            <div>
-              <p className="font-medium text-gray-800">{event.time}</p>
-            </div>
-          </div>
-
-          {/* Location */}
-          <div className="flex items-start gap-3">
-            <MapPin className={`${accentColor} mt-1 flex-shrink-0`} size={20} />
-            <div>
-              <p className="font-medium text-gray-800 mb-1">{event.location}</p>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                {event.address}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Maps Button */}
-        <div className="mt-6 text-center">
-          <Button
-            onClick={() => window.open(mapsUrl, "_blank")}
-            className={`${
-              accentColor === "text-stone-600"
-                ? "bg-stone-600 hover:bg-stone-700"
-                : "bg-gray-600 hover:bg-gray-700"
-            } text-white w-full`}
-          >
-            <ExternalLink size={16} className="mr-2" />
-            {event.mapButton}
-          </Button>
-        </div>
-      </div>
-    </Anim>
-  );
-
   return (
-    <section className="min-h-svh bg-gradient-to-b from-stone-50 to-gray-50 py-20 px-6">
-      <div className="max-w-md mx-auto">
+    <section 
+      className="min-h-svh relative py-20 px-6 bg-cover bg-center bg-fixed"
+      style={{
+        backgroundImage: "url('/save-the-date.jpg')"
+      }}
+    >
+      {/* White overlay */}
+      <div className="absolute inset-0 bg-white/80"></div>
+      
+      {/* Content */}
+      <div className="relative z-10 max-w-md">
         <Anim className="block">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-serif font-bold text-gray-800 mb-4">
@@ -153,28 +90,101 @@ export default function SaveTheDate() {
           </div>
         </Anim>
 
-        <div className="space-y-8">
-          {/* Akad Event */}
-          <EventCard
-            event={translations.saveTheDate.akad}
-            index={0}
-            bgColor="bg-gradient-to-br from-stone-50 to-stone-100"
-            accentColor="text-stone-600"
-          />
+        {/* Single Card */}
+        <Anim delay={200} className="block">
+          <div className="bg-gradient-to-br from-white to-stone-50 rounded-2xl shadow-lg p-6 border border-gray-100">
+            
+            {/* Akad Nikah Section */}
+            <div className="mb-8">
+              <div className="text-center mb-4">
+                <h3 className="text-xl font-bold text-stone-600 mb-2">
+                  {translations.saveTheDate.akad.title}
+                </h3>
+                <div className="w-12 h-0.5 bg-stone-400 mx-auto opacity-60"></div>
+              </div>
 
-          {/* Resepsi Event */}
-          <EventCard
-            event={translations.saveTheDate.resepsi}
-            index={1}
-            bgColor="bg-gradient-to-br from-gray-50 to-gray-100"
-            accentColor="text-gray-600"
-          />
-        </div>
+              <div className="space-y-3">
+                {/* Akad Date */}
+                <div className="flex items-start gap-3">
+                  <Calendar className="text-stone-600 mt-1 flex-shrink-0" size={18} />
+                  <div>
+                    <p className="font-medium text-gray-800">{translations.saveTheDate.akad.date}</p>
+                  </div>
+                </div>
+
+                {/* Akad Time */}
+                <div className="flex items-start gap-3">
+                  <Clock className="text-stone-600 mt-1 flex-shrink-0" size={18} />
+                  <div>
+                    <p className="font-medium text-gray-800">{translations.saveTheDate.akad.time}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Resepsi Section */}
+            <div className="mb-8">
+              <div className="text-center mb-4">
+                <h3 className="text-xl font-bold text-gray-600 mb-2">
+                  {translations.saveTheDate.resepsi.title}
+                </h3>
+                <div className="w-12 h-0.5 bg-gray-400 mx-auto opacity-60"></div>
+              </div>
+
+              <div className="space-y-3">
+                {/* Resepsi Date */}
+                <div className="flex items-start gap-3">
+                  <Calendar className="text-gray-600 mt-1 flex-shrink-0" size={18} />
+                  <div>
+                    <p className="font-medium text-gray-800">{translations.saveTheDate.resepsi.date}</p>
+                  </div>
+                </div>
+
+                {/* Resepsi Time */}
+                <div className="flex items-start gap-3">
+                  <Clock className="text-gray-600 mt-1 flex-shrink-0" size={18} />
+                  <div>
+                    <p className="font-medium text-gray-800">{translations.saveTheDate.resepsi.time}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Shared Location */}
+            <div className="mb-6">
+              <div className="text-center mb-4">
+                <h4 className="text-lg font-semibold text-gray-700 mb-2">Alamat</h4>
+                <div className="w-10 h-0.5 bg-gray-400 mx-auto opacity-60"></div>
+              </div>
+
+              <div className="flex items-start gap-3 mb-4">
+                <MapPin className="text-gray-600 mt-1 flex-shrink-0" size={18} />
+                <div>
+                  <p className="font-medium text-gray-800 mb-1">{translations.saveTheDate.akad.location}</p>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    {translations.saveTheDate.akad.address}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Maps Button */}
+            <div className="text-center">
+              <Button
+                onClick={() => window.open(mapsUrl, "_blank")}
+                className="bg-stone-600 hover:bg-stone-700 text-white w-full"
+              >
+                <ExternalLink size={16} className="mr-2" />
+                {translations.saveTheDate.akad.mapButton}
+              </Button>
+            </div>
+          </div>
+        </Anim>
 
         {/* Additional Info */}
-        <Anim delay={800} className="block">
+        <Anim delay={400} className="block">
           <div className="mt-12 text-center">
-            <p className="text-sm text-gray-600 leading-relaxed italic">
+            <p className="text-sm text-gray-700 leading-relaxed italic">
               {translations.saveTheDate.additionalInfo}
             </p>
           </div>

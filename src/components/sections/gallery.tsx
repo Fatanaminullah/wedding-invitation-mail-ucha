@@ -12,6 +12,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
+import { slideInUp } from "@/lib/keyframes";
 
 interface Translations {
   gallery: {
@@ -112,105 +113,103 @@ export default function Gallery() {
         </Anim>
 
         {/* Main Gallery Carousel */}
-        <div className="overflow-hidden">
-          <Anim delay={300} className="block">
-            <div className="mb-6">
-              <Carousel
-                setApi={setApi}
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-                className="w-full"
-              >
-                <CarouselContent>
-                  {galleryImages.map((image, index) => (
-                    <CarouselItem key={index}>
-                      <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
-                        <Image
-                          src={image.src}
-                          alt={image.alt}
-                          fill
-                          className="object-cover"
-                          priority={index === 0}
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-
-                        {/* Photo Counter */}
-                        <div className="absolute bottom-4 right-4 z-10 bg-black/60 text-white px-3 py-1.5 rounded-full text-sm font-medium backdrop-blur-sm">
-                          {activeIndex + 1} / {galleryImages.length}
-                        </div>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-
-                {/* Custom Navigation Buttons */}
-                <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border-none shadow-lg backdrop-blur-sm h-12 w-12" />
-                <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border-none shadow-lg backdrop-blur-sm h-12 w-12" />
-              </Carousel>
-            </div>
-          </Anim>
-        </div>
-
-        {/* Thumbnail Carousel */}
-        <div className="overflow-hidden">
-          <Anim delay={500} className="block">
+        <Anim delay={300} className="block">
+          <div className="mb-6">
             <Carousel
-              setApi={setThumbApi}
+              setApi={setApi}
               opts={{
                 align: "start",
-                dragFree: true,
-                containScroll: 'keepSnaps',
+                loop: true,
               }}
               className="w-full"
             >
-              <CarouselContent className="-ml-3">
+              <CarouselContent>
                 {galleryImages.map((image, index) => (
-                  <CarouselItem
-                    key={index}
-                    className={cn(
-                      "pl-3 basis-1/4",
-                      activeIndex === index
-                        ? "embla-thumbs__slide--selected"
-                        : ""
-                    )}
-                  >
-                    <div
-                      className={`relative aspect-square rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
-                        activeIndex === index
-                          ? "ring-2 ring-stone-400 opacity-100 scale-105"
-                          : "opacity-70 hover:opacity-90"
-                      }`}
-                      onClick={() => onThumbClick(index)}
-                    >
+                  <CarouselItem key={index}>
+                    <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
                         src={image.src}
                         alt={image.alt}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 25vw, 20vw"
+                        priority={index === 0}
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+
+                      {/* Photo Counter */}
+                      <div className="absolute bottom-4 right-4 z-10 bg-black/60 text-white px-3 py-1.5 rounded-full text-sm font-medium backdrop-blur-sm">
+                        {activeIndex + 1} / {galleryImages.length}
+                      </div>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
+
+              {/* Custom Navigation Buttons */}
+              <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border-none shadow-lg backdrop-blur-sm h-12 w-12" />
+              <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border-none shadow-lg backdrop-blur-sm h-12 w-12" />
             </Carousel>
-          </Anim>
-        </div>
+          </div>
+        </Anim>
+
+        {/* Thumbnail Carousel */}
+        <Anim delay={500} className="block">
+          <Carousel
+            setApi={setThumbApi}
+            opts={{
+              align: "start",
+              dragFree: true,
+              containScroll: "keepSnaps",
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-3">
+              {galleryImages.map((image, index) => (
+                <CarouselItem
+                  key={index}
+                  className={cn(
+                    "pl-3 basis-1/4",
+                    activeIndex === index ? "embla-thumbs__slide--selected" : ""
+                  )}
+                >
+                  <div
+                    className={`relative aspect-square rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
+                      activeIndex === index
+                        ? "opacity-100"
+                        : "opacity-70 hover:opacity-90"
+                    }`}
+                    onClick={() => onThumbClick(index)}
+                  >
+                    <div
+                      className={cn(
+                        "bg-transparent z-[1] border-2 border-stone-400 transition-all absolute w-full h-full m-auto rounded-xl inset-0",
+                        activeIndex === index ? " opacity-100" : "opacity-0"
+                      )}
+                    ></div>
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className="object-cover -z-[1]"
+                      sizes="(max-width: 768px) 25vw, 20vw"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </Anim>
 
         {/* Gallery Description */}
-        <div className="overflow-hidden">
-          <Anim delay={700} className="block">
-            <div className="mt-8 text-center">
-              <p className="text-gray-600 text-sm leading-relaxed">
-                {translations.gallery.description ||
-                  "Kumpulan momen indah dari perjalanan cinta kami. Swipe untuk melihat foto lainnya."}
-              </p>
-            </div>
-          </Anim>
-        </div>
+        <Anim delay={700} keyframes={slideInUp} className="block">
+          <div className="mt-8 text-center">
+            <p className="text-gray-600 text-sm leading-relaxed">
+              {translations.gallery.description ||
+                "Kumpulan momen indah dari perjalanan cinta kami. Swipe untuk melihat foto lainnya."}
+            </p>
+          </div>
+        </Anim>
       </div>
     </section>
   );

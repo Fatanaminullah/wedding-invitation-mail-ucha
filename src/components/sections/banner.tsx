@@ -1,77 +1,118 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
-import Anim from '@/components/global/anim'
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Anim from "@/components/global/anim";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import Fade from "embla-carousel-fade";
 
 export default function Banner() {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
-    seconds: 0
-  })
+    seconds: 0,
+  });
 
   // Get current locale from localStorage (temporary solution)
-  const [locale, setLocale] = useState('id')
-  
+  const [locale, setLocale] = useState("id");
+
   useEffect(() => {
-    const savedLocale = localStorage.getItem('locale') || 'id'
-    setLocale(savedLocale)
-  }, [])
+    const savedLocale = localStorage.getItem("locale") || "id";
+    setLocale(savedLocale);
+  }, []);
 
   const translations = {
     id: {
       title: "The wedding of Ucha & Mail",
-      description: "Assalamu'alaikum Wr. Wb. Dengan memohon Ridho, Rahmat, dan berkah Allah kami bermaksud untuk mengundang Saudara/i dalam acara pernikahan yang kami selenggarakan.",
+      description:
+        "Assalamu'alaikum Wr. Wb. Dengan memohon Ridho, Rahmat, dan berkah Allah kami bermaksud untuk mengundang Saudara/i dalam acara pernikahan yang kami selenggarakan.",
       days: "Hari",
-      hours: "Jam", 
+      hours: "Jam",
       minutes: "Menit",
-      seconds: "Detik"
+      seconds: "Detik",
     },
     en: {
       title: "The wedding of Ucha & Mail",
-      description: "Assalamu'alaikum Wr. Wb. With the blessings, mercy, and grace of Allah, we intend to invite you to the wedding ceremony we are organizing.",
+      description:
+        "Assalamu'alaikum Wr. Wb. With the blessings, mercy, and grace of Allah, we intend to invite you to the wedding ceremony we are organizing.",
       days: "Days",
       hours: "Hours",
-      minutes: "Minutes", 
-      seconds: "Seconds"
-    }
-  }
+      minutes: "Minutes",
+      seconds: "Seconds",
+    },
+  };
 
-  const t = translations[locale as keyof typeof translations]
+  const t = translations[locale as keyof typeof translations];
+
+  // Carousel images
+  const carouselImages = [
+    "/banner.jpg",
+    "/banner-2.jpg",
+    "/gallery-3.jpg",
+    "/gallery-5.jpg",
+  ];
 
   useEffect(() => {
-    const weddingDate = new Date('2025-09-06T07:00:00').getTime()
-    
+    const weddingDate = new Date("2025-09-06T07:00:00").getTime();
+
     const timer = setInterval(() => {
-      const now = new Date().getTime()
-      const distance = weddingDate - now
-      
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
       if (distance > 0) {
         setTimeLeft({
           days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          hours: Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          ),
           minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000)
-        })
+          seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        });
       }
-    }, 1000)
+    }, 1000);
 
-    return () => clearInterval(timer)
-  }, [])
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <section className="relative min-h-svh flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+    <section className="relative min-h-svh bg-black flex items-center justify-center overflow-hidden">
+      {/* Background Carousel */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/banner.jpg"
-          alt="Wedding Banner"
-          fill
-          className="object-cover"
-          priority
-        />
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          plugins={[
+            Fade(),
+            Autoplay({
+              delay: 4000,
+            }),
+          ]}
+          className="w-full h-full"
+        >
+          <CarouselContent wrapperClassName="h-full" className="h-full">
+            {carouselImages.map((image, index) => (
+              <CarouselItem key={index} className="h-full">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={image}
+                    alt={`Wedding Banner ${index + 1}`}
+                    fill
+                    className="object-cover"
+                    priority={index === 0}
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
@@ -84,7 +125,7 @@ export default function Banner() {
         </Anim>
 
         <Anim delay={300}>
-          <p className="text-lg md:text-xl mb-12 max-w-3xl mx-auto leading-relaxed text-white/90">
+          <p className="text-lg mb-12 max-w-3xl mx-auto leading-relaxed text-white/90">
             {t.description}
           </p>
         </Anim>
@@ -96,14 +137,14 @@ export default function Banner() {
               { value: timeLeft.days, label: t.days },
               { value: timeLeft.hours, label: t.hours },
               { value: timeLeft.minutes, label: t.minutes },
-              { value: timeLeft.seconds, label: t.seconds }
+              { value: timeLeft.seconds, label: t.seconds },
             ].map((item, index) => (
               <div
                 key={item.label}
                 className="bg-white/20 backdrop-blur-sm rounded-lg p-4 min-w-[80px]"
               >
                 <div className="text-2xl md:text-4xl font-bold mb-1">
-                  {item.value.toString().padStart(2, '0')}
+                  {item.value.toString().padStart(2, "0")}
                 </div>
                 <div className="text-sm md:text-base text-white/80">
                   {item.label}
@@ -117,5 +158,5 @@ export default function Banner() {
       {/* Decorative elements */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white via-white/50 to-transparent"></div>
     </section>
-  )
+  );
 }

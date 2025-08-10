@@ -15,6 +15,10 @@ export const fadeInLeft = keyframes`
   from { opacity: 0; transform: translateX(10px); }
   to { opacity: 1; transform: translateX(0); }
 `
+export const fadeInRight = keyframes`
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+`
 
 export const slideInUp = keyframes`
   from {
