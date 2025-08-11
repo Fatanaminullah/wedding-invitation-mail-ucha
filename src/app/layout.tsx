@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { LenisProvider } from "@/components/global/lenis-provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -14,14 +13,13 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "The Wedding of Ucha & Mail",
+  title: "The Wedding of Ucha & Ismail",
   description:
     "Join us in celebrating the wedding of Salsabila Azzahra & Ismail Abdan Syakuro Firmansyah on September 6, 2025",
-  keywords:
-    "wedding, invitation, Ucha, Mail, Salsabila, Ismail, September 2025",
-  authors: [{ name: "Ucha & Mail" }],
+  keywords: "wedding, invitation, Ucha, Ismail, Salsabila, September 2025",
+  authors: [{ name: "Fatan Aminullah", url: "https://fatanaminullah.com/" }],
   openGraph: {
-    title: "The Wedding of Ucha & Mail",
+    title: "The Wedding of Ucha & Ismail",
     description: "Join us in celebrating our special day - September 6, 2025",
     type: "website",
     images: ["/banner.jpg"],

@@ -29,7 +29,7 @@ export default function Banner() {
 
   const translations = {
     id: {
-      title: "The wedding of Ucha & Mail",
+      title: "The wedding of Ucha & Ismail",
       description:
         "Assalamu'alaikum Wr. Wb. Dengan memohon Ridho, Rahmat, dan berkah Allah kami bermaksud untuk mengundang Saudara/i dalam acara pernikahan yang kami selenggarakan.",
       days: "Hari",
@@ -38,7 +38,7 @@ export default function Banner() {
       seconds: "Detik",
     },
     en: {
-      title: "The wedding of Ucha & Mail",
+      title: "The wedding of Ucha & Ismail",
       description:
         "Assalamu'alaikum Wr. Wb. With the blessings, mercy, and grace of Allah, we intend to invite you to the wedding ceremony we are organizing.",
       days: "Days",
@@ -125,7 +125,7 @@ export default function Banner() {
         </Anim>
 
         <Anim delay={300}>
-          <p className="text-lg mb-12 max-w-3xl mx-auto leading-relaxed text-white/90">
+          <p className="text-lg mb-12 text-justify max-w-3xl mx-auto leading-relaxed text-white/90">
             {t.description}
           </p>
         </Anim>

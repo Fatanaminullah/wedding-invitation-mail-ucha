@@ -70,8 +70,8 @@ function HomeContent() {
               className="min-h-svh"
             >
               <Banner />
-              <BrideGroom />
               <Verse />
+              <BrideGroom />
               <SaveTheDate />
               <RSVP />
               <Gallery />

@@ -32,13 +32,13 @@ export default function Intro({ onOpenInvitation }: IntroProps) {
 
   const translations = {
     id: {
-      title: "The wedding of Ucha & Mail",
+      title: "The wedding of Ucha & Ismail",
       greeting: "Kepada Yth.",
       guestPlaceholder: "Tamu Undangan",
       openButton: "Buka Undangan",
     },
     en: {
-      title: "The wedding of Ucha & Mail",
+      title: "The wedding of Ucha & Ismail",
       greeting: "Dear",
       guestPlaceholder: "Honored Guest",
       openButton: "Open Invitation",
@@ -52,15 +52,15 @@ export default function Intro({ onOpenInvitation }: IntroProps) {
       {/* Background Image */}
       <div className="absolute inset-0 bg-black">
         <Image
-          src="/intro.jpg"
+          src="/gallery-5.jpg"
           alt="Wedding Intro"
           width={0}
           height={0}
-          className="w-full h-1/2 object-cover absolute top-0"
+          className="w-full h-full object-cover absolute top-0"
           sizes="100vw"
         />
         {/* Gradient overlay for smooth transition */}
-        <div className="absolute top-0 h-1/2 w-full bg-gradient-to-b from-black/0  to-black/90" />
+        <div className="absolute top-0 h-full w-full bg-gradient-to-t from-black/100  to-black/0" />
       </div>
 
       {/* Background Pattern Overlay */}
@@ -73,7 +73,7 @@ export default function Intro({ onOpenInvitation }: IntroProps) {
           <div className="mb-8">
             <h1 className="text-4xl font-serif text-white mb-4 leading-tight drop-shadow-lg">
               The Wedding of <br />
-              <span className="text-stone-200 font-semibold">Ucha & Mail</span>
+              <span className="text-stone-200 font-semibold">Ucha & Ismail</span>
             </h1>
           </div>
         </Anim>

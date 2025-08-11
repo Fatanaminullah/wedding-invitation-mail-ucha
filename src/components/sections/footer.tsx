@@ -92,7 +92,7 @@ export default function Footer() {
               <div className="space-y-4">
                 <div className="w-24 h-0.5 bg-white/60 mx-auto"></div>
                 <p className="text-xs text-white/70 tracking-wider drop-shadow-sm">
-                  {new Date().getFullYear()} • Ucha & Mail Wedding
+                  {new Date().getFullYear()} • Ucha & Ismail Wedding
                 </p>
               </div>
             </Anim>

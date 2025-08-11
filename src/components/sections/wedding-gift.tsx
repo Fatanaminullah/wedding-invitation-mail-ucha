@@ -179,16 +179,6 @@ export default function WeddingGift() {
             </div>
           ))}
         </div>
-        {/* Bottom Message */}
-        <Anim delay={600} className="block">
-          <div className="mt-4 text-center">
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Your presence at our wedding is the greatest gift of all. But if
-              you wish to give something, we would be grateful!
-            </p>
-          </div>
-        </Anim>
-        {/* Decorative Elements */}
       </div>
     </section>
   );

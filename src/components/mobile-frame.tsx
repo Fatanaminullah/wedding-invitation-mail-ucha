@@ -16,7 +16,7 @@ export default function MobileFrame({ children }: MobileFrameProps) {
         <div className="flex-1 flex items-end justify-center pb-8">
           <div className="text-center text-white px-8">
             <h1 className="text-6xl font-serif mb-4 tracking-wider">
-              Ucha & Mail
+              Ucha & Ismail
             </h1>
             <p className="text-xl text-stone-200 uppercase tracking-[0.3em] font-light">
               Wedding Invitation
@@ -41,7 +41,7 @@ export default function MobileFrame({ children }: MobileFrameProps) {
 
             <div className="text-center">
               <h3 className="text-2xl font-serif text-gray-800 mb-2">
-                Ucha & Mail
+                Ucha & Ismail
               </h3>
               <p className="text-sm text-gray-600 mb-4">Wedding Invitation</p>
               <p className="text-xs text-gray-500 leading-relaxed">

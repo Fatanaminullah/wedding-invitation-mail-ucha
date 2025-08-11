@@ -180,15 +180,6 @@ export default function SaveTheDate() {
             </div>
           </div>
         </Anim>
-
-        {/* Additional Info */}
-        <Anim delay={400} className="block">
-          <div className="mt-12 text-center">
-            <p className="text-sm text-gray-700 leading-relaxed italic">
-              {translations.saveTheDate.additionalInfo}
-            </p>
-          </div>
-        </Anim>
       </div>
     </section>
   );
