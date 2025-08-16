@@ -12,16 +12,19 @@ interface Translations {
       title: string;
       date: string;
       time: string;
-      location: string;
-      address: string;
-      mapButton: string;
     };
     resepsi: {
       title: string;
       date: string;
       time: string;
-      location: string;
-      address: string;
+    };
+    address: {
+      title: string;
+      location: {
+        title: string;
+        description: string;
+        detail: string;
+      };
       mapButton: string;
     };
     additionalInfo: string;
@@ -70,15 +73,15 @@ export default function SaveTheDate() {
   const mapsUrl = "https://maps.app.goo.gl/csa2Zts1CJzHAFYH8";
 
   return (
-    <section 
+    <section
       className="min-h-svh relative py-20 px-6 bg-cover bg-center bg-fixed"
       style={{
-        backgroundImage: "url('/save-the-date.jpg')"
+        backgroundImage: "url('/save-the-date.jpg')",
       }}
     >
       {/* White overlay */}
       <div className="absolute inset-0 bg-white/80"></div>
-      
+
       {/* Content */}
       <div className="relative z-10 max-w-md">
         <Anim className="block">
@@ -93,7 +96,6 @@ export default function SaveTheDate() {
         {/* Single Card */}
         <Anim delay={200} className="block">
           <div className="bg-gradient-to-br from-white to-stone-50 rounded-2xl shadow-lg p-6 border border-gray-100">
-            
             {/* Akad Nikah Section */}
             <div className="mb-8">
               <div className="text-center mb-4">
@@ -106,17 +108,27 @@ export default function SaveTheDate() {
               <div className="space-y-3">
                 {/* Akad Date */}
                 <div className="flex items-start gap-3">
-                  <Calendar className="text-stone-600 mt-1 flex-shrink-0" size={18} />
+                  <Calendar
+                    className="text-stone-600 mt-1 flex-shrink-0"
+                    size={18}
+                  />
                   <div>
-                    <p className="font-medium text-gray-800">{translations.saveTheDate.akad.date}</p>
+                    <p className="font-medium text-gray-800">
+                      {translations.saveTheDate.akad.date}
+                    </p>
                   </div>
                 </div>
 
                 {/* Akad Time */}
                 <div className="flex items-start gap-3">
-                  <Clock className="text-stone-600 mt-1 flex-shrink-0" size={18} />
+                  <Clock
+                    className="text-stone-600 mt-1 flex-shrink-0"
+                    size={18}
+                  />
                   <div>
-                    <p className="font-medium text-gray-800">{translations.saveTheDate.akad.time}</p>
+                    <p className="font-medium text-gray-800">
+                      {translations.saveTheDate.akad.time}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -134,17 +146,27 @@ export default function SaveTheDate() {
               <div className="space-y-3">
                 {/* Resepsi Date */}
                 <div className="flex items-start gap-3">
-                  <Calendar className="text-gray-600 mt-1 flex-shrink-0" size={18} />
+                  <Calendar
+                    className="text-gray-600 mt-1 flex-shrink-0"
+                    size={18}
+                  />
                   <div>
-                    <p className="font-medium text-gray-800">{translations.saveTheDate.resepsi.date}</p>
+                    <p className="font-medium text-gray-800">
+                      {translations.saveTheDate.resepsi.date}
+                    </p>
                   </div>
                 </div>
 
                 {/* Resepsi Time */}
                 <div className="flex items-start gap-3">
-                  <Clock className="text-gray-600 mt-1 flex-shrink-0" size={18} />
+                  <Clock
+                    className="text-gray-600 mt-1 flex-shrink-0"
+                    size={18}
+                  />
                   <div>
-                    <p className="font-medium text-gray-800">{translations.saveTheDate.resepsi.time}</p>
+                    <p className="font-medium text-gray-800">
+                      {translations.saveTheDate.resepsi.time}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -153,16 +175,24 @@ export default function SaveTheDate() {
             {/* Shared Location */}
             <div className="mb-6">
               <div className="text-center mb-4">
-                <h4 className="text-lg font-semibold text-gray-700 mb-2">Alamat</h4>
+                <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                  {translations.saveTheDate.address.title}{" "}
+                </h3>
                 <div className="w-10 h-0.5 bg-gray-400 mx-auto opacity-60"></div>
               </div>
 
               <div className="flex items-start gap-3 mb-4">
-                <MapPin className="text-gray-600 mt-1 flex-shrink-0" size={18} />
+                <MapPin
+                  className="text-gray-600 mt-1 flex-shrink-0"
+                  size={18}
+                />
                 <div>
-                  <p className="font-medium text-gray-800 mb-1">{translations.saveTheDate.akad.location}</p>
+                  <p className="font-medium text-gray-800 mb-1">
+                    {translations.saveTheDate.address.location.title} <br />
+                    ({translations.saveTheDate.address.location.description})
+                  </p>
                   <p className="text-sm text-gray-600 leading-relaxed">
-                    {translations.saveTheDate.akad.address}
+                    {translations.saveTheDate.address.location.detail}
                   </p>
                 </div>
               </div>
@@ -175,7 +205,7 @@ export default function SaveTheDate() {
                 className="bg-stone-600 hover:bg-stone-700 text-white w-full"
               >
                 <ExternalLink size={16} className="mr-2" />
-                {translations.saveTheDate.akad.mapButton}
+                {translations.saveTheDate.address.mapButton}
               </Button>
             </div>
           </div>

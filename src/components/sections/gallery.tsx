@@ -90,6 +90,8 @@ export default function Gallery() {
     { src: "/gallery-3.jpg", alt: "Wedding Photo 3" },
     { src: "/gallery-4.jpg", alt: "Wedding Photo 4" },
     { src: "/gallery-5.jpg", alt: "Wedding Photo 5" },
+    { src: "/gallery-6.jpg", alt: "Wedding Photo 6" },
+    { src: "/gallery-7.jpg", alt: "Wedding Photo 7" },
   ];
 
   if (!translations || !isClient) {

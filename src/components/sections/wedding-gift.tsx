@@ -2,7 +2,7 @@
 
 import Anim from "@/components/global/anim";
 import { Button } from "@/components/ui/button";
-import { Building2, Check, Copy, CreditCard } from "lucide-react";
+import { Building2, Check, Copy, CreditCard, MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface Translations {
@@ -11,6 +11,11 @@ interface Translations {
     description: string;
     copyButton: string;
     copiedMessage: string;
+    physicalAddress: {
+      title: string;
+      name: string;
+      mapButton: string;
+    };
   };
 }
 
@@ -86,6 +91,10 @@ export default function WeddingGift() {
     }
   };
 
+  const openMapLocation = () => {
+    window.open("https://maps.app.goo.gl/jRnojZJAXXAh9FtC7?g_st=ac", "_blank");
+  };
+
   if (!translations) {
     return (
       <div className="min-h-svh bg-white flex items-center justify-center">
@@ -108,6 +117,7 @@ export default function WeddingGift() {
             </p>
           </div>
         </Anim>
+
         <div className="space-y-6">
           {bankAccounts.map((account, index) => (
             <div key={account.accountNumber} className="">
@@ -178,6 +188,47 @@ export default function WeddingGift() {
               </Anim>
             </div>
           ))}
+          {/* Physical Address Section */}
+          <Anim delay={100} className="block">
+            <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300 mb-8">
+              <div className="flex items-start gap-4">
+                {/* Address Icon */}
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center">
+                    <MapPin className="text-white" size={24} />
+                  </div>
+                </div>
+
+                {/* Address Details */}
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-gray-800 text-lg mb-2">
+                    {translations.weddingGift.physicalAddress.title}
+                  </h3>
+                  <div className="space-y-2">
+                    <div>
+                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+                        Address
+                      </p>
+                      <p className="font-medium text-gray-700 leading-relaxed">
+                        {translations.weddingGift.physicalAddress.name}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Map Button */}
+              <div className="mt-6">
+                <Button
+                  onClick={openMapLocation}
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white transition-colors duration-200"
+                >
+                  <MapPin size={16} className="mr-2" />
+                  {translations.weddingGift.physicalAddress.mapButton}
+                </Button>
+              </div>
+            </div>
+          </Anim>
         </div>
       </div>
     </section>

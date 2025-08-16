@@ -1,24 +1,24 @@
 {
   "intro": {
-    "title": "The wedding of Ucha & Mail",
+    "title": "The wedding of Ucha & Ismail",
     "greeting": "Dear",
     "guestName": "Mr./Mrs./Ms.",
     "openInvitation": "Open Invitation"
   },
   "banner": {
-    "title": "The wedding of Ucha & Mail",
+    "title": "The wedding of Ucha & Ismail",
     "description": "Assalamu'alaikum Wr. Wb. With the blessings, mercy, and grace of Allah, we intend to invite you to the wedding ceremony we are organizing."
   },
   "bride": {
     "name": "Salsabila Azzahra, S.Psi",
     "title": "The Bride",
-    "detail": "First daughter of Colonel (PM) Hendri A.P Sinaga, S.H.,M.H & Sity Fatimah, S.Sos",
+    "detail": "First daughter of <br /> Colonel (PM) Hendri A.P Sinaga, S.H.,M.H <br /> & Sity Fatimah, S.Sos",
     "instagram": "@salsabilaaucha"
   },
   "groom": {
     "name": "Ismail Abdan Syakuro Firmansyah, S.T",
     "title": "The Groom",
-    "detail": "Only son of Iwan Firmansyah, S.Kom & Ira Apriedian, S. Pd.",
+    "detail": "Only son of Iwan Firmansyah, S.Kom <br /> & Ira Apriedian, S. Pd.",
     "instagram": "@ismailabdann"
   },
   "verse": {
@@ -30,17 +30,20 @@
     "akad": {
       "title": "Wedding Ceremony",
       "date": "Saturday, September 6, 2025",
-      "time": "07:00 AM",
-      "location": "Aula Sarbini (Wiladatika Recreation Park)",
-      "address": "Jl Pusdika Raya No.6B, Harjamukti, Cimanggis, Depok City, West Java 16454",
-      "mapButton": "View Location"
+      "time": "07:00 AM"
     },
     "resepsi": {
       "title": "Reception",
       "date": "Saturday, September 6, 2025",
-      "time": "11:00 AM - 01:00 PM",
-      "location": "Aula Sarbini (Wiladatika Recreation Park)", 
-      "address": "Jl Pusdika Raya No.6B, Harjamukti, Cimanggis, Depok City, West Java 16454",
+      "time": "11:00 AM - 01:00 PM"
+    },
+    "address": {
+      "title": "Address",
+      "location": {
+        "title": "Aula Sarbini",
+        "description": "Wiladatika Recreation Park",
+        "detail": "Jl Pusdika Raya No.6B, Harjamukti, Cimanggis, Depok City, West Java 16454"
+      },
       "mapButton": "View Location"
     },
     "additionalInfo": "It would be our happiness if you would be pleased to attend our special day."
@@ -53,7 +56,7 @@
     "guestCountLabel": "Number of Guests",
     "guestCount1": "1 Person",
     "guestCount2": "2 People",
-    "attendanceLabel": "Attendance Confirmation", 
+    "attendanceLabel": "Attendance Confirmation",
     "attendanceYes": "Will Attend",
     "attendanceNo": "Cannot Attend",
     "submitButton": "Send Confirmation",
@@ -68,7 +71,12 @@
     "title": "Wedding Gift",
     "description": "Without diminishing our respect, for guests who would like to give a token of affection, you can send it through:",
     "copyButton": "Copy",
-    "copiedMessage": "Account number successfully copied!"
+    "copiedMessage": "Account number successfully copied!",
+    "physicalAddress": {
+      "title": "Physical Gift Address",
+      "name": "Cluster Bukit Tulip, Citra Indah City, Blok BK 28 No. 1",
+      "mapButton": "View Location"
+    }
   },
   "blessing": {
     "title": "Wishes & Prayers",
@@ -86,14 +94,14 @@
   "footer": {
     "message": "It would be our happiness if you would kindly attend our special day. Thank you for all the prayers and attention given.",
     "signature": "With happiness",
-    "names": "Ucha & Mail"
+    "names": "Ucha & Ismail"
   },
   "music": {
     "play": "Play Music",
     "pause": "Pause Music"
   },
   "language": {
-    "indonesian": "Bahasa Indonesia", 
+    "indonesian": "Bahasa Indonesia",
     "english": "English"
   },
   "common": {

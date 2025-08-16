@@ -1,24 +1,24 @@
 {
   "intro": {
-    "title": "The wedding of Ucha & Mail",
+    "title": "The wedding of Ucha & Ismail",
     "greeting": "Kepada Yth.",
     "guestName": "Bapak/Ibu/Saudara/i",
     "openInvitation": "Buka Undangan"
   },
   "banner": {
-    "title": "The wedding of Ucha & Mail",
+    "title": "The wedding of Ucha & Ismail",
     "description": "Assalamu'alaikum Wr. Wb. Dengan memohon Ridho, Rahmat, dan berkah Allah kami bermaksud untuk mengundang Saudara/i dalam acara pernikahan yang kami selenggarakan."
   },
   "bride": {
     "name": "Salsabila Azzahra, S.Psi",
     "title": "Mempelai Wanita",
-    "detail": "Putri pertama Kolonel Laut (PM) Hendri A.P Sinaga, S.H.,M.H & Sity Fatimah, S.Sos",
+    "detail": "Putri pertama <br /> Kolonel Laut (PM) Hendri A.P Sinaga, S.H.,M.H <br /> & Sity Fatimah, S.Sos",
     "instagram": "@salsabilaaucha"
   },
   "groom": {
     "name": "Ismail Abdan Syakuro Firmansyah, S.T",
-    "title": "Mempelai Pria", 
-    "detail": "Putra tunggal Iwan Firmansyah, S.Kom & Ira Apriedian, S. Pd.",
+    "title": "Mempelai Pria",
+    "detail": "Putra tunggal Iwan Firmansyah, S.Kom <br/> & Ira Apriedian, S. Pd.",
     "instagram": "@ismailabdann"
   },
   "verse": {
@@ -30,17 +30,20 @@
     "akad": {
       "title": "Akad Nikah",
       "date": "Sabtu, 6 September 2025",
-      "time": "pukul 07.00 WIB",
-      "location": "Aula Sarbini (Taman Rekreasi Wiladatika)",
-      "address": "Jl Pusdika Raya No.6B, Harjamukti, Kec. Cimanggis, Kota Depok, Jawa Barat 16454",
-      "mapButton": "Lihat Lokasi"
+      "time": "Pukul 07.00 WIB"
     },
     "resepsi": {
       "title": "Resepsi",
-      "date": "Sabtu, 6 September 2025", 
-      "time": "pukul 11.00 - 13.00 WIB",
-      "location": "Aula Sarbini (Taman Rekreasi Wiladatika)",
-      "address": "Jl Pusdika Raya No.6B, Harjamukti, Kec. Cimanggis, Kota Depok, Jawa Barat 16454",
+      "date": "Sabtu, 6 September 2025",
+      "time": "Pukul 11.00 - 13.00 WIB"
+    },
+    "address": {
+      "title": "Alamat",
+      "location": {
+        "title": "Aula Sarbini",
+        "description": "Taman Rekreasi Wiladatika",
+        "detail": "Jl Pusdika Raya No.6B, Harjamukti, Cimanggis, Depok City, West Java 16454"
+      },
       "mapButton": "Lihat Lokasi"
     },
     "additionalInfo": "Menjadi sebuah kebahagian bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dalam hari bahagia kami."
@@ -52,7 +55,7 @@
     "namePlaceholder": "Masukkan nama lengkap",
     "guestCountLabel": "Jumlah Tamu",
     "guestCount1": "1 Orang",
-    "guestCount2": "2 Orang", 
+    "guestCount2": "2 Orang",
     "attendanceLabel": "Konfirmasi Kehadiran",
     "attendanceYes": "Hadir",
     "attendanceNo": "Tidak Hadir",
@@ -68,7 +71,12 @@
     "title": "Wedding Gift",
     "description": "Tanpa mengurangi rasa hormat kami, bagi tamu yang ingin memberikan tanda kasih, dapat mengirimkannya melalui:",
     "copyButton": "Salin",
-    "copiedMessage": "Nomor rekening berhasil disalin!"
+    "copiedMessage": "Nomor rekening berhasil disalin!",
+    "physicalAddress": {
+      "title": "Alamat Pengiriman Hadiah",
+      "name": "Cluster Bukit Tulip, Citra Indah City, Blok BK 28 No. 1",
+      "mapButton": "Lihat Lokasi"
+    }
   },
   "blessing": {
     "title": "Ucapan & Doa",
@@ -86,7 +94,7 @@
   "footer": {
     "message": "Menjadi sebuah kebahagian bagi kami apabila Bapak/Ibu/saudara/I berkenan hadir dalam hari Bahagia kami. Terima kasih atas segala do'a dan perhatian yang diberikan.",
     "signature": "Kami yang berbahagia",
-    "names": "Ucha & Mail"
+    "names": "Ucha & Ismail"
   },
   "music": {
     "play": "Putar Musik",

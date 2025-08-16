@@ -139,9 +139,12 @@ export default function BrideGroom() {
                   <p className="text-stone-600 font-medium mb-3">
                     {translations.bride.title}
                   </p>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                    {translations.bride.detail}
-                  </p>
+                  <div
+                    className="text-gray-600 text-sm leading-relaxed mb-4"
+                    dangerouslySetInnerHTML={{
+                      __html: translations.bride.detail,
+                    }}
+                  ></div>
                   <a
                     href={`https://instagram.com/${translations.bride.instagram.replace(
                       "@",
@@ -180,9 +183,12 @@ export default function BrideGroom() {
                   <p className="text-stone-600 font-medium mb-3">
                     {translations.groom.title}
                   </p>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                    {translations.groom.detail}
-                  </p>
+                  <div
+                    className="text-gray-600 text-sm leading-relaxed mb-4"
+                    dangerouslySetInnerHTML={{
+                      __html: translations.groom.detail,
+                    }}
+                  ></div>
                   <a
                     href={`https://instagram.com/${translations.groom.instagram.replace(
                       "@",
