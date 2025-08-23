@@ -28,12 +28,12 @@ export default function Gallery() {
 
   const galleryImages = [
     { src: "/gallery-1.jpg", alt: "Wedding Photo 1", aspectRatio: 0.75 }, // Portrait
-    { src: "/gallery-2.jpg", alt: "Wedding Photo 2", aspectRatio: 1.5 }, // Landscape
+    { src: "/gallery-2.jpg", alt: "Wedding Photo 2", aspectRatio: 1.25 }, // Landscape
     { src: "/gallery-3.jpg", alt: "Wedding Photo 3", aspectRatio: 0.85 }, // Portrait (changed from square)
-    { src: "/gallery-6.jpg", alt: "Wedding Photo 6", aspectRatio: 0.95 }, // Portrait (changed from landscape)
-    { src: "/gallery-7.jpg", alt: "Wedding Photo 7", aspectRatio: 0.9 }, // Almost square
     { src: "/gallery-4.jpg", alt: "Wedding Photo 4", aspectRatio: 0.8 }, // Portrait
     { src: "/gallery-5.jpg", alt: "Wedding Photo 5", aspectRatio: 0.9 }, // Portrait (changed from landscape)
+    { src: "/gallery-6.jpg", alt: "Wedding Photo 6", aspectRatio: 0.95 }, // Portrait (changed from landscape)
+    { src: "/gallery-7.jpg", alt: "Wedding Photo 7", aspectRatio: 0.9 }, // Almost square
     { src: "/gallery-8.jpg", alt: "Wedding Photo 8", aspectRatio: 1.6 }, // Wide landscape
     { src: "/gallery-9.jpg", alt: "Wedding Photo 9", aspectRatio: 0.7 }, // Tall portrait
     { src: "/gallery-10.jpg", alt: "Wedding Photo 10", aspectRatio: 0.7 }, // Tall portrait
