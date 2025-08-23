@@ -1,13 +1,23 @@
 "use client";
 
-import { ReactNode } from "react";
-import Image from "next/image";
+import { ReactNode, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { QRCodeSVG } from "qrcode.react";
 
 interface MobileFrameProps {
   children: ReactNode;
 }
 
 export default function MobileFrame({ children }: MobileFrameProps) {
+  const [currentUrl, setCurrentUrl] = useState("");
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    // Get the current URL with all query parameters
+    const url = window.location.href;
+    setCurrentUrl(url);
+  }, [searchParams]);
+
   return (
     <>
       {/* Desktop: QR Code Landing Page - NO ACCESS TO WEDDING CONTENT */}
@@ -27,16 +37,20 @@ export default function MobileFrame({ children }: MobileFrameProps) {
         {/* Middle - QR Code */}
         <div className="flex-1 flex items-center justify-center">
           <div className="bg-white rounded-3xl p-12 shadow-2xl">
-            {/* QR Code Image */}
-            <div className="w-64 h-64 bg-white border-4 border-gray-200 rounded-2xl overflow-hidden mx-auto mb-8">
-              <Image
-                src="/qr-code.jpg"
-                alt="QR Code"
-                width={256}
-                height={256}
-                className="w-full h-full object-cover"
-                priority
-              />
+            {/* Dynamic QR Code */}
+            <div className="w-64 h-64 bg-white border-4 border-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-8">
+              {currentUrl ? (
+                <QRCodeSVG
+                  value={currentUrl}
+                  size={240}
+                  bgColor="#ffffff"
+                  fgColor="#000000"
+                  level="M"
+                  includeMargin={true}
+                />
+              ) : (
+                <div className="w-full h-full bg-gray-100 animate-pulse rounded-xl" />
+              )}
             </div>
 
             <div className="text-center">
