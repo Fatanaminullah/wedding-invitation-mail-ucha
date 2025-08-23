@@ -45,7 +45,7 @@ function ImageCarousel({ images, alt }: ImageCarouselProps) {
       {images.map((image, index) => (
         <div
           key={image}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+          className={`absolute rounded-2xl inset-0 transition-opacity duration-1000 ease-in-out ${
             index === currentIndex ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -53,12 +53,12 @@ function ImageCarousel({ images, alt }: ImageCarouselProps) {
             src={image}
             alt={`${alt} ${index + 1}`}
             fill
-            className="object-cover"
+            className="object-cover rounded-2xl"
             priority={index === 0}
           />
         </div>
       ))}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+      <div className="absolute rounded-2xl inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
     </div>
   );
 }

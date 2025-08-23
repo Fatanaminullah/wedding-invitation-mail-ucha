@@ -11,6 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface Translations {
   gallery: {
@@ -97,60 +98,40 @@ export default function Gallery() {
           </Anim>
 
           <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-            {galleryImages.map((image, index) => (
-              <Anim
-                key={index}
-                delay={index * 100}
-                className="block mb-4 break-inside-avoid"
-              >
+            <Anim>
+              {galleryImages.map((image, index) => (
                 <div
-                  className="relative rounded-xl overflow-hidden shadow-lg cursor-pointer group transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-stone-500/25"
-                  onClick={() => {
-                    setSelectedImage(image.src);
-                    setSelectedIndex(index);
-                  }}
+                  key={index}
+                  // delay={index * 100}
+                  className="block mb-4 break-inside-avoid"
                 >
                   <div
-                    className="relative w-full"
-                    style={{ aspectRatio: image.aspectRatio }}
+                    className="relative rounded-xl overflow-hidden cursor-pointer group transition-all duration-300 "
+                    onClick={() => {
+                      setSelectedImage(image.src);
+                      setSelectedIndex(index);
+                    }}
                   >
-                    <Image
-                      src={
-                        image.src ||
-                        "/placeholder.svg?height=400&width=300&query=wedding photo"
-                      }
-                      alt={image.alt}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      priority={index < 6}
-                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    />
-                  </div>
-
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                  {/* Hover overlay with zoom icon */}
-                  <div className="absolute inset-0 bg-stone-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                      <svg
-                        className="w-6 h-6 text-stone-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM15 10l4.5-4.5M9 10h.01M15 10h.01"
-                        />
-                      </svg>
+                    <div
+                      className="relative w-full rounded-xl overflow-hidden"
+                      style={{ aspectRatio: image.aspectRatio }}
+                    >
+                      <Image
+                        src={
+                          image.src ||
+                          "/placeholder.svg?height=400&width=300&query=wedding photo"
+                        }
+                        alt={image.alt}
+                        fill
+                        className="object-cover rounded-xl group-hover:scale-110 transition-transform duration-500 "
+                        priority={index < 6}
+                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      />
                     </div>
                   </div>
                 </div>
-              </Anim>
-            ))}
+              ))}
+            </Anim>
           </div>
 
           {/* Gallery Description */}
@@ -165,71 +146,76 @@ export default function Gallery() {
       </section>
 
       {/* Lightbox Modal with Carousel */}
-      {selectedImage && (
-        <div
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-          onClick={(e) => {
-            // Only close if clicking the background, not the carousel or its children
-            if (e.target === e.currentTarget) {
-              setSelectedImage(null);
-            }
-          }}
-        >
-          <div
-            className="relative w-full max-w-4xl"
-            onClick={(e) => e.stopPropagation()}
+      <AnimatePresence mode="wait">
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            onClick={(e) => {
+              // Only close if clicking the background, not the carousel or its children
+              if (e.target === e.currentTarget) {
+                setSelectedImage(null);
+              }
+            }}
           >
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute -top-12 right-0 text-white hover:text-stone-300 transition-colors z-10"
+            <div
+              className="relative w-full max-w-4xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              <svg
-                className="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute -top-12 right-0 text-white hover:text-stone-300 transition-colors z-10"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
 
-            <Carousel
-              opts={{
-                startIndex: selectedIndex,
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent>
-                {galleryImages.map((image, index) => (
-                  <CarouselItem key={index} className="flex items-center">
-                    <div className="flex items-center justify-center">
-                      <Image
-                        src={
-                          image.src ||
-                          "/placeholder.svg?height=600&width=400&query=wedding photo"
-                        }
-                        alt={image.alt}
-                        width={0}
-                        height={0}
-                        className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
-                        sizes="90vw"
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-4 bg-white/10 border-white/50 text-white hover:bg-white/60" />
-              <CarouselNext className="right-4 bg-white/10 border-white/50 text-white hover:bg-white/60" />
-            </Carousel>
-          </div>
-        </div>
-      )}
+              <Carousel
+                opts={{
+                  startIndex: selectedIndex,
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent>
+                  {galleryImages.map((image, index) => (
+                    <CarouselItem key={index} className="flex items-center">
+                      <div className="flex items-center justify-center">
+                        <Image
+                          src={
+                            image.src ||
+                            "/placeholder.svg?height=600&width=400&query=wedding photo"
+                          }
+                          alt={image.alt}
+                          width={0}
+                          height={0}
+                          className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
+                          sizes="90vw"
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-4 bg-white/10 border-white/50 text-white hover:bg-white/60" />
+                <CarouselNext className="right-4 bg-white/10 border-white/50 text-white hover:bg-white/60" />
+              </Carousel>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

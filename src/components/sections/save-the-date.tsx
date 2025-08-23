@@ -83,7 +83,7 @@ export default function SaveTheDate() {
       <div className="absolute inset-0 bg-white/80"></div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-md">
+      <div className="relative z-10 max-w-md mx-auto">
         <Anim className="block">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-serif font-bold text-gray-800 mb-4">
