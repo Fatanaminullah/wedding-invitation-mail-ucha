@@ -136,9 +136,9 @@ export default function BrideGroom() {
                   <h3 className="text-2xl font-serif font-bold text-gray-800 mb-2">
                     {translations.bride.name}
                   </h3>
-                  <p className="text-stone-600 font-medium mb-3">
+                  {/* <p className="text-stone-600 font-medium mb-3">
                     {translations.bride.title}
-                  </p>
+                  </p> */}
                   <div
                     className="text-gray-600 text-sm leading-relaxed mb-4"
                     dangerouslySetInnerHTML={{
@@ -180,9 +180,9 @@ export default function BrideGroom() {
                   <h3 className="text-2xl font-serif font-bold text-gray-800 mb-2">
                     {translations.groom.name}
                   </h3>
-                  <p className="text-stone-600 font-medium mb-3">
+                  {/* <p className="text-stone-600 font-medium mb-3">
                     {translations.groom.title}
-                  </p>
+                  </p> */}
                   <div
                     className="text-gray-600 text-sm leading-relaxed mb-4"
                     dangerouslySetInnerHTML={{

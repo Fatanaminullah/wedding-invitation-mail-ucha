@@ -29,18 +29,18 @@ export default function Banner() {
 
   const translations = {
     id: {
-      title: "The wedding of Ucha & Ismail",
+      title: "The wedding of <br /> Ucha & Ismail",
       description:
-        "Assalamu'alaikum Wr. Wb. Dengan memohon Ridho, Rahmat, dan berkah Allah kami bermaksud untuk mengundang Saudara/i dalam acara pernikahan yang kami selenggarakan.",
+        "Assalamu'alaikum Wr. Wb. <br /> Dengan memohon Ridho, Rahmat, dan berkah Allah kami bermaksud untuk mengundang Saudara/i dalam acara pernikahan yang kami selenggarakan.",
       days: "Hari",
       hours: "Jam",
       minutes: "Menit",
       seconds: "Detik",
     },
     en: {
-      title: "The wedding of Ucha & Ismail",
+      title: "The wedding of <br /> Ucha & Ismail",
       description:
-        "Assalamu'alaikum Wr. Wb. With the blessings, mercy, and grace of Allah, we intend to invite you to the wedding ceremony we are organizing.",
+        "Assalamu'alaikum Wr. Wb. <br />  With the blessings, mercy, and grace of Allah, we intend to invite you to the wedding ceremony we are organizing.",
       days: "Days",
       hours: "Hours",
       minutes: "Minutes",
@@ -119,15 +119,17 @@ export default function Banner() {
       {/* Content */}
       <div className="relative z-10 text-center text-white px-6 mt-auto pb-20">
         <Anim>
-          <h1 className="text-4xl md:text-6xl font-serif mb-6 leading-tight">
-            {t.title}
-          </h1>
+          <h1
+            className="text-4xl md:text-6xl font-serif mb-6 leading-tight"
+            dangerouslySetInnerHTML={{ __html: t.title }}
+          ></h1>
         </Anim>
 
         <Anim delay={300}>
-          <p className="text-lg mb-12 text-justify max-w-3xl mx-auto leading-relaxed text-white/90">
-            {t.description}
-          </p>
+          <div
+            className="text-lg mb-12 text-center max-w-3xl mx-auto leading-relaxed text-white/90"
+            dangerouslySetInnerHTML={{ __html: t.description }}
+          ></div>
         </Anim>
 
         {/* Countdown */}

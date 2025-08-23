@@ -413,7 +413,7 @@ export default function Blessing() {
                 ))}
 
                 {/* Show More Button */}
-                {blessings.length > 3 && (
+                {blessings.length > 3 ? (
                   <div className="text-center mt-6">
                     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                       <DialogTrigger asChild>
@@ -425,7 +425,7 @@ export default function Blessing() {
                           {blessings.length - 3} more)
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="h-screen">
+                      <DialogContent className="h-[calc(100vh-120px)]">
                         <DialogHeader className="">
                           <div className="flex items-center justify-between">
                             <DialogTitle className="flex items-center gap-2 text-left">
@@ -435,7 +435,7 @@ export default function Blessing() {
                         </DialogHeader>
 
                         {/* Content */}
-                        <div className="flex-1 overflow-y-auto h-[calc(100vh-120px)]">
+                        <div className="flex-1 overflow-y-auto h-[calc(100vh-200px)]">
                           <div className="space-y-4 max-w-2xl mx-auto">
                             {blessings.map((blessing, index) => (
                               <div
@@ -476,7 +476,7 @@ export default function Blessing() {
                       </DialogContent>
                     </Dialog>
                   </div>
-                )}
+                ) : null}
               </div>
             )}
           </div>
