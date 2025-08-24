@@ -233,7 +233,7 @@ export default function RSVP() {
               </div>
 
               {/* Guest Count Field */}
-              <div className="relative z-20">
+              {/* <div className="relative z-20">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   {translations.rsvp.guestCountLabel}
                 </label>
@@ -259,7 +259,7 @@ export default function RSVP() {
                     </SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
+              </div> */}
 
               {/* Attendance Field */}
               <div className="relative z-10">
